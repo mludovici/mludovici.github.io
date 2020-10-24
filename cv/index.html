@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>uHost Signup</title>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/litepicker/dist/js/main.js"></script> -->
+
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+		/>
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+
+
+		<link rel="stylesheet" href="index.css" />
+
+	</head>
+
+	<body>
+		<main class="cv-page">
+			<h1 class="signup-title">Create CV item</h1>
+			<p>This CV Card item lets you create a job experience</p>
+
+			<form action="index.html" id="cv-form">
+				<label for="flatpickr">Choose date:</label>
+				<input name="date" id="flatpickr" autocomplete="off" required />
+
+				<label for="title">Job-Title:</label>
+				<input name="title" type="text" id="job-title" required />
+
+				<label for="description" id="cv__list__label">Description:</label>
+				<span class="cv--description">
+					<input type="text" id="description"  />
+					<img class="svg--add-icon" src="add.svg" id="cv-svg">
+				</span>
+				<ul id="cv-job-skills-list"></ul>
+				<!-- <div class="signup-form__checkbox">
+					<input type="checkbox" id="agree-terms" required />
+					<label for="agree-terms"
+						>Agree to
+						<a href="#">Terms &amp; Conditions</a>
+					</label>
+				</div> -->
+				<button type="submit" class="button">Add CV item</button>
+			</form>
+		</main>
+
+		<script src="index.js"></script>
+
+	</body>
+</html>

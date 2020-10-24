@@ -1,0 +1,215 @@
+* {
+	box-sizing: border-box;
+}
+	
+html {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	display: grid;
+	grid-template-rows: 3rem auto 3rem;
+	grid-template-areas: "header"
+												"main"
+												"footer";
+	height: 100%;
+}
+
+
+.main-header {
+	grid-area: header;
+	display: flex;
+	justify-content: space-between;
+}
+
+.icon-div {
+	height: 100%;
+	text-align: center;
+}
+
+.main-header__link {
+	display: inline-flex;
+	height: 100%;
+  vertical-align: middle;
+}
+
+.main-header__link > img {
+	height: 100%;
+	align-content: center;
+}
+
+.nav-list {
+	list-style: none;
+	display: inline-flex;
+}
+
+.nav-list__item {
+	padding-right: 1rem;
+}
+
+.main {
+	grid-area: main;
+}
+
+.warptext {
+	position: absolute;
+	top: 400px;
+	right: 200px;
+	font-size: 2rem;
+	font-weight: bold;
+	color: white;
+}
+
+.bg-image {
+	width: 100vw;
+  height: 20vh;
+	background-image: url("./assets/space_ship/97j3hvnx-720.jpg");
+	background-size: contain;
+	background-repeat: repeat-x;
+	object-fit: fill;
+	animation: warp 15s linear infinite;
+	-webkit-animation: warp 15s linear infinite;
+}
+
+.bg-ship {
+	position: absolute;
+	top: 200px;
+	left: 50px;
+}
+
+.main-footer {
+	background-color: blueviolet;
+	grid-area: footer;
+}
+
+.welcome-introduction {
+	height: 200px;
+}
+
+.skill-showset {
+	width: 100px;
+	height: 100px;
+	position: relative;
+	left: 50%;
+	top: 3rem;
+	transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	animation: expand 1s linear infinite;
+	-webkit-animation: expand 1s linear infinite;
+}
+
+.skill-showset > span {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	height: 50px;
+	animation: rotate 1s linear infinite;
+	-webkit-animation: rotate 1s linear infinite;
+}
+
+.skill-showset > span:nth-child(1) {
+	/* background: url("./assets//skillsets/icons8-react-native.svg"); */
+	background-color: red;
+	top: 0px;
+	left: 0px;
+}
+.skill-showset > span:nth-child(2) {
+	/*background: url("./assets//skillsets/icons8-javascript-logo.svg");
+	*/background-color: blue;
+	top: 0px;
+	right: 0px;
+}
+.skill-showset > span:nth-child(3) {
+	/* background: url("./assets//skillsets/icons8-html-5.svg"); */
+	background-color: green;
+	bottom: 0px;
+	left: 0px;
+}
+.skill-showset > span:nth-child(4) {
+	/* background: url("./assets//skillsets/icons8-css3.svg"); */
+	background-color: yellow;
+	right: 0px;
+	bottom: 0px;
+}
+
+#skills {
+	height: 80%;
+	width: 80%;
+	display: flex;
+	background-color: indianred;
+	justify-content: center;
+}
+
+@keyframes warp {
+	from {
+		background-position: bottom right;
+	}
+	to {
+		background-position: bottom left;
+	}
+}
+
+@keyframes expand {
+	0% {
+		width: 100px;
+		height: 100px;
+	}
+	10% {
+		width: 100px;
+		height: 100px;
+	}
+	50% {
+		width: 150px;
+		height: 150px;
+	}
+	90% {
+		width: 100px;
+		height: 100px;
+	}
+	100% {
+		width: 100px;
+		height: 100px;
+	}
+}
+
+@keyframes rotate {
+	0% {
+		transform: rotateZ(0deg)	;
+		-webkit-transform: rotateZ(0deg)	;
+		-moz-transform: rotateZ(0deg)	;
+		-ms-transform: rotateZ(0deg)	;
+		-o-transform: rotateZ(0deg)	;
+	}
+	10% {
+		transform: rotateZ(0deg)	;
+		-webkit-transform: rotateZ(0deg)	;
+		-moz-transform: rotateZ(0deg)	;
+		-ms-transform: rotateZ(0deg)	;
+		-o-transform: rotateZ(0deg)	;
+	}
+	50% {
+		transform: rotateZ(90deg)	;
+		-webkit-transform: rotateZ(90deg)	;
+		-moz-transform: rotateZ(90deg)	;
+		-ms-transform: rotateZ(90deg)	;
+		-o-transform: rotateZ(90deg)	;
+	}
+	90% {
+		transform: rotateZ(90deg)	;
+		-webkit-transform: rotateZ(90deg)	;
+		-moz-transform: rotateZ(90deg)	;
+		-ms-transform: rotateZ(90deg)	;
+		-o-transform: rotateZ(90deg)	;
+	}
+	100% {
+		transform: rotateZ(90deg)	;
+		-webkit-transform: rotateZ(90deg)	;
+		-moz-transform: rotateZ(90deg)	;
+		-ms-transform: rotateZ(90deg)	;
+		-o-transform: rotateZ(90deg)	;
+	}
+}

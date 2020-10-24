@@ -1,0 +1,31 @@
+{
+  "name": "mludovici.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "i18fn.js",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "dotenv": "^8.2.0",
+    "firebase": "^7.24.0",
+    "jquery": "^3.5.1",
+    "litepicker": "^1.5.7",
+    "lowdb": "^1.0.0",
+    "normalize.css": "^8.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mludovici/mludovici.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mludovici/mludovici.github.io/issues"
+  },
+  "homepage": "https://github.com/mludovici/mludovici.github.io#readme",
+  "type": "module"
+}

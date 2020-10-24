@@ -1,0 +1,112 @@
+body {
+	height: 100%;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.cv-page {
+	background: #aad6a2;
+	position: absolute;
+	left: 50%;
+	padding: 2rem;
+}
+
+#cv-form {
+	padding: 1rem;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	grid-auto-rows: auto;
+	row-gap: 0.5rem;
+	justify-items: start;
+	border: 1px solid grey;
+}
+
+.cv-form label {
+	font-weight: bold;
+}
+
+#cv__list__label {
+	grid-column-start: 1;
+	grid-column-end: 3;
+	padding-top: 1rem;
+}
+
+.cv-form label,
+.cv-form input,
+.cv-form select {
+	display: inline-block;
+	width: 100%;
+}
+
+.cv--description {
+	width: 100%;
+	grid-column-start: 1;
+	grid-column-end: 3;
+	display: flex;
+	justify-content: space-between;
+}
+
+#description {
+	justify-content: center;
+	width: 90%;
+}
+
+.svg--add-icon {
+	max-width: 1rem;
+	background: url("add.png") no-repeat center;
+	background-image: url("add.svg");
+	background-size: contain;
+}
+
+.cv-form > ul {
+	grid-column-start: 1;
+	grid-column-end: 3;
+	width: 100%;
+}
+
+.button {
+	border-radius: 2px;
+	grid-column-start: 2;
+	grid-column-end: 3;
+	justify-self: end;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	-o-border-radius: 2px;
+}
+
+.cv-list-item{
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.cv-list-item-trash {
+	max-width: 1rem;
+	float: right;
+	justify-self: end;
+}
+
+/* .signup-form input[type="checkbox"] */
+.cv-form input[id*="terms"],
+.cv-form input[id*="terms"] + label {
+	display: inline-block;
+	width: auto;
+	vertical-align: bottom;
+}
+
+.signup-form input:not([type="checkbox"]),
+.signup-form select {
+	border: 1px solid #ccc;
+	padding: 0.2rem 0.5rem;
+	font: inherit;
+}
+
+.signup-form input:focus,
+.signup-form select:focus {
+	outline: none;
+	background: #d8f3df;
+	border-color: #2ddf5c;
+}
