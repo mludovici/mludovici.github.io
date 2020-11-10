@@ -4,54 +4,190 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<title>uHost Signup</title>
+		
+		
+		<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
-		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/litepicker/dist/js/main.js"></script> -->
-
 		<link
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
 		/>
 		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+
+		<!-- <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase.js"></script> -->
+		<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
 
 
 		<link rel="stylesheet" href="index.css" />
+		<link rel="stylesheet" href="timeline.css" />
 
+		<title>uHost Signup</title>
 	</head>
 
 	<body>
+		<section class="profile">
+			<h2>Profil</h2>
+			<p>Name: Marc</p>
+			<p>Software Entwickler</p>
+			<article class="about">Ich bin Master-Absolvent in angewandter Informatik mit zwei Jahren Berufserfahrung.
+				Meine Interessensgebiete sind zurzeit JavaScript Full-Stack Entwicklung oder Datascience.
+				In meiner Freizeit bilde ich mich fortlaufend weiter.
+			</article>				
+		</section>
 		<main class="cv-page">
+			
 			<h1 class="signup-title">Create CV item</h1>
 			<p>This CV Card item lets you create a job experience</p>
 
 			<form action="index.html" id="cv-form">
-				<label for="flatpickr">Choose date:</label>
-				<input name="date" id="flatpickr" autocomplete="off" required />
+				<div id="cvdate">
+					<label for="flatpickr">Choose date:</label>
+					<input name="cvdate" id="flatpickr" autocomplete="off" required />
+				</div>
 
-				<label for="title">Job-Title:</label>
-				<input name="title" type="text" id="job-title" required />
+				<div id="cvtitle">
+					<label for="title">Job-Title:</label>
+					<input name="cvtitle" type="text" id="job-title" required />
+				</div>
 
-				<label for="description" id="cv__list__label">Description:</label>
-				<span class="cv--description">
-					<input type="text" id="description"  />
-					<img class="svg--add-icon" src="add.svg" id="cv-svg">
-				</span>
-				<ul id="cv-job-skills-list"></ul>
-				<!-- <div class="signup-form__checkbox">
-					<input type="checkbox" id="agree-terms" required />
-					<label for="agree-terms"
-						>Agree to
-						<a href="#">Terms &amp; Conditions</a>
-					</label>
-				</div> -->
+				<div id="cvdescription">
+					<label for="description">Beschreibung</label>
+					<input name="cvdescription" type="text" id="description" required/>
+				</div>
+
+				<div id="cvcategory">
+					<p>
+						<label>Category:</label>            
+						<input type = "radio"
+									 name = "radCat"
+									 id = "work"
+									 value = "work"
+									 checked = "checked" />
+						<label for = "work">Work</label>
+						<input type = "radio"
+									 name = "radCat"
+									 id = "education"
+									 value = "education" />
+						<label for = "education">Education</label>
+					</p> 
+				</div>
+	
+				<div id="cvskillset">
+					<label for="skillset" id="cv__skill__label">Skill hinzufügen:</label>						
+					<img class="svg--add-icon" src="./assets/add.svg" id="cv-svg">
+					<input name="skillset" type="text" id="skillset" />
+				</div>
+
+				<ul id="cv-job-skills-list">
+
+				</ul>
+
 				<button type="submit" class="button">Add CV item</button>
 			</form>
 		</main>
 
-		<script src="index.js"></script>
+		<section class="cd-timeline js-cd-timeline">
+			<div class="container max-width-lg cd-timeline__container">
+				<div class="cd-timeline__block">
+					<div class="cd-timeline__img cd-timeline__img--picture">
+						<img src="assets/img/cd-icon-picture.svg" alt="Picture">
+					</div> <!-- cd-timeline__img -->
+	
+					<div class="cd-timeline__content text-component">
+						<h2>Title of section 1</h2>
+						<p class="color-contrast-medium">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
+	
+						<div class="flex justify-between items-center">
+							<span class="cd-timeline__date">Jan 14</span>
+							<a href="#0" class="btn btn--subtle">Read more</a>
+						</div>
+					</div> <!-- cd-timeline__content -->
+				</div> <!-- cd-timeline__block -->
+	
+				<div class="cd-timeline__block">
+					<div class="cd-timeline__img cd-timeline__img--movie">
+						<img src="assets/img/cd-icon-movie.svg" alt="Movie">
+					</div> <!-- cd-timeline__img -->
+	
+					<div class="cd-timeline__content text-component">
+						<h2>Title of section 2</h2>
+						<p class="color-contrast-medium">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde?</p>
+						
+						<div class="flex justify-between items-center">
+							<span class="cd-timeline__date">Jan 18</span>
+							<a href="#0" class="btn btn--subtle">Read more</a>
+						</div>
+					</div> <!-- cd-timeline__content -->
+				</div> <!-- cd-timeline__block -->
+	
+				<div class="cd-timeline__block">
+					<div class="cd-timeline__img cd-timeline__img--picture">
+						<img src="assets/img/cd-icon-picture.svg" alt="Picture">
+					</div> <!-- cd-timeline__img -->
+	
+					<div class="cd-timeline__content text-component">
+						<h2>Title of section 3</h2>
+						<p class="color-contrast-medium">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, obcaecati, quisquam id molestias eaque asperiores voluptatibus cupiditate error assumenda delectus odit similique earum voluptatem doloremque dolorem ipsam quae rerum quis. Odit, itaque, deserunt corporis vero ipsum nisi eius odio natus ullam provident pariatur temporibus quia eos repellat consequuntur perferendis enim amet quae quasi repudiandae sed quod veniam dolore possimus rem voluptatum eveniet eligendi quis fugiat aliquam sunt similique aut adipisci.</p>
+	
+						<div class="flex justify-between items-center">
+							<span class="cd-timeline__date">Jan 24</span>
+							<a href="#0" class="btn btn--subtle">Read more</a>
+						</div>
+					</div> <!-- cd-timeline__content -->
+				</div> <!-- cd-timeline__block -->
+	
+				<div class="cd-timeline__block">
+					<div class="cd-timeline__img cd-timeline__img--location">
+						<img src="assets/img/cd-icon-location.svg" alt="Location">
+					</div> <!-- cd-timeline__img -->
+	
+					<div class="cd-timeline__content text-component">
+						<h2>Title of section 4</h2>
+						<p class="color-contrast-medium">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
+	
+						<div class="flex justify-between items-center">
+							<span class="cd-timeline__date">Feb 14</span>
+							<a href="#0" class="btn btn--subtle">Read more</a>
+						</div>
+					</div> <!-- cd-timeline__content -->
+				</div> <!-- cd-timeline__block -->
+	
+				<div class="cd-timeline__block">
+					<div class="cd-timeline__img cd-timeline__img--location">
+						<img src="assets/img/cd-icon-location.svg" alt="Location">
+					</div> <!-- cd-timeline__img -->
+	
+					<div class="cd-timeline__content text-component">
+						<h2>Title of section 5</h2>
+						<p class="color-contrast-medium">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum.</p>
+	
+						<div class="flex justify-between items-center">
+							<span class="cd-timeline__date">Feb 18</span>
+							<a href="#0" class="btn btn--subtle">Read more</a>
+						</div>
+					</div> <!-- cd-timeline__content -->
+				</div> <!-- cd-timeline__block -->
+	
+				<div class="cd-timeline__block">
+					<div class="cd-timeline__img cd-timeline__img--movie">
+						<img src="assets/img/cd-icon-movie.svg" alt="Movie">
+					</div> <!-- cd-timeline__img -->
+	
+					<div class="cd-timeline__content text-component">
+						<h2>Final Section</h2>
+						<p class="color-contrast-medium">This is the content of the last section</p>
+	
+						<div class="flex justify-between items-center">
+							<span class="cd-timeline__date">Feb 26</span>
+						</div>
+					</div> <!-- cd-timeline__content -->
+				</div> <!-- cd-timeline__block -->
+			</div>
+		</section> 
 
+		<script src="index.js"></script>
+		<script src="timeline.js"></script>
 	</body>
 </html>

@@ -7,69 +7,92 @@ body {
 }
 
 .cv-page {
+	display: none;
 	background: #aad6a2;
-	position: absolute;
-	left: 50%;
+	position: relative;
+	width: 1200px;
+	margin: auto;
+	margin-bottom: 3rem;
 	padding: 2rem;
+}
+
+.profile {
+	width: 1200px;
+	margin: auto;
+	background-color: #aad6a2;
+	padding-bottom: 1rem;
 }
 
 #cv-form {
 	padding: 1rem;
 	display: grid;
-	grid-template-columns: auto 1fr;
-	grid-auto-rows: auto;
 	row-gap: 0.5rem;
 	justify-items: start;
 	border: 1px solid grey;
 }
 
-.cv-form label {
-	font-weight: bold;
+
+#cvcategory {
+	display: flex;
 }
 
-#cv__list__label {
-	grid-column-start: 1;
-	grid-column-end: 3;
-	padding-top: 1rem;
+#cv-form >div > input[type="radio"]{
+	background-color: white
 }
 
-.cv-form label,
-.cv-form input,
-.cv-form select {
-	display: inline-block;
+#cvdate {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+#cvtitle {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+#cvdescription {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+#cvskillset {
+	position: relative;
+	width: 100%;
+	display: flex;
+}
+
+#cv-svg {
+	margin-left: auto;
+	margin-right: 10px;
+}
+
+.cv--skillset{
 	width: 100%;
 }
 
 .cv--description {
 	width: 100%;
-	grid-column-start: 1;
-	grid-column-end: 3;
 	display: flex;
 	justify-content: space-between;
 }
 
-#description {
-	justify-content: center;
-	width: 90%;
-}
 
 .svg--add-icon {
 	max-width: 1rem;
-	background: url("add.png") no-repeat center;
 	background-image: url("add.svg");
 	background-size: contain;
 }
 
 .cv-form > ul {
-	grid-column-start: 1;
-	grid-column-end: 3;
+	display: flex;
 	width: 100%;
 }
 
 .button {
 	border-radius: 2px;
-	grid-column-start: 2;
-	grid-column-end: 3;
 	justify-self: end;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
@@ -77,16 +100,13 @@ body {
 	-o-border-radius: 2px;
 }
 
-.cv-list-item{
+.cv-list-item {
 	display: flex;
-	justify-content: space-between;
-	width: 100%;
 }
 
 .cv-list-item-trash {
-	max-width: 1rem;
-	float: right;
-	justify-self: end;
+	width: 1rem;
+	margin-left: 10px;
 }
 
 /* .signup-form input[type="checkbox"] */
