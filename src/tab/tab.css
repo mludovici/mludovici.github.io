@@ -1,0 +1,45 @@
+
+
+.container{
+	background-color: bisque;
+	display: flex;
+}
+
+.tabs {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: start;
+	background-color: grey;
+}
+
+.content1{
+	display: block;
+}
+.content2{
+	display: none;
+}
+.content3{
+	display: none;
+}
+
+.tab1{
+	padding: 20px 0px 20px 0px;
+	border-bottom: 1px solid black;
+	box-sizing: border-box;
+}
+
+.tab2{
+	padding: 20px 0px 20px 0px;
+	box-sizing: border-box;
+
+	border-bottom: 1px solid black
+}
+
+.tab3{
+	padding: 20px 0px 20px 0px;
+	border-bottom: 1px solid black;
+	box-sizing: border-box;
+
+}
