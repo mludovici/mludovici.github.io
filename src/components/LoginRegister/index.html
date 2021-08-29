@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-storage.js"></script>
+		<!-- <script src="../shared_libraries/firebase_config.js"></script> -->
+
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:600" />
+		<link
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+		<link rel="stylesheet" href="./loginregister.css" />
+
+		<title>Login</title>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="container">
+				<div class="formContent">
+					<div class="signup">Sign Up</div>
+					<div class="login">Log In</div>
+
+					<form class="signup-form">
+						<input
+							required
+							type="text"
+							placeholder="Choose a Username"
+							autocomplete="username"
+							class="input"
+							name="username"
+						/><br />
+						<input
+							required
+							type="text"
+							placeholder="Your Email Address"
+							autocomplete="email"
+							class="input"
+							name="email"
+						/><br />
+						<input
+							required
+							type="password"
+							placeholder="Choose a Password"
+							autocomplete="new-password"
+							name="password"
+							class="input"
+						/><br />
+						<input
+							required
+							type="password"
+							placeholder="Repeat Password"
+							autocomplete="new-password"
+							name="passwordrepeat"
+							class="input"
+						/><br />
+
+						<button type="submit" class="btn">
+							Create account
+						</button>
+
+						<div id="pwStrength">
+							<p id="pwStrengthP">PW Strength:</p>
+							<p id="pwColor"></p>
+						</div>
+						<div id="signUpErrorMsg"></div>
+					</form>
+
+					<form class="login-form">
+						<input
+							required
+							type="text"
+							placeholder="Email"
+							autocomplete="email"
+							class="input"
+							name="emailsignin"
+						/><br />
+						<input
+							required
+							type="password"
+							placeholder="Password"
+							autocomplete="current-password"
+							class="input"
+							name="pwsignin"
+						/><br />
+						<button type="submit" class="btn">log in</button>
+						<span
+							><a href="#"
+								>I forgot my username or password.</a
+							></span
+						>
+
+						<div id="logInErrorMsg"></div>
+					</form>
+				</div>
+
+				<div class="show-welcome"></div>
+			</div>
+		</div>
+		<script src="loginregister.js"></script>
+	</body>
+</html>
