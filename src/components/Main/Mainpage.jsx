@@ -4,8 +4,8 @@ import CardList from './CardList/CardList'
 function Mainpage() {
 	return (
 		<>
-		<ImageBanner></ImageBanner>
-		<CardList></CardList>
+			<ImageBanner></ImageBanner>
+			<CardList className='mx-auto'></CardList>
 		</>
 	)
 }

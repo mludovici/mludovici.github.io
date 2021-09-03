@@ -15,9 +15,9 @@ export default function LoginStatusInfo() {
 		bottom: 0,
 		right: 0,
 		backgroundColor: "turquoise",
-		padding: "10px",
+		padding: "5px",
 		boxShadow: "5px 3px 2px grey",
-		margin: "10px"
+		margin: "5px"
 	}
 	return (
 		<div style={styles}>

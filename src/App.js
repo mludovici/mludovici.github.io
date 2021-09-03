@@ -14,19 +14,28 @@ import {
 	useParams,
 } from 'react-router-dom'
 import Navigation from './components/Header/Navigation'
+import Impressum from './components/Footer/Impressum'
+
+import React from 'react'
+
+function PageNotFound() {
+	return <div>Sorry, no page found under that link!</div>
+}
 
 function App() {
 	return (
 		<AuthProvider>
 			<Router>
-				<Navigation></Navigation>
 				<Switch>
 					<Route path='/' exact component={HomeComponent} />
 					<Route path='/login' component={LoginRegister} />
 					<Route path='/timeline' component={Timeline} />
+					<Route path='/impressum' component={Impressum} />
+
+					<Route component={PageNotFound} />
 				</Switch>
-				<Footer></Footer>
 			</Router>
+
 			<LoginStatusInfo></LoginStatusInfo>
 		</AuthProvider>
 	)

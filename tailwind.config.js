@@ -9,7 +9,7 @@ module.exports = {
 		},
 	},
 	variants: {
-		extend: {},
+		extend: { grayscale: ['hover', 'focus'] },
 	},
 	plugins: [],
 	//prefix: 'tw-',
