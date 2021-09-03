@@ -4,8 +4,6 @@ import LoginRegisterCSS from './LoginRegister.module.css'
 import { SignupForm, LoginForm } from './StyledLoginRegister'
 import RegisterComponent from './RegisterComponent'
 import LoginComponent from './LoginComponent'
-import Sub1 from './Sub1'
-import Sub2 from './Sub2'
 
 import { Route, Link } from 'react-router-dom'
 
@@ -68,8 +66,6 @@ function LoginRegister() {
 					></RegisterComponent>
 				</div>
 			</div>
-			<Route path='/login/sub1' component={Sub1}></Route>
-			<Route path='/login/sub2' component={Sub2}></Route>
 		</div>
 	)
 }
