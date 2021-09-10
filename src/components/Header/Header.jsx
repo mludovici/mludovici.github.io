@@ -1,8 +1,11 @@
 import React from 'react'
-import Navigation
- from './Navigation'
+import Navigation from './Navigation'
+import ImageBanner from './ImageBanner'
+
 export default function Header() {
-	return (
-			<Navigation></Navigation>	
-	)
+    return (
+        <>
+            <Navigation></Navigation>
+        </>
+    )
 }
