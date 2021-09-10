@@ -13,12 +13,12 @@ body{
 .container{
 	min-width: 300px;
 	max-width: 500px;
-	margin: 30px auto;
-	height: auto;
+	margin: 40% auto;
+	height: 100vh;
 }
 
 .signup,
-.login{
+.login {
   width: 50%;
   background: #fff;
   float: left;
@@ -27,6 +27,15 @@ body{
   text-align: center;
   cursor: pointer;
   text-transform: uppercase;
+
+}
+
+.login.active {  
+  border-bottom: 1px solid blue;
+}
+
+.signup.active {  
+  border-bottom: 1px solid blue;
 }
 
 .signup-form,
