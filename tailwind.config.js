@@ -3,11 +3,14 @@ module.exports = {
     darkMode: false, // or 'media' or 'class'
     theme: {
         extend: {
+            colors: {
+                bgTimeline: '#474e5d',
+            },
             inset: {
                 45: '45%',
             },
             fontFamily: {
-                sans: ['Inter var'],
+                sans: ['Helvetica', 'Inter var'],
             },
             boxShadow: {
                 quizBox: '1px 2px 8px 6px #0000005c',
@@ -17,6 +20,6 @@ module.exports = {
     variants: {
         extend: { grayscale: ['hover', 'focus'] },
     },
-    plugins: [],
+    plugins: [require('@tailwindcss/forms')],
     //prefix: 'tw-',
 }
