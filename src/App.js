@@ -2,6 +2,8 @@ import HomeComponent from './components/HomeComponent'
 import { AuthProvider } from './providers/AuthProvider'
 import LoginStatusInfo from './components/LoginStatusInfo'
 import Timeline from './components/Timeline/Timeline.jsx'
+import Timeline2 from './components/Timeline/Timeline2.jsx'
+
 import Trivia from './components/Games/Trivia'
 import {
     BrowserRouter as Router,
@@ -31,7 +33,9 @@ function App() {
                 <Switch>
                     <Route path="/" exact component={HomeComponent} />
 
-                    <Route path="/timeline" component={Timeline} />
+                    <Route path="/timeline" exact component={Timeline} />
+                    <Route path="/tl2" exact component={Timeline2} />
+
                     <Route path="/impressum" component={Impressum} />
                     <Route path="/login" component={LoginRegister} />
                     <Route path="/register" component={LoginRegister} />
