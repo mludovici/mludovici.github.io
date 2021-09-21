@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
 
 // import triviaCategories from './triviaCategories.json'
 import QuizList from './QuizList'
 function Trivia() {
-    const [amount, setAmount] = useState(1)
+    const [amount, setAmount] = useState(10)
     const [selectedCategory, setCategory] = useState('')
     const [difficulty, setDifficulty] = useState('')
     const [type, setType] = useState('')
@@ -12,12 +11,10 @@ function Trivia() {
     const [catError, setCatError] = useState('')
     const [quizData, setQuizData] = useState([])
     const [quizAPIError, setQuizAPIError] = useState('')
-    const [url, setUrl] = useState('')
     const [showOptionPanel, setShowOptionPanel] = useState(true)
-    let history = useHistory()
 
     useEffect(() => {
-        console.log('inside Trivia.jsx use Effect!')
+        //console.log('inside Trivia.jsx use Effect!')
         const getInitialCategories = async () => {
             let response = await fetch('https://opentdb.com/api_category.php')
             if (response.status === 200) {
@@ -42,13 +39,13 @@ function Trivia() {
         }
         getInitialCategories()
         //history.push('/error')
-        return () => {
-            console.log('destroy Trivia')
-        }
+        // return () => {
+        //     console.log('destroy Trivia')
+        // }
     }, [])
 
     const prepUpData = quizData => {
-        console.dir(quizData)
+        //console.dir(quizData)
         let quizDataEnhanced = quizData.map((quiz, index) => {
             let allAnswers = [...quiz.incorrect_answers]
             allAnswers.splice(
@@ -59,33 +56,37 @@ function Trivia() {
             quiz['allAnswers'] = allAnswers
             return quiz
         })
-        console.table('quizDataEnhanced:', quizDataEnhanced)
+        //console.table('quizDataEnhanced:', quizDataEnhanced)
         return quizDataEnhanced
     }
 
     const resetGame = () => {
         setShowOptionPanel(true)
-        setUrl(null)
         setQuizData([])
         setQuizAPIError('')
         setCatError('')
     }
 
     const getQuizData = () => {
-        console.log('GETQUIZDATA!')
-        console.log(amount)
-        let url = `https://opentdb.com/api.php?${
+        // console.log('GETQUIZDATA!')
+        // console.log(amount)
+        let quizUrl = `https://opentdb.com/api.php?${
             amount ? 'amount=' + amount : 'amount=10'
         }${selectedCategory ? '&category=' + selectedCategory : ''}${
             difficulty ? '&difficulty=' + difficulty : ''
         }${type ? '&type=' + type : ''}&encode=url3986`
-        setUrl(url)
-        console.log(url)
 
         const fetchData = async () => {
-            const response = await fetch(url)
+            const response = await fetch(quizUrl, {
+                headers: {
+                    // 'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+            })
+            //console.log('response:', response)
             if (response.status === 200) {
                 let data = await response.json()
+                //console.log('data:', data)
                 switch (data.response_code) {
                     case 0:
                         setQuizAPIError(null)
@@ -119,7 +120,7 @@ function Trivia() {
                 }
             }
         }
-        fetchData()
+        fetchData() //.then(result => console.log('result:', result))
     }
 
     return (
@@ -161,7 +162,7 @@ function Trivia() {
                             <div className="mb-4">
                                 <label
                                     className="block text-gray-700 text-sm font-bold mb-2"
-                                    for="nrQuestion">
+                                    htmlFor="nrQuestion">
                                     How many questions?
                                 </label>
                                 <input
@@ -173,7 +174,7 @@ function Trivia() {
                                     max="100"
                                     value={amount}
                                     onChange={e => {
-                                        console.log('AMOUNT:', e.target.value)
+                                        //console.log('AMOUNT:', e.target.value)
                                         setAmount(e.target.value)
                                     }}
                                 />
@@ -181,7 +182,7 @@ function Trivia() {
                             <div className="mb-4">
                                 <label
                                     className="block text-gray-700 text-sm font-bold mb-2"
-                                    for="category">
+                                    htmlFor="category">
                                     Category
                                 </label>
                                 <select
@@ -208,7 +209,7 @@ function Trivia() {
                             <div className="mb-4">
                                 <label
                                     className="block text-gray-700 text-sm font-bold mb-2"
-                                    for="difficulty">
+                                    htmlFor="difficulty">
                                     Difficulty
                                 </label>
                                 <select
@@ -236,7 +237,7 @@ function Trivia() {
                             <div className="mb-6">
                                 <label
                                     className="block text-gray-700 text-sm font-bold mb-2"
-                                    for="type">
+                                    htmlFor="type">
                                     Answer type
                                 </label>
                                 <select

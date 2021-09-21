@@ -1,81 +1,63 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { useAuth } from '../../providers/AuthProvider'
 import LoginCSS from './LoginRegister.module.css'
 import { SignupForm } from './StyledLoginRegister'
-
+import { setErrorTimeout } from '../utils'
 function RegisterComponent({ showSignup, signup }) {
-    const [password, setPassword] = useState('')
-    const [passwordrepeat, setPasswordRepeat] = useState('')
-    const [email, setEmail] = useState('')
-    const [emailError, setEmailError] = useState('')
-    const [pwError, setPWError] = useState('')
-    const [pwTooWeak, setPWTooWeak] = useState('')
     const [formDetails, setFormDetails] = useState({})
-    const [pwStrength, setPWStrength] = useState('')
-    const { registerError } = useAuth()
-
-    const isValidEmail = email => {
-        const re =
-            /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        return re.test(email)
-    }
-
-    function validatePassword(password1, password2) {
-        let pwNotSame
-
-        if (password1 !== password2) {
-            pwNotSame = true
-            setPWError('Passwords do not match!')
-            return false
-        }
-        let strongRegex = new RegExp(
-            '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})'
-        )
-        let mediumRegex = new RegExp(
-            '^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})'
-        )
-
-        let isWeak
-        let isMedium
-        let isStrong
-
-        if (strongRegex.test(password1)) {
-            setPWStrength('strong')
-            return true
-        } else if (mediumRegex.test(password1)) {
-            setPWStrength('medium')
-            return true
-        } else {
-            setPWStrength('weak')
-            setPWTooWeak('Please choose a stronger password!')
-            return false
-        }
-    }
-
-    const handleSubmit = e => {
+    const [registerSuccess, setRegisterSuccess] = useState(null)
+    const { auth } = useAuth()
+    const [registerError, setRegisterError] = useState(null)
+    const formRef = useRef(null)
+    const handleSubmit = async e => {
         e.preventDefault()
-        console.log(formDetails)
-        // if (!isValidEmail(formDetails.email)) {
-        //     setEmailError('This is not a valid email!')
-        //     return
-        // } else {
-        //     setEmailError('')
-        // }
-        // if (
-        //     !validatePassword(formDetails.password, formDetails.passwordrepeat)
-        // ) {
-        //     return
-        // }
 
-        signup(formDetails.email, formDetails.password).then(signupResult =>
-            console.log('signupResult:', signupResult)
-        )
+        // let formData = new FormData(formRef.current)
+        // for (let [key, val] of formData) {
+        //     console.log('item2:', key, val)
+        // }
+        // console.log(typeof t) // == Object
+        // console.log(t) // doesn't simply show anything, just a simple object
+        // console.log(e.target) // === formRef.current
+        // console.log(
+        //     Array.from(formRef.current).forEach(el =>
+        //         console.log('arr:', el.name, el.value)
+        //     ) // not possible to iterate just the formData object with forEach because its an object
+        // )
+        // console.log({ formRef })
 
-        setFormDetails({})
+        if (formDetails.password !== formDetails.passwordrepeat) {
+            setErrorTimeout(setRegisterError, {
+                message: 'Passwords do not match!',
+            })
+            return
+        }
+
+        await auth
+            .createUserWithEmailAndPassword(
+                formDetails.email,
+                formDetails.password
+            )
+            .then(userCredentials => {
+                if (userCredentials) {
+                    const user = userCredentials.user
+                    let success = user.sendEmailVerification()
+                    if (success) {
+                        setRegisterSuccess(
+                            'You registered successfully! please check your email!'
+                        )
+                    }
+                    setFormDetails({})
+                }
+            })
+            .catch(error => {
+                console.log('ERROR!')
+                setErrorTimeout(setRegisterError, error)
+            })
     }
 
-    const captureFormDetails = event => {
-        console.log(event.target.id)
+    const captureFormChange = event => {
+        event.preventDefault()
         setFormDetails(prevState => {
             return {
                 ...prevState,
@@ -85,15 +67,19 @@ function RegisterComponent({ showSignup, signup }) {
     }
 
     return (
-        <SignupForm showSignup={showSignup}>
-            <input
+        <SignupForm
+            ref={formRef}
+            showSignup={showSignup}
+            onSubmit={e => handleSubmit(e)}>
+            {/* <input
                 required
                 type="text"
                 placeholder="Choose a Username"
                 autoComplete="username"
                 className={LoginCSS.input}
                 id="username"
-                onChange={captureFormDetails}></input>
+                name="username"
+                onChange={captureFormChange}></input> */}
             <input
                 required
                 type="text"
@@ -101,40 +87,37 @@ function RegisterComponent({ showSignup, signup }) {
                 autoComplete="email"
                 className={LoginCSS.input}
                 id="email"
-                onChange={captureFormDetails}></input>
-            <p className="text-red-500">{emailError}</p>
+                name="email"
+                onChange={captureFormChange}></input>
             <input
                 required
                 type="password"
                 placeholder="Choose a Password"
                 autoComplete="new-password"
                 id="password"
+                name="password"
                 className={LoginCSS.input}
-                onChange={captureFormDetails}></input>
+                onChange={captureFormChange}></input>
             <input
                 required
                 type="password"
                 placeholder="Repeat Password"
                 autoComplete="new-password"
                 id="passwordrepeat"
+                name="passwordrepeat"
                 className={LoginCSS.input}
-                onChange={captureFormDetails}></input>
-            <p className="text-red-500">{pwError}</p>
+                onChange={captureFormChange}></input>
 
             <div className="text-red-500 my-3" id="signUpErrorMsg">
                 {registerError ? registerError.message : null}
             </div>
-            <button
-                type="submit"
-                className={LoginCSS.btn}
-                onClick={e => handleSubmit(e)}>
+            <button type="submit" className={LoginCSS.btn}>
                 Create account
             </button>
 
-            <div id="pwStrength">
-                <p id="pwStrengthP">PW Strength:</p>
-                <p id="pwColor">{pwTooWeak}</p>
-            </div>
+            <p className="text-green-500">
+                {registerSuccess ? registerSuccess : null}
+            </p>
         </SignupForm>
     )
 }

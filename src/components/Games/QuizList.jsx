@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import Quizcard from './Quizcard'
 import trophySVG from '../../assets/images/svg/trophy.svg'
 function QuizList({ quizData, resetGame }) {
@@ -7,20 +7,10 @@ function QuizList({ quizData, resetGame }) {
     const [correctAnswerCount, setCorrectAnswerCount] = useState(0)
     const [hasChosen, setHasChosen] = useState(false)
     const [checked, setChecked] = useState(null)
-    // let quizDataEnhanced = quizData.map((quiz, index) => {
-    //     let allAnswers = [...quiz.incorrect_answers]
-    //     allAnswers.splice(
-    //         Math.round(Math.random() * quiz.incorrect_answers.length),
-    //         0,
-    //         quiz.correct_answer
-    //     )
-    //     quiz['allAnswers'] = allAnswers
-    //     return quiz
-    // })
-    // console.log(quizDataEnhanced)
 
-    const incrCount = () => {
+    const getNextCard = () => {
         setHasChosen(false)
+        setChecked(null)
         if (gameFinished) {
             return
         }
@@ -38,29 +28,22 @@ function QuizList({ quizData, resetGame }) {
             /[xy]/g,
             function (c) {
                 var r = (Math.random() * 16) | 0,
-                    v = c == 'x' ? r : (r & 0x3) | 0x8
+                    v = c === 'x' ? r : (r & 0x3) | 0x8
                 return v.toString(16)
             }
         )
     }
 
-    const checkAnswer = (
-        e,
-        index,
-        answer,
-        correctAnswer
-    ) => {
+    const checkAnswer = (e, index, answer, correctAnswer) => {
+        //console.log('answer:', answer, 'correct_answer:', correctAnswer)
         if (gameFinished) {
             return
         }
 
-        // let correctAnswerIndex = quizData[countNr].allAnswers.findIndex(
-        //     answers => answers === correctAnswer
-        // )
-
         if (answer === correctAnswer) {
             setCorrectAnswerCount(correctAnswerCount + 1)
         } else {
+            //console.log('index of wrong answer:', index)
             setChecked(index)
         }
         setHasChosen(true)
@@ -74,7 +57,7 @@ function QuizList({ quizData, resetGame }) {
                     hasChosen={hasChosen}
                     gameFinished={gameFinished}
                     key={uuidv4()}
-                    incrCount={incrCount}
+                    getNextCard={getNextCard}
                     correctAnswerCount={correctAnswerCount}
                     checkAnswer={checkAnswer}
                     correct_answer={quizData[countNr].correct_answer}
@@ -84,7 +67,11 @@ function QuizList({ quizData, resetGame }) {
             )}
             {gameFinished && (
                 <div className="max-w-md mx-auto bg-gray-200 rounded-md shadow-quizBox border-1 border-gray-300 mt-10">
-                    <img src={trophySVG} className={`mx-auto h-40 w-40 pt-3`} />
+                    <img
+                        src={trophySVG}
+                        className={`mx-auto h-40 w-40 pt-3`}
+                        alt="congrats"
+                    />
                     <div
                         id="quizFinishedSection"
                         className="mt-5 flex justify-around bg-blue-600">

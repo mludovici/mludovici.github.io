@@ -2,26 +2,39 @@ import React, { useState, useEffect } from 'react'
 
 import { useAuth } from '../../providers/AuthProvider'
 import LoginRegisterCSS from './LoginRegister.module.css'
-import { SignupForm, LoginForm } from './StyledLoginRegister'
 import RegisterComponent from './RegisterComponent'
 import LoginComponent from './LoginComponent'
 
-import { Route, Link, useRouteMatch } from 'react-router-dom'
+import { Link, useRouteMatch } from 'react-router-dom'
 function LoginRegister() {
     let [showSignin, setShowSignin] = useState(true)
     let [showSignup, setShowSignup] = useState(false)
+    let [loggedOut, setLoggedOut] = useState(null)
     let authFunctions = useAuth()
     let match = useRouteMatch('/register')
-
+    let logout = useRouteMatch('/logout')
     useEffect(() => {
+        //console.log('user:', authFunctions.currentUser)
+        if (authFunctions.currentUser == null && logout && logout.isExact) {
+            setLoggedOut('You logged out succesfully!')
+        } else {
+            setLoggedOut(null)
+        }
+
         if (match && match.isExact) {
             setShowSignin(false)
             setShowSignup(true)
         }
-    }, [match])
+        console.log(authFunctions.currentUser)
+    }, [match, logout, authFunctions])
 
     return (
         <>
+            {loggedOut && (
+                <p className="mt-3 flex justify-center text-red-500">
+                    {loggedOut}
+                </p>
+            )}
             {!authFunctions.currentUser ? (
                 <div className={LoginRegisterCSS.container}>
                     <div className={LoginRegisterCSS.container}>
