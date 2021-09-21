@@ -4,5 +4,6 @@
 	"semi": false,
 	"singleQuote": true,
 	"jsxBracketSameLine": true,
-	"arrowParens": "avoid"
+	"arrowParens": "avoid",
+	"jsx-max-props-per-line" : 2
 }

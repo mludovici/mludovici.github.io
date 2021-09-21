@@ -1,5 +1,4 @@
 import React from 'react'
-import Header from '../Header/Header'
 import AboutMePage from './AboutMePage'
 import CardList from './CardList/CardList'
 import Services from './Services/Services'

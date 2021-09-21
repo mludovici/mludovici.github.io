@@ -1,10 +1,12 @@
 module.exports = {
+    mode: 'jit',
     purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
     darkMode: false, // or 'media' or 'class'
     theme: {
         extend: {
             colors: {
                 bgTimeline: '#474e5d',
+                address: '#5bcbf0',
             },
             inset: {
                 45: '45%',
@@ -18,7 +20,12 @@ module.exports = {
         },
     },
     variants: {
-        extend: { grayscale: ['hover', 'focus'] },
+        extend: {
+            grayscale: ['hover', 'focus'],
+            backgroundColor: {
+                bgCV: '#005e9b',
+            },
+        },
     },
     plugins: [require('@tailwindcss/forms')],
     //prefix: 'tw-',

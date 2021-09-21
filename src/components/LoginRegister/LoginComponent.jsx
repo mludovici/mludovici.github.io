@@ -1,23 +1,34 @@
 import React, { useState } from 'react'
-import { useAuth } from '../../providers/AuthProvider'
 import LoginCSS from './LoginRegister.module.css'
 import { LoginForm } from './StyledLoginRegister'
+import { useAuth } from '../../providers/AuthProvider'
 
 function LoginComponent({ showSignin, loginHandler }) {
     const [email, setEmail] = useState()
     const [pw, setPW] = useState()
     const [errorMsg, setErrorMsg] = useState('')
-    const { loginError } = useAuth()
+    const [emailResetError, setResetEmailError] = useState(null)
+    const [emailResetSuccess, setEmailResetSuccess] = useState(null)
+    const { loginError, auth } = useAuth()
 
     const handleLogin = async e => {
         e.preventDefault()
         try {
-            let user = await loginHandler(email, pw)
-
+            await loginHandler(email, pw)
         } catch (e) {
             setErrorMsg(e.message)
         }
     }
+
+    const emailResetHandler = async () => {
+        try {
+            await auth.sendPasswordResetEmail(email)
+            setEmailResetSuccess('Please check your email reset link!')
+        } catch (e) {
+            setResetEmailError(e.message)
+        }
+    }
+
     return (
         <>
             <LoginForm showSignin={showSignin} method="POST">
@@ -47,9 +58,15 @@ function LoginComponent({ showSignin, loginHandler }) {
                 </button>
 
                 <span className="my-4 text-blue-600">
-                    <a href="#" className="text-gray-400">
+                    <button
+                        className="text-gray-400"
+                        onClick={emailResetHandler}>
                         I forgot my password.
-                    </a>
+                    </button>
+                    {emailResetSuccess && <p>{emailResetSuccess}</p>}
+                    {emailResetError && (
+                        <p className="text-red-500">{emailResetError}</p>
+                    )}
                 </span>
                 <div id="logInErrorMsg" className="text-red-600 mt-5">
                     {errorMsg}

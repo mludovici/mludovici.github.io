@@ -1,0 +1,31 @@
+.grid {
+	width: 200px;
+	height: 200px;
+	display: flex;
+	flex-wrap: wrap;
+	border-style: solid;
+}
+
+.grid div {
+	width: 20px;
+	height: 20px;
+}
+
+.snake {
+	background-color: blue;
+}
+
+.snake-head-right {
+	background-image: url(snake.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+	transform: rotate(-90deg);
+	-webkit-transform:rotate(-90deg);
+	-moz-transform:rotate(-90deg);
+	-ms-transform:rotate(-90deg);
+	-o-transform:rotate(-90deg);
+}
+
+.apple {
+	background-color: purple;
+}

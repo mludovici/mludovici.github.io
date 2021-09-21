@@ -1,3 +1,7 @@
-"files.associations" {
-	"*.js{x}": "javascriptreact"
-};
+{    
+	"files.associations" {
+		"*.js{x}": "javascriptreact"
+	};
+
+	"html.format.wrapAttributes": "force-aligned"
+}

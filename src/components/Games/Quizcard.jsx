@@ -1,9 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react'
-import NavbarCollapse from 'react-bootstrap/esm/NavbarCollapse'
+import React from 'react'
 import easySVG from '../../assets/images/svg/feather.svg'
 import middleSVG from '../../assets/images/svg/balance.svg'
 import hardSVG from '../../assets/images/svg/muscle.svg'
-import wrongAnswerSVG from '../../assets/images/svg/wrong.svg'
 import correctAnswerSVG from '../../assets/images/svg/correct.svg'
 
 function Quizcard({
@@ -14,19 +12,19 @@ function Quizcard({
     nrOfQuestions,
     questionNr,
     correct_answer,
-    incrCount,
+    getNextCard,
     checkAnswer,
     correctAnswerCount,
     actualNr,
 }) {
-    useEffect(() => {
-        console.log('inside Quizcard use Effect! This is card nr: ', questionNr)
-        console.log('chosen:', hasChosen)
-        console.log('Quiz:', quiz)
-        return () => {
-            console.log('destroy quizcard')
-        }
-    })
+    // useEffect(() => {
+    //     // console.log('New card Nr: ', questionNr)
+    //     // console.log('User already chose:', hasChosen)
+    //     // console.log('Quiz properties:', quiz)
+    //     // return () => {
+    //     //     console.log('Destroy Quizcard')
+    //     // }
+    // })
 
     const handleClick = (
         e,
@@ -80,14 +78,14 @@ function Quizcard({
                     </span>
                 )}
             </div>{' '}
-            <div className="bg-gray-50 flex">
+            <div className="bg-gray-50 flex min-w-min">
                 <section
-                    className="px-3 leading-normal text-sm pt-4 pb-4 w-3/5"
+                    className="px-3 leading-normal text-sm pt-4 pb-4 w-3/5 overflow-y-auto"
                     id="quizQuestion">
                     {decodeURIComponent(quiz.question)}
                 </section>{' '}
                 <section
-                    className="px-2 pt-4 pb-4 text-sm break-normal text-right w-1/2 pr-5 space-y-2 rounded-md"
+                    className="px-2 pt-4 pb-4 text-sm break-normal text-right w-1/2 pr-1 space-y-2 rounded-md mr-0"
                     id="quizAnswers">
                     {quiz.allAnswers.map((answer, index) => (
                         <span
@@ -97,7 +95,7 @@ function Quizcard({
                                 hasChosen &&
                                 answer === correct_answer
                                     ? 'bg-green-400'
-                                    : hasChosen && checkedIndex == index
+                                    : hasChosen && checkedIndex === index
                                     ? 'bg-red-400'
                                     : ''
                             }`}
@@ -115,16 +113,15 @@ function Quizcard({
                             </button>
                             <p className="text-left pl-1 " key={index}>
                                 {decodeURIComponent(answer)}
-                                {!gameFinished && hasChosen && (
-                                    <img
-                                        className="h-6 2-6 absolute inline right-0 fill-current text-green-800"
-                                        src={
-                                            answer === correct_answer
-                                                ? correctAnswerSVG
-                                                : null
-                                        }
-                                    />
-                                )}
+                                {!gameFinished &&
+                                    hasChosen &&
+                                    (answer === correct_answer ? (
+                                        <img
+                                            alt="answerIcon"
+                                            className="h-6 2-6 absolute inline right-0 fill-current text-green-800"
+                                            src={correctAnswerSVG}
+                                        />
+                                    ) : null)}
                             </p>
                         </span>
                     ))}
@@ -136,7 +133,7 @@ function Quizcard({
                 </span>
                 <button
                     className="text-sm text-white inline-block"
-                    onClick={incrCount}>
+                    onClick={getNextCard}>
                     Continue
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
