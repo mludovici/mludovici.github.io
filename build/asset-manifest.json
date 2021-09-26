@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/homepage/static/css/main.40544527.chunk.css",
+    "main.js": "/homepage/static/js/main.2cf8a77a.chunk.js",
+    "main.js.map": "/homepage/static/js/main.2cf8a77a.chunk.js.map",
+    "runtime-main.js": "/homepage/static/js/runtime-main.1c83e8e1.js",
+    "runtime-main.js.map": "/homepage/static/js/runtime-main.1c83e8e1.js.map",
+    "static/js/2.bb756691.chunk.js": "/homepage/static/js/2.bb756691.chunk.js",
+    "static/js/2.bb756691.chunk.js.map": "/homepage/static/js/2.bb756691.chunk.js.map",
+    "index.html": "/homepage/index.html",
+    "static/css/main.40544527.chunk.css.map": "/homepage/static/css/main.40544527.chunk.css.map",
+    "static/js/2.bb756691.chunk.js.LICENSE.txt": "/homepage/static/js/2.bb756691.chunk.js.LICENSE.txt",
+    "static/media/Colorlogonobackground.a7e3bcda.svg": "/homepage/static/media/Colorlogonobackground.a7e3bcda.svg",
+    "static/media/LakeCropped.162e773b.png": "/homepage/static/media/LakeCropped.162e773b.png",
+    "static/media/balance.518f8bde.svg": "/homepage/static/media/balance.518f8bde.svg",
+    "static/media/ContactFormFooter.module.css": "/homepage/static/media/bgFooterContact.3d8b2294.jpg",
+    "static/media/correct.7312f69e.svg": "/homepage/static/media/correct.7312f69e.svg",
+    "static/media/ds.d58f2ed0.png": "/homepage/static/media/ds.d58f2ed0.png",
+    "static/media/feather.59f8c9b5.svg": "/homepage/static/media/feather.59f8c9b5.svg",
+    "static/media/giraffe.1fc5970e.jpg": "/homepage/static/media/giraffe.1fc5970e.jpg",
+    "static/media/muscle.69aa57b6.svg": "/homepage/static/media/muscle.69aa57b6.svg",
+    "static/media/trophy.d0609c51.svg": "/homepage/static/media/trophy.d0609c51.svg",
+    "static/media/webdev.691e40c8.png": "/homepage/static/media/webdev.691e40c8.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1c83e8e1.js",
+    "static/js/2.bb756691.chunk.js",
+    "static/css/main.40544527.chunk.css",
+    "static/js/main.2cf8a77a.chunk.js"
+  ]
+}
