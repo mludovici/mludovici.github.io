@@ -1,7 +1,7 @@
 {
   "name": "homepage",
   "version": "0.1.0",
-  "homepage": "https://mludovici.github.io/homepage",
+  "homepage": "https://mludovici.github.io/",
   "private": true,
   "dependencies": {
     "@craco/craco": "^5.9.0",
