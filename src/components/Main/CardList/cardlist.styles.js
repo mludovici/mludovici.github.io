@@ -35,7 +35,7 @@ export const CardSection = styled.section`
 
 export const CardItem = styled.article`
     height: 350px;
-    width: 400px;
+    width: 250px;
     min-width: 250px;
     padding: 1.5rem;
     border-radius: 16px;
@@ -61,7 +61,7 @@ export const CardItem = styled.article`
     }
 `
 export const CardAuthor = styled.div`
-    margin: 3rem 0 0;
+    margin: 1rem 0 0;
     display: grid;
     grid-template-columns: 75px 1fr;
     align-items: center;
@@ -128,6 +128,7 @@ export const Tags = styled.div`
     padding: 0.5rem 0 1rem;
     line-height: 2;
     margin-bottom: 0;
+    overflow-y: auto;
 `
 
 export const TagsAnchor = styled.a`

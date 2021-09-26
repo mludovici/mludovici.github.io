@@ -1,5 +1,6 @@
 import React from 'react'
-
+import WebDevPNG from '../../../assets/images/webdev.png'
+import DSPNG from '../../../assets/images/ds.png'
 function Services() {
     return (
         <div>
@@ -56,11 +57,8 @@ function Services() {
                                         Responsive Websites
                                     </h2>
                                     <p className="pt-3">
-                                        Lorem ipsum dolor sit amet consectetur,
-                                        adipisicing elit. Corporis dolorum
-                                        voluptatum perspiciatis error sequi
-                                        quaerat eaque cupiditate beatae
-                                        provident quasi!
+                                        Media Queries, CSS3, Bootstrap,
+                                        TailwindCSS, Styled components, etc.
                                     </p>
                                 </div>
                             </div>
@@ -90,8 +88,7 @@ function Services() {
 							">
                                 <img
                                     style={{ height: '220px', margin: 'auto' }}
-                                    src="https://wichitawebdev.com/lmg-cms/wp-content/uploads/2018/06/pwa-reliable.png
-								"
+                                    src={WebDevPNG}
                                     className="
 									bg-blue-300
 									rounded-t-md
@@ -109,11 +106,9 @@ function Services() {
                                         Web Apps
                                     </h2>
                                     <p className="pt-3">
-                                        Lorem ipsum dolor sit amet consectetur,
-                                        adipisicing elit. Corporis dolorum
-                                        voluptatum perspiciatis error sequi
-                                        quaerat eaque cupiditate beatae
-                                        provident quasi!
+                                        Web Apps with Javascript HTML Css and
+                                        Frameworks like React.js, Angular and
+                                        Vue.js
                                     </p>
                                 </div>
                             </div>
@@ -147,22 +142,62 @@ function Services() {
                                     className="rounded-t-md servicesImageHeight"
                                     alt=""
                                 />
-                                <div className="px-10 pb-6 ">
+                                <div className="px-10 pb-6">
                                     <h2
                                         className="
-										text-center
 										pt-3
 										font-bold
-										text-gray-800 text-2xl
+										text-gray-800 text-2xl text-center
 									">
                                         Mobile Apps
                                     </h2>
                                     <p className="pt-3">
-                                        Lorem ipsum dolor sit amet consectetur,
-                                        adipisicing elit. Corporis dolorum
-                                        voluptatum perspiciatis error sequi
-                                        quaerat eaque cupiditate beatae
-                                        provident quasi!
+                                        Mobile App development with Flutter and
+                                        React native.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="relative">
+                            <div
+                                className="
+								absolute
+								z-10
+								inset-0
+								bg-gradient-to-r
+								from-primary
+								to-secondary
+								shadow-lg
+								transform
+								-skew-y-6
+								sm:skey-y-0 sm:-rotate-6 sm:rounded-lg
+							"></div>
+                            <div
+                                className="
+								relative
+								z-20
+								bg-white
+								h-full
+								rounded-md
+								shadow-md
+							">
+                                <img
+                                    style={{ height: '220px', margin: 'auto' }}
+                                    src={DSPNG}
+                                    className="rounded-t-md servicesImageHeight"
+                                    alt=""
+                                />
+                                <div className="px-10 pb-6">
+                                    <h2
+                                        className="
+										pt-3
+										font-bold
+										text-gray-800 text-2xl text-center
+									">
+                                        Data Science
+                                    </h2>
+                                    <p className="pt-3">
+                                        Data Science with Python and RStudio.
                                     </p>
                                 </div>
                             </div>

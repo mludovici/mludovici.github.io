@@ -10,9 +10,12 @@ import Impressum from './components/Footer/Impressum'
 import React from 'react'
 import LoginRegister from './components/LoginRegister'
 import DND from './components/Timeline/DnDComponent'
+
 import TimeLineCard from './components/Timeline/TimeLineCard'
 import Navigation from './components/Header/Navigation'
 import StarRating from './components/StarRating'
+import {} from 'react-intl'
+
 function PageNotFound() {
     return <div>Sorry, no page found under that link!</div>
 }
@@ -36,6 +39,7 @@ function App() {
 
                     <Route path="/trivia" component={Trivia} />
                     <Route path="/dnd" component={DND} />
+
                     <Route path="/tlt" component={TimeLineCard} />
                     <Route path="/star" component={StarRating} />
                     <Route component={PageNotFound} />

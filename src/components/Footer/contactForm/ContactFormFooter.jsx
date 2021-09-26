@@ -42,7 +42,7 @@ function ContactFormFooter() {
                         <textarea
                             name="message"
                             required
-                            placeholder="Message"></textarea>
+                            placeholder="Message.."></textarea>
                         <button
                             type="submit"
                             disabled={state.submitting}

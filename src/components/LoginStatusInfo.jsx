@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useAuth } from '../providers/AuthProvider'
 
 export default function LoginStatusInfo() {

@@ -78,7 +78,7 @@ function Quizcard({
                     </span>
                 )}
             </div>{' '}
-            <div className="bg-gray-50 flex min-w-min">
+            <div className="bg-gray-50 flex flex-col sm:flex-row min-w-min">
                 <section
                     className="px-3 leading-normal text-sm pt-4 pb-4 w-3/5 overflow-y-auto"
                     id="quizQuestion">

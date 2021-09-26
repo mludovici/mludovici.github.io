@@ -182,7 +182,7 @@ function Timeline2() {
                         toggleEdit ? 'block' : 'hidden'
                     }`}>
                     <div className="flex flex-wrap -mx-3 mb-6">
-                        <div className="w-full md:w-1/2 px-3 mb-0 md:mb-0">
+                        <div className="w-full  px-3 mb-0 md:mb-0">
                             <label
                                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                 htmlFor="grid-first-date">
