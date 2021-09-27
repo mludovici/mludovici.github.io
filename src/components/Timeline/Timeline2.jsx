@@ -347,15 +347,18 @@ function Timeline2() {
                 className="border-box bg-bgTimeline font-sans">
                 <Timeline>
                     {cv && cv.length
-                        ? cv.map(cventry => (
-                              <TimeLineCard2
-                                  key={cventry.id}
-                                  {...cventry}
-                                  updateForm={updateForm}
-                                  deleteCard={deleteCard}
-                                  setIndexToUpdate={setIndexToUpdate}
-                              />
-                          ))
+                        ? cv.map(cventry => {
+                              console.log({ cventry })
+                              return (
+                                  <TimeLineCard2
+                                      key={cventry.id}
+                                      {...cventry}
+                                      updateForm={updateForm}
+                                      deleteCard={deleteCard}
+                                      setIndexToUpdate={setIndexToUpdate}
+                                  />
+                              )
+                          })
                         : null}
                 </Timeline>
             </div>

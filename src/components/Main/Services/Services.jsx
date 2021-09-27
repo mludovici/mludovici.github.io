@@ -1,14 +1,26 @@
 import React from 'react'
 import WebDevPNG from '../../../assets/images/webdev.png'
 import DSPNG from '../../../assets/images/ds.png'
+import { FormattedMessage } from 'react-intl'
+
 function Services() {
     return (
         <div>
-            <section id="services" className="bg-gray-50 pt-10 pb-28 px-8">
+            <section
+                id="services"
+                className="bg-gray-50 pt-10 pb-28 px-8 dark:bg-gray-700">
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center">
-                        <h1 className="text-6xl text-gray-800">Projects</h1>
-                        <p className="pt-2">Here is what I offer</p>
+                        <h1 className="text-6xl text-gray-800 dark:text-gray-100">
+                            <FormattedMessage
+                                id="main.projects"
+                                defaultMessage="Projects"></FormattedMessage>
+                        </h1>
+                        <p className="pt-2 dark:text-gray-100">
+                            <FormattedMessage
+                                id="main.projects.headline"
+                                defaultMessage="Here is what I offer"></FormattedMessage>
+                        </p>
                     </div>
                     <div
                         className="

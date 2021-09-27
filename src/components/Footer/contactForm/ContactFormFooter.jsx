@@ -6,10 +6,14 @@ import bgImage from '../../../assets/images/bgFooterContact.jpg'
 function ContactFormFooter() {
     const [state, handleSubmit] = useForm('myyldlpw')
     if (state.succeeded) {
-        return <div>Thank you for sending the message!</div>
+        return (
+            <div className="dark:text-gray-50 flex justify-center mr-auto">
+                Thank you for sending the message!
+            </div>
+        )
     }
     return (
-        <form onSubmit={handleSubmit} className="w-full p-5 sm:w-1/2 ">
+        <form onSubmit={handleSubmit} className="w-full p-5 sm:w-1/2 max-w-lg ">
             <div
                 style={{
                     backgroundImage: `url(${bgImage})`,

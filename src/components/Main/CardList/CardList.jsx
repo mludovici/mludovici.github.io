@@ -39,10 +39,12 @@ import {
 function CardList() {
     return (
         <>
-            <h1 className="text-6xl text-center text-gray-800 ">Stack</h1>
+            <h1 className="text-6xl text-center text-gray-800 dark:text-gray-300 pt-3">
+                Stack
+            </h1>
             <CardBody className="mx-auto flex justify-center">
                 <CardSection className="max-w-6xl">
-                    <CardItem>
+                    <CardItem key="WebDevJS">
                         <CardHeader>
                             <CardHeaderDate></CardHeaderDate>
                             <CardHeaderTitle>Web Dev</CardHeaderTitle>
@@ -78,7 +80,7 @@ function CardList() {
                             <TagsAnchor href="#">web-dev</TagsAnchor>
                         </Tags>
                     </CardItem>
-                    <CardItem>
+                    <CardItem key="WebDevJava">
                         <CardHeader>
                             <CardHeaderDate></CardHeaderDate>
                             <CardHeaderTitle>Web / Mobile</CardHeaderTitle>

@@ -3,6 +3,8 @@ import { Container, Content } from './timeLineComponents'
 import { FaEdit, FaTrashAlt } from 'react-icons/fa'
 import TimeLineCSS from './TimeLineCard.module.css'
 import { useAuth } from '../../providers/AuthProvider'
+import { useIntl } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 
 function TimeLineCard2({
     id,
@@ -20,6 +22,7 @@ function TimeLineCard2({
     setIndexToUpdate,
 }) {
     const { currentUser } = useAuth()
+    const intl = useIntl()
     return (
         <Container key={id}>
             <Content
@@ -43,20 +46,41 @@ function TimeLineCard2({
                     </div>
                 )}
                 <div className="text-center">
-                    <div className={TimeLineCSS['jobtitle']}>{job}</div>
+                    <div className={TimeLineCSS['jobtitle']}>
+                        <FormattedMessage
+                            id={`${id}.job`}
+                            defaultMessage={job}></FormattedMessage>
+                    </div>
                     <div className="mb-2">
-                        {dateFrom && <span>{dateFrom.replace(/-/g, '/')}</span>}{' '}
-                        {new Date(dateTo).toISOString() && (
-                            <span>- {dateTo.replace(/-/g, '/')}</span>
+                        {dateFrom && (
+                            <span>
+                                {
+                                    intl.formatDate(
+                                        dateFrom
+                                    ) /*.replace(/-/g, '/')*/
+                                }
+                            </span>
+                        )}{' '}
+                        {dateTo && (
+                            <span>
+                                -{' '}
+                                {
+                                    intl.formatDate(
+                                        dateTo
+                                    ) /*.replace(/-/g, '/')*/
+                                }
+                            </span>
                         )}
                     </div>
                     <div className="flex justify-center mb-3 text-center mx-auto leading-3 text-xs tracking-tighter">
-                        <div className="uppercase text-sm mb-2 text-address">
+                        <div className="uppercase text-sm mb-2 text-address max-w-xs">
                             {employerName} {street} {city} {zip} {state}
                         </div>
                     </div>
                     <p className="font-light opacity-70 text-gray-700 max-h-72 overflow-y-auto">
-                        {content}
+                        <FormattedMessage
+                            id={`${id}.content`}
+                            defaultMessage={content}></FormattedMessage>
                     </p>
                 </div>
             </Content>

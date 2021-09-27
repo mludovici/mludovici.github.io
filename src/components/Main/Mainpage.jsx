@@ -4,6 +4,7 @@ import CardList from './CardList/CardList'
 import Services from './Services/Services'
 import ImageBanner from '../Header/ImageBanner'
 import Footer from '../Footer/Footer'
+
 function Mainpage() {
     return (
         <div className="h-full">

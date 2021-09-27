@@ -124,10 +124,12 @@ function Trivia() {
     }
 
     return (
-        <>
+        <div className="dark:bg-gray-800 h-screen bg-gray-200">
             {showOptionPanel && (
-                <div id="quizSection" className="max-w-2xl mx-auto">
-                    <h1 className=" text-center text-2xl font-bold text-gray-800 mb-5 mt-10 bg-green-400">
+                <div
+                    id="quizSection"
+                    className="max-w-2xl mx-auto dark:bg-gray-800 bg-gray-400 h-full">
+                    <h1 className=" text-center text-2xl font-bold text-gray-800 mb-5 mt-10 bg-green-400 ">
                         Welcome to Trivia!
                     </h1>
                     <div className="max-w-xs text-center mx-auto shadow-xl rounded ">
@@ -279,7 +281,7 @@ function Trivia() {
             {!quizAPIError && quizData.length ? (
                 <QuizList resetGame={resetGame} quizData={quizData}></QuizList>
             ) : null}
-        </>
+        </div>
     )
 }
 

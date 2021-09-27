@@ -11,7 +11,7 @@ function LoginRegister() {
     let [showSignup, setShowSignup] = useState(false)
     let [loggedOut, setLoggedOut] = useState(null)
     let authFunctions = useAuth()
-    let match = useRouteMatch('/register')
+    let matchRegister = useRouteMatch('/register')
     let logout = useRouteMatch('/logout')
     useEffect(() => {
         //console.log('user:', authFunctions.currentUser)
@@ -21,15 +21,18 @@ function LoginRegister() {
             setLoggedOut(null)
         }
 
-        if (match && match.isExact) {
+        if (matchRegister && matchRegister.isExact) {
             setShowSignin(false)
             setShowSignup(true)
+        } else {
+            setShowSignin(true)
+            setShowSignup(false)
         }
         console.log(authFunctions.currentUser)
-    }, [match, logout, authFunctions])
+    }, [matchRegister, logout, authFunctions])
 
     return (
-        <>
+        <div className="bg-gray-300 dark:bg-gray-700">
             {loggedOut && (
                 <p className="mt-3 flex justify-center text-red-500">
                     {loggedOut}
@@ -94,7 +97,7 @@ function LoginRegister() {
                     </button>
                 </div>
             )}
-        </>
+        </div>
     )
 }
 

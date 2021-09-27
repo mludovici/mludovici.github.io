@@ -5,6 +5,12 @@ import ColorLogo from '../../assets/images/logo/Colorlogonobackground.svg'
 import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../../providers/AuthProvider'
 import { AnimatedDiv } from './animatedDiv'
+import de from '../../assets/images/flag/de.svg'
+import us from '../../assets/images/flag/us.svg'
+import { FormattedMessage } from 'react-intl'
+import { useDarkMode } from '../../providers/DarkModeProvider'
+
+import { GiSunRadiations, GiMoon } from 'react-icons/gi'
 let navigation = [
     { name: 'Home', href: '/', current: false },
     { name: 'CV', href: 'cv', current: false },
@@ -15,8 +21,9 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function Navigation() {
+export default function Navigation({ changeLocale }) {
     let location = useLocation()
+    const { darkMode, setDarkMode } = useDarkMode()
 
     useEffect(() => {
         navigation.map((item, idx) =>
@@ -29,7 +36,9 @@ export default function Navigation() {
     let { logout, currentUser } = useAuth()
     const [currentActive, setCurrentActive] = useState(0)
     return (
-        <Disclosure as="nav" className="bg-gray-800 sticky w-full z-50 top-0">
+        <Disclosure
+            as="nav"
+            className="bg-gray-800 sticky w-full z-50 top-0 dark:bg-indigo-400">
             {({ open }) => (
                 <>
                     <div className="max-w-full mx-auto px-2 sm:px-6 lg:px-8 ">
@@ -67,7 +76,9 @@ export default function Navigation() {
                                     <div className="flex space-x-4 items-center">
                                         {navigation.map((item, indexEl) =>
                                             item.href === '/trivia' ? (
-                                                <AnimatedDiv animation={true}>
+                                                <AnimatedDiv
+                                                    animation={true}
+                                                    key={item.name}>
                                                     <Link
                                                         onClick={e => {
                                                             navigation.forEach(
@@ -146,6 +157,51 @@ export default function Navigation() {
 									</button> */}
 
                                 {/* Profile dropdown */}
+                                <div className="mr-3">
+                                    {darkMode === 'dark' ? (
+                                        <GiSunRadiations
+                                            onClick={() => setDarkMode('light')}
+                                            style={{
+                                                fill: 'yellow',
+                                                height: '2em',
+                                                width: '2em',
+                                            }}></GiSunRadiations>
+                                    ) : (
+                                        <GiMoon
+                                            onClick={() => setDarkMode('dark')}
+                                            style={{
+                                                fill: 'darkcyan',
+
+                                                height: '2em',
+                                                width: '2em',
+                                            }}></GiMoon>
+                                    )}
+                                </div>
+
+                                <div className="flex-column">
+                                    {' '}
+                                    <img
+                                        onClick={() => changeLocale('de')}
+                                        src={de}
+                                        alt="germanFlag"
+                                        className="w-2 h-2"
+                                        style={{
+                                            width: '15px',
+                                            height: '15px',
+                                        }}
+                                    />{' '}
+                                    <img
+                                        onClick={() => changeLocale('en')}
+                                        src={us}
+                                        alt="germanFlag"
+                                        className="w-2 h-2"
+                                        style={{
+                                            width: '15px',
+                                            height: '15px',
+                                        }}
+                                    />
+                                </div>
+
                                 <Menu as="div" className="ml-3 relative">
                                     <div>
                                         <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none">
@@ -183,11 +239,13 @@ export default function Navigation() {
                                                                 : '',
                                                             'block px-4 py-2 text-sm text-gray-700'
                                                         )}>
-                                                        Profile
+                                                        <FormattedMessage
+                                                            id="nav.profile"
+                                                            defaultMessage="Profile"></FormattedMessage>
                                                     </Link>
                                                 )}
                                             </Menu.Item>
-                                            <Menu.Item>
+                                            {/* <Menu.Item>
                                                 {({ active }) => (
                                                     <Link
                                                         to="/settings"
@@ -197,10 +255,12 @@ export default function Navigation() {
                                                                 : '',
                                                             'block px-4 py-2 text-sm text-gray-700'
                                                         )}>
-                                                        Settings
+                                                        <FormattedMessage
+                                                            id="nav.settings"
+                                                            defaultMessage="Settings"></FormattedMessage>{' '}
                                                     </Link>
                                                 )}
-                                            </Menu.Item>
+                                            </Menu.Item> */}
                                             <Menu.Item>
                                                 {({ active }) =>
                                                     currentUser ? (
@@ -214,19 +274,37 @@ export default function Navigation() {
                                                                 'block px-4 py-2 text-sm text-gray-700'
                                                             )}>
                                                             {' '}
-                                                            Logout
+                                                            <FormattedMessage
+                                                                id="nav.logout"
+                                                                defaultMessage="Logout"></FormattedMessage>{' '}
                                                         </Link>
                                                     ) : (
-                                                        <Link
-                                                            to="/login"
-                                                            className={classNames(
-                                                                active
-                                                                    ? 'bg-gray-100'
-                                                                    : '',
-                                                                'block px-4 py-2 text-sm text-gray-700'
-                                                            )}>
-                                                            Login
-                                                        </Link>
+                                                        <>
+                                                            <Link
+                                                                to="/login"
+                                                                className={classNames(
+                                                                    active
+                                                                        ? 'bg-gray-100'
+                                                                        : '',
+                                                                    'block px-4 py-2 text-sm text-gray-700'
+                                                                )}>
+                                                                <FormattedMessage
+                                                                    id="nav.login"
+                                                                    defaultMessage="login"></FormattedMessage>{' '}
+                                                            </Link>
+                                                            <Link
+                                                                to="/register"
+                                                                className={classNames(
+                                                                    active
+                                                                        ? 'bg-gray-100'
+                                                                        : '',
+                                                                    'block px-4 py-2 text-sm text-gray-700'
+                                                                )}>
+                                                                <FormattedMessage
+                                                                    id="nav.register"
+                                                                    defaultMessage="register"></FormattedMessage>
+                                                            </Link>
+                                                        </>
                                                     )
                                                 }
                                             </Menu.Item>

@@ -37,7 +37,7 @@ function Quizcard({
         checkAnswer(e, index, answer, correct_answer, corrAnswerReference)
 
     return (
-        <div className="max-w-md mx-auto bg-blue-500 rounded-md shadow-quizBox border-1 border-gray-300">
+        <div className="max-w-md mx-auto bg-blue-500 rounded-md shadow-quizBox border-1 border-gray-300 ">
             <div
                 className="text-white capitalize tracking-wider leading-8 bg-blue-500 px-3  rounded-md"
                 id="quizCategory">
