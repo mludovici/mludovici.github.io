@@ -38,7 +38,7 @@ export default function Navigation({ changeLocale }) {
     return (
         <Disclosure
             as="nav"
-            className="bg-gray-800 sticky w-full z-50 top-0 dark:bg-indigo-400">
+            className="bg-gray-800 sticky w-full z-50 top-0 dark:bg-green-600">
             {({ open }) => (
                 <>
                     <div className="max-w-full mx-auto px-2 sm:px-6 lg:px-8 ">
