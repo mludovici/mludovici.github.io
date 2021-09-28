@@ -4,7 +4,7 @@ import { useAuth } from '../../providers/AuthProvider'
 import LoginRegisterCSS from './LoginRegister.module.css'
 import RegisterComponent from './RegisterComponent'
 import LoginComponent from './LoginComponent'
-
+import { FormattedMessage } from 'react-intl'
 import { Link, useRouteMatch } from 'react-router-dom'
 function LoginRegister() {
     let [showSignin, setShowSignin] = useState(true)
@@ -51,7 +51,7 @@ function LoginRegister() {
                                     showSignin ? LoginRegisterCSS.active : ''
                                 }`}
                                 style={{ borderRight: '2px solid aquamarine' }}>
-                                Log In
+                                <FormattedMessage id="login.login"></FormattedMessage>
                             </div>
                             <div
                                 onClick={() => {
@@ -61,7 +61,7 @@ function LoginRegister() {
                                 className={`${LoginRegisterCSS.signup} ${
                                     showSignup ? LoginRegisterCSS.active : ''
                                 }`}>
-                                Sign Up
+                                <FormattedMessage id="login.register"></FormattedMessage>
                             </div>
 
                             <LoginComponent
@@ -93,7 +93,7 @@ function LoginRegister() {
                     <button
                         className="bg-blue-300 text-black shadow-lg block p-2 mt-2 mx-auto"
                         onClick={authFunctions.logout}>
-                        Logout
+                        <FormattedMessage id="login.logout"></FormattedMessage>{' '}
                     </button>
                 </div>
             )}

@@ -8,7 +8,7 @@ import Timeline2 from './components/Timeline/Timeline2.jsx'
 import Trivia from './components/Games/Trivia'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Impressum from './components/Footer/Impressum'
-
+import ProfilePage from './components/ProfilePage'
 import React from 'react'
 import LoginRegister from './components/LoginRegister'
 import DND from './components/Timeline/DnDComponent'
@@ -73,6 +73,7 @@ function App() {
 
                             <Route path="/trivia" component={Trivia} />
                             <Route path="/dnd" component={DND} />
+                            <Route path="/profile" component={ProfilePage} />
 
                             <Route path="/tlt" component={TimeLineCard} />
                             <Route path="/star" component={StarRating} />

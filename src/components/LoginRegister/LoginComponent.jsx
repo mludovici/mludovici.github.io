@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import LoginCSS from './LoginRegister.module.css'
 import { LoginForm } from './StyledLoginRegister'
 import { useAuth } from '../../providers/AuthProvider'
-
+import { FormattedMessage } from 'react-intl'
 function LoginComponent({ showSignin, loginHandler }) {
     const [email, setEmail] = useState()
     const [pw, setPW] = useState()
@@ -54,14 +54,14 @@ function LoginComponent({ showSignin, loginHandler }) {
                     type="submit"
                     className={LoginCSS.btn}
                     onClick={e => handleLogin(e)}>
-                    log in
+                    <FormattedMessage id="login.login"></FormattedMessage>
                 </button>
 
                 <span className="my-4 text-blue-600">
                     <button
                         className="text-gray-400"
                         onClick={emailResetHandler}>
-                        I forgot my password.
+                        <FormattedMessage id="login.pwforgot"></FormattedMessage>
                     </button>
                     {emailResetSuccess && <p>{emailResetSuccess}</p>}
                     {emailResetError && (

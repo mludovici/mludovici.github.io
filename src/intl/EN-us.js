@@ -3,6 +3,10 @@ const englishTranslation = {
     'main.about_me.job': 'Software Developer',
     'main.about_me':
         "I am a Master's graduate in practical computer science with 3 years of work experience. My experience is in the field of webdevelopment using the javascript stack and data science. In my spare time I am continuously educating myself.",
+    'login.login': 'Log in',
+    'login.register': 'Register',
+    'login.pwforgot': 'I forgot my password',
+    'register.createAccount': 'Create Account',
     'nav.profile': 'Profile',
     'nav.settings': 'Settings',
     'nav.logout': 'Logout',

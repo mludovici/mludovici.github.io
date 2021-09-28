@@ -2,31 +2,30 @@ import React from 'react'
 import { GiBirdTwitter, GiLinkedRings, GiFaceToFace } from 'react-icons/gi'
 import ProfilePageCSS from './ProfilePageCSS.module.css'
 import { Link } from 'react-router-dom'
-import DnDComponent from './DnDComponent'
+import DnDComponent from './Timeline/DnDComponent'
 
 function ProfilePage() {
     return (
         <div className={ProfilePageCSS['content']}>
             <div className={ProfilePageCSS['card']}>
-                <DnDComponent>
-                    <img
-                        src="https://i.pravatar.cc/125?image=3"
-                        alt=""
-                        className={ProfilePageCSS['profile-img']}
-                    />
-                </DnDComponent>
+                <DnDComponent
+                    className={ProfilePageCSS['profile-img']}></DnDComponent>
+                {/* <img
+                    src="https://i.pravatar.cc/125?image=3"
+                    alt=""
+                    className={ProfilePageCSS['profile-img']}
+                /> */}
 
                 <h2 className={ProfilePageCSS['profile-name']}>
-                    Ramsey Harper
+                    Marc Ludovici
                 </h2>
-                <p className={ProfilePageCSS['profile-position']}>
-                    Graphic Designer
-                </p>
+                <p className={ProfilePageCSS['profile-position']}>Developer</p>
                 <p className={ProfilePageCSS['profile-info']}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Facere a tempore, dignissimos odit accusantium repellat
-                    quidem, sit molestias dolorum placeat quas debitis ipsum
-                    esse rerum?
+                    Ich bin Master-Absolvent in praktischer Informatik mit 3
+                    Jahren Berufserfahrung. Meine Erfahrungen sind auf dem
+                    Gebiet Web-Entwicklung mit dem Javascript Stack und Data
+                    Science. In meiner Freizeit bilde ich mich fortlaufend
+                    weiter.
                 </p>
                 <ul className={ProfilePageCSS['social-list']}>
                     <li>

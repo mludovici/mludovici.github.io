@@ -3,6 +3,7 @@ import { useAuth } from '../../providers/AuthProvider'
 import LoginCSS from './LoginRegister.module.css'
 import { SignupForm } from './StyledLoginRegister'
 import { setErrorTimeout } from '../utils'
+import { FormattedMessage } from 'react-intl'
 function RegisterComponent({ showSignup, signup }) {
     const [formDetails, setFormDetails] = useState({})
     const [registerSuccess, setRegisterSuccess] = useState(null)
@@ -112,7 +113,7 @@ function RegisterComponent({ showSignup, signup }) {
                 {registerError ? registerError.message : null}
             </div>
             <button type="submit" className={LoginCSS.btn}>
-                Create account
+                <FormattedMessage id="register.createAccount"></FormattedMessage>
             </button>
 
             <p className="text-green-500">
