@@ -16,6 +16,7 @@ import DND from './components/Timeline/DnDComponent'
 import TimeLineCard from './components/Timeline/TimeLineCard'
 import Navigation from './components/Header/Navigation'
 import StarRating from './components/StarRating'
+import SettingsPage from './components/Settings'
 import { IntlProvider } from 'react-intl'
 
 import de from './intl/DE-de'
@@ -46,7 +47,7 @@ function App() {
             <DarkModeProvider>
                 <IntlProvider locale={locale} messages={messages[locale]}>
                     <BrowserRouter>
-                        <Navigation changeLocale={changeLocale}></Navigation>
+                        <Navigation></Navigation>
                         <Switch>
                             <Route path="/" exact>
                                 <HomeComponent></HomeComponent>{' '}
@@ -74,6 +75,9 @@ function App() {
                             <Route path="/trivia" component={Trivia} />
                             <Route path="/dnd" component={DND} />
                             <Route path="/profile" component={ProfilePage} />
+                            <Route path="/settings">
+                                <SettingsPage changeLocale={changeLocale} />
+                            </Route>
 
                             <Route path="/tlt" component={TimeLineCard} />
                             <Route path="/star" component={StarRating} />

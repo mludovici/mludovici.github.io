@@ -12,8 +12,12 @@ const englishTranslation = {
     'nav.logout': 'Logout',
     'nav.login': 'Login',
     'nav.register': 'Register',
+    'settings.info':
+        'This website was built with React.js, HTML, TailwindCSS, Styled Components, Firebase as backend and several smaller JS libraries',
+    'settings.color': 'Color mode:',
+    'settings.lang': 'Language:',
     'main.projects': 'Projects',
-    'main.projects.headline': 'Here is what I offer',
+    'main.projects.headline': '',
     '0WWbJ0J9r4QWNKJLaGNt.job': 'Web Developer (Full-Stack)',
 
     '0WWbJ0J9r4QWNKJLaGNt.content':

@@ -5,40 +5,43 @@ import ColorLogo from '../../assets/images/logo/Colorlogonobackground.svg'
 import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../../providers/AuthProvider'
 import { AnimatedDiv } from './animatedDiv'
-import de from '../../assets/images/flag/de.svg'
-import us from '../../assets/images/flag/us.svg'
+// import de from '../../assets/images/flag/de.svg'
+// import us from '../../assets/images/flag/us.svg'
 import { FormattedMessage } from 'react-intl'
-import { useDarkMode } from '../../providers/DarkModeProvider'
-
-import { GiSunRadiations, GiMoon } from 'react-icons/gi'
-let navigation = [
-    { name: 'Home', href: '/', current: false },
-    { name: 'CV', href: 'cv', current: false },
-    { name: 'Trivia', href: '/trivia', current: false },
-]
+// import { useDarkMode } from '../../providers/DarkModeProvider'
+// import { GiSunRadiations, GiMoon } from 'react-icons/gi'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function Navigation({ changeLocale }) {
+export default function Navigation() {
     let location = useLocation()
-    const { darkMode, setDarkMode } = useDarkMode()
+    const [navigation, updateNavigation] = useState([
+        { name: 'Home', href: '/', current: false },
+        { name: 'CV', href: '/cv', current: false },
+        { name: 'Trivia', href: '/trivia', current: false },
+    ])
+    // const { darkMode, setDarkMode } = useDarkMode()
 
     useEffect(() => {
-        navigation.map((item, idx) =>
-            item.href === location.pathname
-                ? (item.current = true)
-                : (item.current = false)
-        )
-    })
+        updateNavigation(navigation => {
+            return [
+                ...navigation.map(item => {
+                    return item.href.toLowerCase() === location.pathname
+                        ? { ...item, current: true }
+                        : { ...item, current: false }
+                }),
+            ]
+        })
+    }, [location])
 
     let { logout, currentUser } = useAuth()
-    const [currentActive, setCurrentActive] = useState(0)
+    // const [currentActive, setCurrentActive] = useState(0)
     return (
         <Disclosure
             as="nav"
-            className="bg-gray-800 sticky w-full z-50 top-0 dark:bg-green-600">
+            className="bg-gray-800 sticky w-full z-50 top-0 dark:bg-green-700">
             {({ open }) => (
                 <>
                     <div className="max-w-full mx-auto px-2 sm:px-6 lg:px-8 ">
@@ -80,24 +83,24 @@ export default function Navigation({ changeLocale }) {
                                                     animation={true}
                                                     key={item.name}>
                                                     <Link
-                                                        onClick={e => {
-                                                            navigation.forEach(
-                                                                (item, idx) => {
-                                                                    idx ===
-                                                                    indexEl
-                                                                        ? setCurrentActive(
-                                                                              idx
-                                                                          ) &&
-                                                                          (item.current = true)
-                                                                        : (item.current = false)
-                                                                }
-                                                            )
-                                                        }}
+                                                        // onClick={e => {
+                                                        //     navigation.forEach(
+                                                        //         (item, idx) => {
+                                                        //             idx ===
+                                                        //             indexEl
+                                                        //                 ? setCurrentActive(
+                                                        //                       idx
+                                                        //                   ) &&
+                                                        //                   (item.current = true)
+                                                        //                 : (item.current = false)
+                                                        //         }
+                                                        //     )
+                                                        // }}
                                                         key={item.name}
                                                         to={item.href}
                                                         className={classNames(
-                                                            currentActive ===
-                                                                indexEl
+                                                            // currentActive === indexEl
+                                                            item.current
                                                                 ? 'bg-gray-900 text-white'
                                                                 : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                                                             'px-3 py-2 rounded-md text-sm font-medium'
@@ -112,23 +115,24 @@ export default function Navigation({ changeLocale }) {
                                                 </AnimatedDiv>
                                             ) : (
                                                 <Link
-                                                    onClick={e => {
-                                                        navigation.forEach(
-                                                            (item, idx) => {
-                                                                idx === indexEl
-                                                                    ? setCurrentActive(
-                                                                          idx
-                                                                      ) &&
-                                                                      (item.current = true)
-                                                                    : (item.current = false)
-                                                            }
-                                                        )
-                                                    }}
+                                                    // onClick={e => {
+                                                    //     navigation.forEach(
+                                                    //         (item, idx) => {
+                                                    //             idx === indexEl
+                                                    //                 ? setCurrentActive(
+                                                    //                       idx
+                                                    //                   ) &&
+                                                    //                   (item.current = true)
+                                                    //                 : (item.current = false)
+                                                    //         }
+                                                    //     )
+                                                    // }}
                                                     key={item.name}
                                                     to={item.href}
                                                     className={classNames(
-                                                        currentActive ===
-                                                            indexEl
+                                                        // currentActive ===
+                                                        //     indexEl
+                                                        item.current
                                                             ? 'bg-gray-900 text-white'
                                                             : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                                                         'px-3 py-2 rounded-md text-sm font-medium'
@@ -157,7 +161,7 @@ export default function Navigation({ changeLocale }) {
 									</button> */}
 
                                 {/* Profile dropdown */}
-                                <div className="mr-3">
+                                {/* <div className="mr-3">
                                     {darkMode === 'dark' ? (
                                         <GiSunRadiations
                                             onClick={() => setDarkMode('light')}
@@ -200,7 +204,7 @@ export default function Navigation({ changeLocale }) {
                                             height: '15px',
                                         }}
                                     />
-                                </div>
+                                </div> */}
 
                                 <Menu as="div" className="ml-3 relative">
                                     <div>
@@ -232,6 +236,23 @@ export default function Navigation({ changeLocale }) {
                                             <Menu.Item>
                                                 {({ active }) => (
                                                     <Link
+                                                        to="/settings"
+                                                        className={classNames(
+                                                            active
+                                                                ? 'bg-gray-100'
+                                                                : '',
+                                                            'block px-4 py-2 text-sm text-gray-700'
+                                                        )}>
+                                                        <FormattedMessage
+                                                            id="nav.settings"
+                                                            defaultMessage="Settings"></FormattedMessage>
+                                                    </Link>
+                                                )}
+                                            </Menu.Item>
+
+                                            <Menu.Item>
+                                                {({ active }) => (
+                                                    <Link
                                                         to="/profile"
                                                         className={classNames(
                                                             active
@@ -245,6 +266,7 @@ export default function Navigation({ changeLocale }) {
                                                     </Link>
                                                 )}
                                             </Menu.Item>
+
                                             {/* <Menu.Item>
                                                 {({ active }) => (
                                                     <Link
@@ -319,14 +341,14 @@ export default function Navigation({ changeLocale }) {
                         <div className="px-2 pt-2 pb-3 space-y-1">
                             {navigation.map((item, indexEl) => (
                                 <Link
-                                    onClick={e => {
-                                        navigation.forEach((item, idx) => {
-                                            idx === indexEl
-                                                ? setCurrentActive(idx) &&
-                                                  (item.current = true)
-                                                : (item.current = false)
-                                        })
-                                    }}
+                                    // onClick={e => {
+                                    //     navigation.forEach((item, idx) => {
+                                    //         idx === indexEl
+                                    //             ? setCurrentActive(idx) &&
+                                    //               (item.current = true)
+                                    //             : (item.current = false)
+                                    //     })
+                                    // }}
                                     key={item.name}
                                     to={item.href}
                                     className={classNames(

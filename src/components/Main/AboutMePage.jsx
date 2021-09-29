@@ -8,7 +8,7 @@ function AboutMePage() {
             <section
                 id="profile"
                 className="
-                bg-gray-800 flex flex-col sm:flex sm:flex-row max-h-96 sm:p-5 sm:border-2 my-10 sm:rounded-md sm:shadow-md sm:border-gray-400 items-center">
+                bg-gray-800 flex flex-col sm:flex sm:flex-row p-5 sm:p-5 sm:border-2 my-10 sm:rounded-md sm:shadow-md sm:border-gray-400 items-center">
                 <img
                     className="rounded-full h-full sm:ml-3
 							shadow-md max-h-40 mx-auto"

@@ -18,7 +18,7 @@ function DnDComponent() {
         inputRef.current.click()
     }
 
-    const handleImageUpload = () => {}
+    // const handleImageUpload = () => {}
 
     const handleFile = e => {
         e.preventDefault()

@@ -7,7 +7,8 @@
         'image'
         'social'
         'position'
-        'description';
+        'description'
+        'button';
 }
 
 @media (min-width: 600px) {
@@ -17,7 +18,8 @@
         grid-template-areas:
             'image name'
             'image position'
-            'social description';
+            'social description'
+            '. button';
     }
 }
 
@@ -35,6 +37,15 @@
 }
 .social-list {
     grid-area: social;
+}
+.button {
+    grid-area: button;
+}
+
+,
+button {
+    float: right;
+    width: 30px;
 }
 
 /* general stylings */

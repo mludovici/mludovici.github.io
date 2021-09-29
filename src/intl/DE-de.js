@@ -13,8 +13,12 @@ const germanTranslation = {
     'nav.logout': 'Ausloggen',
     'nav.login': 'Einloggen',
     'nav.register': 'Registrieren',
+    'settings.info':
+        'Diese Website wurde mit React.js, HTML, TailwindCSS, Styled Components, Firebase als Backend und diversen kleineren JS Libraries erstellt.',
+    'settings.color': 'Farbmodus:',
+    'settings.lang': 'Sprache:',
     'main.projects': 'Projekte',
-    'main.projects.headline': 'Was ich zu bieten habe',
+    'main.projects.headline': '',
     '0WWbJ0J9r4QWNKJLaGNt.job': 'Web Entwickler (Full-Stack)',
 
     '0WWbJ0J9r4QWNKJLaGNt.content':

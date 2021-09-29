@@ -17,6 +17,9 @@ module.exports = {
             boxShadow: {
                 quizBox: '1px 2px 8px 6px #0000005c',
             },
+            // marginTop: {
+            //     half: '50%',
+            // },
         },
     },
     variants: {

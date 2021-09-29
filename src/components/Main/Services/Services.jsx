@@ -17,9 +17,7 @@ function Services() {
                                 defaultMessage="Projects"></FormattedMessage>
                         </h1>
                         <p className="pt-2 dark:text-gray-100">
-                            <FormattedMessage
-                                id="main.projects.headline"
-                                defaultMessage="Here is what I offer"></FormattedMessage>
+                            {/* <FormattedMessage id="main.projects.headline"></FormattedMessage> */}
                         </p>
                     </div>
                     <div
@@ -196,12 +194,14 @@ function Services() {
                                 <img
                                     style={{ height: '220px', margin: 'auto' }}
                                     src={DSPNG}
-                                    className="rounded-t-md servicesImageHeight"
+                                    className=" bg-blue-500
+                                     rounded-t-md servicesImageHeight"
                                     alt=""
                                 />
                                 <div className="px-10 pb-6">
                                     <h2
                                         className="
+                                        
 										pt-3
 										font-bold
 										text-gray-800 text-2xl text-center
