@@ -42,12 +42,6 @@
     grid-area: button;
 }
 
-,
-button {
-    float: right;
-    width: 30px;
-}
-
 /* general stylings */
 
 .card {
