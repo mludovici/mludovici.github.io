@@ -32,19 +32,16 @@ function TimeLineCard2({
                 // toggle={toggle}
             >
                 {' '}
-                {currentUser && currentUser.email === 'ludovicimarc@gmail.com' && (
-                    <div className="flex justify-end">
-                        <a href="#createCard">
-                            <FaEdit
-                                className=""
-                                onClick={e => updateForm(e, id)}
-                            />
-                        </a>
-                        <FaTrashAlt
-                            className="text-center w-3 h-4 inline"
-                            onClick={e => deleteCard(e, id)}></FaTrashAlt>
-                    </div>
-                )}
+                {/* {currentUser && currentUser.email === 'ludovicimarc@gmail.com' && (*/}
+                <div className="flex justify-end">
+                    <a href="#createCard">
+                        <FaEdit className="" onClick={e => updateForm(e, id)} />
+                    </a>
+                    <FaTrashAlt
+                        className="text-center w-3 h-4 inline"
+                        onClick={e => deleteCard(e, id)}></FaTrashAlt>
+                </div>
+                {/* )} */}
                 <div className="text-center">
                     <div className={TimeLineCSS['jobtitle']}>
                         <FormattedMessage

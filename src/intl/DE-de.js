@@ -5,6 +5,7 @@ const germanTranslation = {
     'main.about_me':
         'Ich bin Master-Absolvent in praktischer Informatik mit 3 Jahren Berufserfahrung. Meine Erfahrungen sind auf dem Gebiet Web-Entwicklung mit dem Javascript Stack und Data	Science. In meiner Freizeit bilde ich mich fortlaufend	weiter.',
     'login.login': 'Einloggen',
+    "login.logout": "Ausloggen",
     'login.register': 'Registrieren',
     'login.pwforgot': 'Ich habe mein Passwort vergessen',
     'register.createAccount': 'Account anlegen',

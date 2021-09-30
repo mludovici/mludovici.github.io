@@ -3,8 +3,8 @@
     grid-template-columns: 1fr;
     grid-column-gap: 2em;
     grid-template-areas:
-        'name'
         'image'
+        'name'
         'social'
         'position'
         'description'
@@ -40,6 +40,9 @@
 }
 .btn {
     grid-area: btn;
+    width: 100px;
+    margin-left: auto;
+    margin-top: 2rem;
 }
 
 /* general stylings */
@@ -59,6 +62,7 @@
 .profile-info {
     font-weight: 300;
     opacity: 0.7;
+    color: black;
 }
 
 .profile-name {
@@ -67,6 +71,7 @@
     font-size: 2rem;
     margin: 0.75em 0 0;
     line-height: 1;
+    color: black;
 }
 
 .profile-name::after {
@@ -83,9 +88,9 @@
     text-transform: uppercase;
     font-size: 0.875rem;
     letter-spacing: 3px;
-    margin: 0 0 0.5vem;
+    margin-bottom: 1rem;
     line-height: 1;
-    color: #5bcbf0;
+    color: black;
 }
 
 .profile-img {
@@ -101,7 +106,7 @@
     justify-content: space-between;
     display: flex;
     width: 75px;
-    margin: 0.5em 0 0;
+    margin: 0.5em 0 0.5em;
     padding: 0;
 }
 

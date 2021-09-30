@@ -1,18 +1,114 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { GiBirdTwitter, GiLinkedRings, GiFaceToFace } from 'react-icons/gi'
 import ProfilePageCSS from './ProfilePageCSS.module.css'
-import { Link } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
 import DnDComponent from './Timeline/DnDComponent'
-
-function ProfilePage() {
+import { useAuth } from '../providers/AuthProvider'
+function ProfilePage({ currentUser }) {
+    // const history = useHistory()
+    const { firestore, storage } = useAuth()
     const [editMode, setEditMode] = useState(false)
+    const [userName, setUserName] = useState(null)
+    const [profileInfo, setProfileInfo] = useState(null)
+    const [jobPosition, setJobPosition] = useState(null)
+    const [profileImage, setProfileImage] = useState(null)
+    const [imageURL, setImageURL] = useState(null)
+
+    useEffect(() => {
+        console.log('profile useEffect')
+        firestore
+            .collection('profileData')
+            .doc(`${currentUser.uid}`)
+            .get()
+            .then(docRef => {
+                let { userName, jobPosition, profileImageURL, profileInfo } =
+                    docRef.data()
+                setUserName(userName)
+                setJobPosition(jobPosition)
+                setProfileInfo(profileInfo)
+                setImageURL(profileImageURL)
+            })
+            .catch(error => {
+                console.error('Error adding profile data: ', error)
+            })
+    }, [firestore, currentUser])
+    const toggleEditMode = () => {
+        setEditMode(!editMode)
+    }
+
+    const handleUpdate = async () => {
+        console.log('inside handleUpdate')
+        console.log({ profileImage })
+
+        if (profileImage) {
+            let storageRef = await storage
+                .ref()
+                .child(`profile/${currentUser.uid}/profileImage`)
+                .putString(profileImage.image, 'data_url')
+            // .then(snapshot => {
+            //     console.log(
+            //         'DOWNLOAD URL:',
+            //         snapshot.ref
+            //             .getDownloadURL()
+            //             .then(url => {
+            //                 setImageURL(url)
+            //             }
+            //             )
+            //     )
+
+            // .catch(error => {
+            //     console.log(error)
+            // })
+            // // })
+            // .catch(error => {
+            //     console.log(error)
+            // })
+
+            let profileImageURL = await storageRef.ref.getDownloadURL()
+            setImageURL(profileImageURL)
+        }
+        const profileData = {}
+
+        profileData.profileImageURL = imageURL
+        profileData.userName = userName
+        profileData.jobPosition = jobPosition
+        profileData.profileInfo = profileInfo
+        try {
+            firestore
+                .collection('profileData')
+                .doc(`${currentUser.uid}`)
+                .set(profileData)
+                .then(docRef => {
+                    console.log('Document updated with ID: ', docRef)
+                })
+                .catch(error => {
+                    console.error('Error adding profile data: ', error)
+                })
+        } catch (e) {
+            console.log(e)
+        }
+        toggleEditMode()
+    }
+
+    const deleteImageFromStorage = () => {
+        return storage
+            .ref()
+            .child(`profile/${currentUser.uid}/profileImage`)
+            .delete()
+    }
+
     return (
         <div className="h-screen dark:bg-black">
             <div className="pt-96">
                 <div className={ProfilePageCSS['content']}>
                     <div className={ProfilePageCSS['card']}>
                         <DnDComponent
-                            //editMode={editMode}
+                            deleteImageFromStorage={deleteImageFromStorage}
+                            setImageURL={setImageURL}
+                            profileImage={profileImage}
+                            setProfileImage={setProfileImage}
+                            imageURL={imageURL}
+                            editMode={editMode}
                             className={
                                 ProfilePageCSS['profile-img']
                             }></DnDComponent>
@@ -21,49 +117,91 @@ function ProfilePage() {
                     alt=""
                     className={ProfilePageCSS['profile-img']}
                 /> */}
-                        {!editMode && (
+                        {editMode ? (
+                            <div>
+                                <input
+                                    className={`${ProfilePageCSS['profile-name']}`}
+                                    value={userName || ''}
+                                    type="text"
+                                    placeholder="Your Name"
+                                    onChange={e =>
+                                        setUserName(e.target.value)
+                                    }></input>
+                                <div className="divide-y divide-black mt-5"></div>
+                            </div>
+                        ) : (
                             <h2 className={ProfilePageCSS['profile-name']}>
-                                Marc Ludovici
+                                {userName || 'Your name'}
                             </h2>
-                        )}{' '}
-                        {editMode && (
-                            <input type="text" placeholder="Your Name"></input>
                         )}
-                        <p className={ProfilePageCSS['profile-position']}>
-                            Developer
-                        </p>
-                        <p className={ProfilePageCSS['profile-info']}>
-                            Ich bin Master-Absolvent in praktischer Informatik
-                            mit 3 Jahren Berufserfahrung. Meine Erfahrungen sind
-                            auf dem Gebiet Web-Entwicklung mit dem Javascript
-                            Stack und Data Science. In meiner Freizeit bilde ich
-                            mich fortlaufend weiter.
-                        </p>
-                        <ul className={ProfilePageCSS['social-list']}>
+                        {editMode ? (
+                            <>
+                                <input
+                                    className={`${ProfilePageCSS['profile-position']} text-black`}
+                                    value={jobPosition || ''}
+                                    type="text"
+                                    placeholder="job position"
+                                    onChange={e =>
+                                        setJobPosition(e.target.value)
+                                    }></input>
+
+                                <textarea
+                                    className={`${ProfilePageCSS['profile-info']} text-black`}
+                                    type="text"
+                                    value={profileInfo}
+                                    placeholder="description"
+                                    onChange={e =>
+                                        setProfileInfo(e.target.value)
+                                    }></textarea>
+                            </>
+                        ) : (
+                            <>
+                                <p
+                                    className={
+                                        ProfilePageCSS['profile-position']
+                                    }>
+                                    {jobPosition || 'Job Position'}
+                                </p>
+                                <p className={ProfilePageCSS['profile-info']}>
+                                    {profileInfo ||
+                                        `Lorem, ipsum dolor sit amet consectetur adipisicing
+                            elit. Hic maxime sint nihil deserunt aperiam eos
+                            tenetur voluptatibus tempora ducimus provident`}
+                                </p>
+                            </>
+                        )}
+
+                        <ul className={`${ProfilePageCSS['social-list']}`}>
                             <li>
-                                <Link
-                                    to="twitter.com"
+                                <button
+                                    to=""
                                     className={ProfilePageCSS['social-link']}>
                                     <GiBirdTwitter />
-                                </Link>
+                                </button>
                             </li>
                             <li>
-                                <Link
-                                    to="linkedin.com"
+                                <button
+                                    to=""
                                     className={ProfilePageCSS['social-link']}>
                                     <GiLinkedRings></GiLinkedRings>
-                                </Link>
+                                </button>
                             </li>
                             <li>
-                                <Link
-                                    to="facebook.com"
+                                <button
+                                    to=""
                                     className={ProfilePageCSS['social-link']}>
                                     <GiFaceToFace></GiFaceToFace>
-                                </Link>
+                                </button>
                             </li>
                         </ul>
+
                         <button
-                            className={`${ProfilePageCSS['btn']} bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded float-right`}>
+                            onClick={
+                                !editMode
+                                    ? toggleEditMode
+                                    : e => handleUpdate(e)
+                            }
+                            className={`${ProfilePageCSS['btn']} ml-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded`}>
                             {!editMode ? 'Edit' : 'Update'}
                         </button>
                     </div>

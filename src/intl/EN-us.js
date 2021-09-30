@@ -6,6 +6,8 @@ const englishTranslation = {
     'login.login': 'Log in',
     'login.register': 'Register',
     'login.pwforgot': 'I forgot my password',
+    'login.logout': 'Log out',
+
     'register.createAccount': 'Create Account',
     'nav.profile': 'Profile',
     'nav.settings': 'Settings',

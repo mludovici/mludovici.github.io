@@ -250,23 +250,24 @@ export default function Navigation() {
                                                 )}
                                             </Menu.Item>
 
-                                            <Menu.Item>
-                                                {({ active }) => (
-                                                    <Link
-                                                        to="/profile"
-                                                        className={classNames(
-                                                            active
-                                                                ? 'bg-gray-100'
-                                                                : '',
-                                                            'block px-4 py-2 text-sm text-gray-700'
-                                                        )}>
-                                                        <FormattedMessage
-                                                            id="nav.profile"
-                                                            defaultMessage="Profile"></FormattedMessage>
-                                                    </Link>
-                                                )}
-                                            </Menu.Item>
-
+                                            {currentUser && (
+                                                <Menu.Item>
+                                                    {({ active }) => (
+                                                        <Link
+                                                            to="/profile"
+                                                            className={classNames(
+                                                                active
+                                                                    ? 'bg-gray-100'
+                                                                    : '',
+                                                                'block px-4 py-2 text-sm text-gray-700'
+                                                            )}>
+                                                            <FormattedMessage
+                                                                id="nav.profile"
+                                                                defaultMessage="Profile"></FormattedMessage>
+                                                        </Link>
+                                                    )}
+                                                </Menu.Item>
+                                            )}
                                             {/* <Menu.Item>
                                                 {({ active }) => (
                                                     <Link

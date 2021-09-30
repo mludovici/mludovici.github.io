@@ -130,7 +130,7 @@ function Trivia() {
                     id="quizSection"
                     className="max-w-2xl mx-auto dark:bg-gray-800 bg-gray-400 h-full">
                     <h1 className=" text-center text-2xl font-bold text-gray-800 mb-5  bg-green-400 ">
-                        Welcome to Trivia!
+                        Welcome to Trivia Game!
                     </h1>
                     <div className="max-w-xs text-center mx-auto shadow-xl rounded ">
                         <form className=" shadow-md rounded mb-4px-8 pt-6 pb-8  bg-gray-100">

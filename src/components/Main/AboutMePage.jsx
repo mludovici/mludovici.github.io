@@ -1,6 +1,7 @@
 import React from 'react'
 //import tigerImage from '../../assets/images/tiger.jpg'
-import giraffe from '../../assets/images/giraffe.jpg'
+// import giraffe from '../../assets/images/giraffe.jpg'
+import person from '../../assets/images/placeholder_person.jpg'
 import { FormattedMessage } from 'react-intl'
 function AboutMePage() {
     return (
@@ -13,7 +14,7 @@ function AboutMePage() {
                     className="rounded-full h-full sm:ml-3
 							shadow-md max-h-40 mx-auto"
                     alt="tiger"
-                    src={giraffe}
+                    src={person}
                 />
 
                 <article className="w-max-2xl px-8 ">
