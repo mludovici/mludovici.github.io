@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import HomeComponent from './components/HomeComponent'
 import { DarkModeProvider } from './providers/DarkModeProvider'
 import Timeline from './components/Timeline/Timeline.jsx'
@@ -34,12 +34,15 @@ function PageNotFound() {
 }
 
 function App() {
-    const { currentUser } = useAuth()
+    const { currentUser, analytics } = useAuth()
     const browserLang = navigator.language.toLowerCase()
     let setLanguage = Object.keys(messages).includes(browserLang)
         ? browserLang
         : 'de-de'
 
+    useEffect(() => {
+        analytics.logEvent('App.js Mainpage created!')
+    }, [analytics])
     const [locale, changeLocale] = useState(setLanguage)
     console.log({ currentUser })
     return (
