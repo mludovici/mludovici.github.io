@@ -74,6 +74,11 @@
     color: black;
 }
 
+input.profile-name {
+    width: 100%;
+    margin-left: 0;
+}
+
 .profile-name::after {
     content: '';
     display: block;

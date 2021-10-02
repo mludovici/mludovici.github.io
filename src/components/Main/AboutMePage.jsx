@@ -3,6 +3,7 @@ import React from 'react'
 // import giraffe from '../../assets/images/giraffe.jpg'
 import person from '../../assets/images/placeholder_person.jpg'
 import { FormattedMessage } from 'react-intl'
+import AboutMePageCSS from './AboutMePage.module.css'
 function AboutMePage() {
     return (
         <div className="min-w-xl max-w-6xl mx-auto px-4 overflow-y-auto dark:bg-gray-600 text-gray-300">
@@ -17,12 +18,16 @@ function AboutMePage() {
                     src={person}
                 />
 
-                <article className="w-max-2xl px-8 ">
-                    <p className="text-center font-bold pb-4 pt-4 whitespace-pre-wrap">
+                <article className={`w-max-2xl px-8 `}>
+                    <div
+                        className={`${AboutMePageCSS['jobInfo']} text-center font-bold pt-4 whitespace-pre-wrap `}>
                         <FormattedMessage
                             id="main.about_me.header"
                             defaultMessage="Über mich"></FormattedMessage>
-                    </p>
+                        <div
+                            className={`${AboutMePageCSS['fadingEffect']} bg-white `}></div>
+                    </div>
+
                     <span className="text-left block md:inline-block mr-10 font-bold whitespace-nowrap min-w-max">
                         <FormattedMessage
                             id="main.about_me.job"

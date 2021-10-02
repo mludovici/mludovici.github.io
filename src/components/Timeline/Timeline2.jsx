@@ -11,7 +11,7 @@ import {
 function Timeline2() {
     //const [editable, setEditable] = useState(false)
     const [toggleEdit, setToggleEdit] = useState(false)
-    const { currentUser, app, firestore, storage } = useAuth()
+    const { /*currentUser,*/ app, firestore, storage } = useAuth()
     const [cv, setCV] = useState(null)
     const [isEditState, setIsEditState] = useState(false)
     const [indexToUpdate, setIndexToUpdate] = useState(null)
@@ -109,7 +109,7 @@ function Timeline2() {
 
     const deleteCard = async (e, idx) => {
         e.preventDefault()
-        if (window.confirm('Are you sure you want to delete this card?')) {
+        if (window.confirm('Are you sure you want to delete this entry?')) {
             try {
                 let document = await firestore
                     .collection('cv')

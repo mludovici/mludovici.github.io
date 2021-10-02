@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { GiBirdTwitter, GiLinkedRings, GiFaceToFace } from 'react-icons/gi'
 import ProfilePageCSS from './ProfilePageCSS.module.css'
 // import { useHistory } from 'react-router-dom'
-import DnDComponent from './Timeline/DnDComponent'
+import DnDComponent from './DnDComponent'
 import { useAuth } from '../providers/AuthProvider'
 function ProfilePage({ currentUser }) {
     // const history = useHistory()
@@ -16,11 +16,13 @@ function ProfilePage({ currentUser }) {
 
     useEffect(() => {
         console.log('profile useEffect')
+        console.log('currentUser.uid:', currentUser.uid)
         firestore
             .collection('profileData')
             .doc(`${currentUser.uid}`)
             .get()
             .then(docRef => {
+                console.log(docRef.data())
                 let { userName, jobPosition, profileImageURL, profileInfo } =
                     docRef.data()
                 setUserName(userName)
@@ -39,53 +41,36 @@ function ProfilePage({ currentUser }) {
     const handleUpdate = async () => {
         console.log('inside handleUpdate')
         console.log({ profileImage })
-
+        let profileImageURL = null
         if (profileImage) {
             let storageRef = await storage
                 .ref()
                 .child(`profile/${currentUser.uid}/profileImage`)
                 .putString(profileImage.image, 'data_url')
-            // .then(snapshot => {
-            //     console.log(
-            //         'DOWNLOAD URL:',
-            //         snapshot.ref
-            //             .getDownloadURL()
-            //             .then(url => {
-            //                 setImageURL(url)
-            //             }
-            //             )
-            //     )
+            // .then(snapshot => {console.log('DOWNLOAD URL :', snapshot.ref.getDownloadURL().then(url => {setImageURL(url)}))
 
-            // .catch(error => {
-            //     console.log(error)
-            // })
-            // // })
-            // .catch(error => {
-            //     console.log(error)
-            // })
-
-            let profileImageURL = await storageRef.ref.getDownloadURL()
+            profileImageURL = await storageRef.ref.getDownloadURL()
+            console.log('set image url:', { profileImageURL })
             setImageURL(profileImageURL)
         }
-        const profileData = {}
 
-        profileData.profileImageURL = imageURL
+        const profileData = {}
+        profileData.profileImageURL = profileImageURL
         profileData.userName = userName
         profileData.jobPosition = jobPosition
         profileData.profileInfo = profileInfo
+
         try {
             firestore
                 .collection('profileData')
                 .doc(`${currentUser.uid}`)
                 .set(profileData)
-                .then(docRef => {
-                    console.log('Document updated with ID: ', docRef)
-                })
+                .then()
                 .catch(error => {
                     console.error('Error adding profile data: ', error)
                 })
         } catch (e) {
-            console.log(e)
+            console.log('error: ', e)
         }
         toggleEditMode()
     }

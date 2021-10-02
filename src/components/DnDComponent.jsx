@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { FaCloudUploadAlt } from 'react-icons/fa'
 //import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { FcFullTrash } from 'react-icons/fc'
-import placeHolderPerson from '../../assets/images/placeholder_person.jpg'
+import placeHolderPerson from '../assets/images/placeholder_person.jpg'
 function DnDComponent({
     editMode,
     profileImage,
@@ -27,92 +27,101 @@ function DnDComponent({
 
     // const handleImageUpload = () => {}
 
-    const handleFile = e => {
+    const handleEventDefaults = e => {
+        //console.log('inside handleEventDefaults:', e)
         if (!editMode) return
-        e.preventDefault()
         e.stopPropagation()
-        setProfileImage(null)
+        e.preventDefault()
+        return
+    }
 
-        let file = e.target.files[0]
+    const handleFileReading = file => {
+        if (!file) {
+            setFileTypeError('No valid file as input!')
+            return false
+        }
         let fileName = file.name
         const imageType = /image.*/
         if (file && !file.type.match(imageType)) {
             setProfileImage(null)
             setFileTypeError('The file must be of type image!')
-            return
+            setDragoverText('Drag & Drop to Upload image')
+            return false
         }
-        setFileTypeError(null)
-        let fileReader = new FileReader()
-        fileReader.readAsDataURL(file)
-        let imageResult = {}
-        fileReader.onload = () => {
-            console.log('onload')
-            imageResult.image = fileReader.result
-            imageResult.fileName = fileName
-            setProfileImage(imageResult)
+        try {
+            setFileTypeError(null)
+            let fileReader = new FileReader()
+            fileReader.readAsDataURL(file)
+            let imageResult = {}
+            fileReader.onload = () => {
+                console.log('reading image..')
+                imageResult.image = fileReader.result
+                imageResult.fileName = fileName
+                setProfileImage(imageResult)
+            }
+            return true
+        } catch (e) {
+            setFileTypeError('An error occured: ', e)
+            return false
         }
     }
 
     const handleDragOver = e => {
-        if (!editMode) return
-
-        e.preventDefault()
-        e.stopPropagation()
+        let event = e
+        handleEventDefaults(event)
         console.log('dragover')
         setIsDraggedOver(true)
         setDragoverText('Release to upload file')
     }
 
     const handleDragLeave = e => {
-        if (!editMode) return
-
-        e.preventDefault()
-        e.stopPropagation()
+        let event = e
+        handleEventDefaults(event)
         console.log('dragleave')
+        setIsDraggedOver(false)
 
         setDragoverText('Drag & Drop to Upload File')
-        setIsDraggedOver(false)
-        console.log(e)
     }
-    const handleDrop = e => {
-        if (!editMode) return
 
-        e.preventDefault()
-        e.stopPropagation()
+    const handleDrop = e => {
+        let event = e
+        handleEventDefaults(event)
         console.log('drop')
         setProfileImage(null)
 
         let file = e.dataTransfer.files[0]
-        let fileName = file.name
-        const imageType = /image.*/
-        if (file && !file.type.match(imageType)) {
-            setFileTypeError('The file must be of type image!')
-            return
+        let operationResult = handleFileReading(file)
+        if (operationResult) {
+            setFileTypeError(null)
         }
-        setFileTypeError(null)
+    }
 
-        let fileReader = new FileReader()
-        fileReader.readAsDataURL(file)
-        let imageResult = {}
-        fileReader.onload = () => {
-            console.log('onload')
-            imageResult.image = fileReader.result
-            imageResult.fileName = fileName
-            setProfileImage(imageResult)
+    const handleFile = e => {
+        let event = e
+        handleEventDefaults(event)
+
+        setProfileImage(null)
+
+        let file = event.target.files[0]
+
+        let operationResult = handleFileReading(file)
+        if (operationResult) {
+            setFileTypeError(null)
         }
     }
 
     const deleteImage = () => {
-        console.log(profileImage)
+        console.log('deleting profileImage: ', profileImage)
         if (profileImage) {
             setProfileImage(null)
+            setDragoverText('Drag & Drop to Upload image')
         }
-        console.log(imageURL)
+        console.log('imageURL before delete: ', imageURL)
         if (imageURL) {
             deleteImageFromStorage()
-                .then(result => {
-                    console.log({ result })
+                .then(_ => {
                     setImageURL(null)
+                    setDragoverText('Drag & Drop to Upload image')
                 })
                 .catch(error => {
                     console.log(
@@ -147,11 +156,6 @@ function DnDComponent({
                                     className="mx-auto"
                                     onClick={deleteImage}
                                 />
-                                {fileTypeError && (
-                                    <p className="text-center text-red-500">
-                                        {fileTypeError}
-                                    </p>
-                                )}
                             </>
                         ) : imageURL ? (
                             <>
@@ -165,12 +169,6 @@ function DnDComponent({
                                     className="mx-auto"
                                     onClick={deleteImage}
                                 />
-
-                                {fileTypeError && (
-                                    <p className="text-center text-red-500">
-                                        {fileTypeError}
-                                    </p>
-                                )}
                             </>
                         ) : (
                             <>
@@ -199,6 +197,11 @@ function DnDComponent({
                                     onChange={e => handleFile(e)}
                                 />
                             </>
+                        )}
+                        {fileTypeError && (
+                            <p className="text-center text-red-500">
+                                {fileTypeError}
+                            </p>
                         )}
                     </div>
                 </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Content } from './timeLineComponents'
 import { FaEdit, FaTrashAlt } from 'react-icons/fa'
 import TimeLineCSS from './TimeLineCard.module.css'
-import { useAuth } from '../../providers/AuthProvider'
+//import { useAuth } from '../../providers/AuthProvider'
 import { useIntl } from 'react-intl'
 import { FormattedMessage } from 'react-intl'
 
@@ -21,7 +21,7 @@ function TimeLineCard2({
     deleteCard,
     setIndexToUpdate,
 }) {
-    const { currentUser } = useAuth()
+    //const { currentUser } = useAuth()
     const intl = useIntl()
     return (
         <Container key={id}>
