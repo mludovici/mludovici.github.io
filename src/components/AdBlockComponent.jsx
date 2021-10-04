@@ -22,11 +22,11 @@ function AdBlockComponent({ children }) {
                         This site uses Google Analytics for page visit
                         statistics. Therefore,
                         <b> Please disable your Adblocker to continue. </b>
-                        Once you disabled your Adblocker, by clicking "Refresh",
-                        you automatically consent to the fact that this site is
-                        using Google Analytics and Google Tag Manager third
-                        party plugins. By clicking "just continue", proceed
-                        without disabling Adblocker.`
+                        Once you disabled your Adblocker, by clicking "Refresh"
+                        or "Just Continue", you automatically consent to the
+                        fact that this site is using Google Analytics and Google
+                        Tag Manager third party plugins. Click "Just continue"
+                        to proceed without disabling Adblocker.`
                     </p>
                     <div className="flex justify-around">
                         <button
