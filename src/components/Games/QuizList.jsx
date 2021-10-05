@@ -1,17 +1,22 @@
 import React, { useState } from 'react'
 import Quizcard from './Quizcard'
 import trophySVG from '../../assets/images/svg/trophy.svg'
+import { useAuth } from '../../providers/AuthProvider'
 function QuizList({ quizData, resetGame }) {
     const [countNr, setCountNr] = useState(0)
     const [gameFinished, setGameFinished] = useState(false)
     const [correctAnswerCount, setCorrectAnswerCount] = useState(0)
     const [hasChosen, setHasChosen] = useState(false)
     const [checked, setChecked] = useState(null)
+    let { analytics } = useAuth()
 
     const getNextCard = () => {
         setHasChosen(false)
         setChecked(null)
         if (gameFinished) {
+            analytics.logEvent('game_finished', {
+                score: correctAnswerCount / quizData.length,
+            })
             return
         }
 
