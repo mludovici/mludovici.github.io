@@ -11,6 +11,7 @@ function LoginRegister() {
     let [showSignup, setShowSignup] = useState(false)
     let [loggedOut, setLoggedOut] = useState(null)
     let authFunctions = useAuth()
+    let analytics = authFunctions.analytics
     let matchRegister = useRouteMatch('/register')
     let logout = useRouteMatch('/logout')
     useEffect(() => {
@@ -28,6 +29,7 @@ function LoginRegister() {
             setShowSignin(true)
             setShowSignup(false)
         }
+
         console.log(authFunctions.currentUser)
     }, [matchRegister, logout, authFunctions])
 
@@ -65,12 +67,14 @@ function LoginRegister() {
                             </div>
 
                             <LoginComponent
+                                analytics={analytics}
                                 showSignin={showSignin}
                                 loginHandler={authFunctions.login}
                                 currentUser={
                                     authFunctions.currentUser
                                 }></LoginComponent>
                             <RegisterComponent
+                                analytics={analytics}
                                 signup={authFunctions.signup}
                                 showSignup={showSignup}></RegisterComponent>
                         </div>

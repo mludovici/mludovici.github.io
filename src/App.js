@@ -41,7 +41,10 @@ function App() {
         : 'de-de'
 
     useEffect(() => {
-        analytics.logEvent('App.js Mainpage created!')
+        analytics.logEvent('screen_view', {
+            firebase_screen: 'Home',
+            firebase_screen_class: 'MainPage',
+        })
     }, [analytics])
     const [locale, changeLocale] = useState(setLanguage)
     console.log({ currentUser })

@@ -11,17 +11,23 @@ import {
 function Timeline2() {
     //const [editable, setEditable] = useState(false)
     const [toggleEdit, setToggleEdit] = useState(false)
-    const { /*currentUser,*/ app, firestore, storage } = useAuth()
+    const { /*currentUser, app, storage,*/ firestore, analytics } = useAuth()
     const [cv, setCV] = useState(null)
     const [isEditState, setIsEditState] = useState(false)
     const [indexToUpdate, setIndexToUpdate] = useState(null)
     const [formError, setFormError] = useState(null)
     const form = useRef()
-    console.log(app)
-    console.log(firestore)
-    console.log(storage)
+    // console.log(app)
+    // console.log(firestore)
+    // console.log(storage)
     // const db2 = app.database()
 
+    useEffect(() => {
+        analytics.logEvent('screen_view', {
+            firebase_screen: 'CV',
+            firebase_screen_class: 'CVPage',
+        })
+    })
     const createCard = e => {
         e.preventDefault()
         // console.log('vally:', e.target.elements[0].value)
@@ -109,6 +115,11 @@ function Timeline2() {
 
     const deleteCard = async (e, idx) => {
         e.preventDefault()
+        analytics.logEvent('delete_cv_item', {
+            firebase_screen: 'CV',
+            firebase_screen_class: 'CVPage',
+            item: idx,
+        })
         if (window.confirm('Are you sure you want to delete this entry?')) {
             try {
                 let document = await firestore

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useAuth } from '../../providers/AuthProvider'
 
 // import triviaCategories from './triviaCategories.json'
 import QuizList from './QuizList'
@@ -12,6 +13,7 @@ function Trivia() {
     const [quizData, setQuizData] = useState([])
     const [quizAPIError, setQuizAPIError] = useState('')
     const [showOptionPanel, setShowOptionPanel] = useState(true)
+    let { analytics } = useAuth()
 
     useEffect(() => {
         //console.log('inside Trivia.jsx use Effect!')
@@ -70,6 +72,14 @@ function Trivia() {
     const getQuizData = () => {
         // console.log('GETQUIZDATA!')
         // console.log(amount)
+        analytics.logEvent('level_start', {
+            firebase_screen: 'Trivia',
+            firebase_screen_class: 'TriviaPage',
+            quizAmount: amount,
+            quizCategory: selectedCategory,
+            quizDifficulty: difficulty,
+            quizType: type,
+        })
         let quizUrl = `https://opentdb.com/api.php?${
             amount ? 'amount=' + amount : 'amount=10'
         }${selectedCategory ? '&category=' + selectedCategory : ''}${

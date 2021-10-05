@@ -4,7 +4,7 @@ import LoginCSS from './LoginRegister.module.css'
 import { SignupForm } from './StyledLoginRegister'
 import { setErrorTimeout } from '../utils'
 import { FormattedMessage } from 'react-intl'
-function RegisterComponent({ showSignup, signup }) {
+function RegisterComponent({ showSignup, signup, analytics }) {
     const [formDetails, setFormDetails] = useState({})
     const [registerSuccess, setRegisterSuccess] = useState(null)
     const { auth } = useAuth()
@@ -47,6 +47,9 @@ function RegisterComponent({ showSignup, signup }) {
                         setRegisterSuccess(
                             'You registered successfully! please check your email!'
                         )
+                        analytics.logEvent('sign_up', {
+                            email: formDetails.email,
+                        })
                     }
                     setFormDetails({})
                 }
