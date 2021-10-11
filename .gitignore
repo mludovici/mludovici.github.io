@@ -9,7 +9,8 @@
 env.js
 # testing
 /coverage
-
+/build
+build
 # production
 
 # misc

@@ -1,4 +1,4 @@
-import env from './env'
+import env from './env.js'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
