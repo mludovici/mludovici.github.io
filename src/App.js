@@ -47,16 +47,14 @@ function App() {
         })
     }, [analytics])
     const [locale, changeLocale] = useState(setLanguage)
-    console.log({ currentUser })
+
     return (
         <DarkModeProvider>
             <IntlProvider locale={locale} messages={messages[locale]}>
                 <BrowserRouter>
                     <Navigation></Navigation>
                     <Switch>
-                        <Route path="/" exact>
-                            <HomeComponent></HomeComponent>{' '}
-                        </Route>
+                        <Route path="/" exact component={HomeComponent}></Route>
 
                         <Route
                             path="/homepage"
