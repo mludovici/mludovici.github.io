@@ -9,6 +9,6 @@ app.use(express.json())
 app.use('/', express.static(__dirname + '/build'))
 app.use('*', (req, res) => res.status(404).json({ error: 'Page not found!' }))
 
-app.listen(4444, () => {
+app.listen(8080, () => {
     console.log('Listening on port 4444!')
 })
