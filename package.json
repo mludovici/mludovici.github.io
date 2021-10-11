@@ -22,6 +22,7 @@
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.0-beta.4",
     "react-dom": "^17.0.2",
+    "react-dotenv": "^0.1.3",
     "react-icons": "^4.2.0",
     "react-intl": "^5.20.11",
     "react-router-dom": "^5.2.0",
@@ -30,13 +31,13 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
+    "start": "react-dotenv && craco start",
+    "build": "react-dotenv && craco build",
+    "test": "react-dotenv && craco test",
     "eject": "react-scripts eject",
     "predeploy": "craco build",
-    "deploy": "gh-pages -d build",
-    "fbdeploy": "npm run build && firebase deploy"
+    "deploy": "react-dotenv && gh-pages -d build",
+    "fbdeploy": "react-dotenv && npm run build && firebase deploy"
   },
   "eslintConfig": {
     "extends": [
