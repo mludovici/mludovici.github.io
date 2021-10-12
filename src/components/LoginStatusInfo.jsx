@@ -5,7 +5,7 @@ export default function LoginStatusInfo() {
     let { currentUser } = useAuth()
 
     useEffect(() => {
-        console.dir(currentUser)
+        //console.dir(currentUser)
     }, [currentUser])
     let styles = {
         position: 'fixed',

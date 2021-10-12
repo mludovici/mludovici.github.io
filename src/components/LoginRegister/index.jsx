@@ -30,7 +30,7 @@ function LoginRegister() {
             setShowSignup(false)
         }
 
-        console.log(authFunctions.currentUser)
+        //console.log(authFunctions.currentUser)
     }, [matchRegister, logout, authFunctions])
 
     return (

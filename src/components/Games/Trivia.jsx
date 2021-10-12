@@ -289,7 +289,10 @@ function Trivia() {
             {quizAPIError && <p>{quizAPIError}</p>}
 
             {!quizAPIError && quizData.length ? (
-                <QuizList resetGame={resetGame} quizData={quizData}></QuizList>
+                <QuizList
+                    resetGame={resetGame}
+                    quizData={quizData}
+                    analytics={analytics}></QuizList>
             ) : null}
         </div>
     )

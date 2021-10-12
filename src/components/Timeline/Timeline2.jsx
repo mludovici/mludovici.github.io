@@ -122,11 +122,8 @@ function Timeline2() {
         })
         if (window.confirm('Are you sure you want to delete this entry?')) {
             try {
-                let document = await firestore
-                    .collection('cv')
-                    .doc(idx)
-                    .delete()
-                console.log('document: ', document, ' successfully deleted!')
+                await firestore.collection('cv').doc(idx).delete()
+                //console.log('document: ', document, ' successfully deleted!')
             } catch (error) {
                 setErrorTimeout(setFormError, error.message)
             }
@@ -164,7 +161,7 @@ function Timeline2() {
                 setCV(filteredCV)
             },
             error => {
-                console.log('error:', error)
+                //console.log('error:', error)
                 setErrorTimeout(setFormError, error.message)
             }
         )
@@ -372,7 +369,7 @@ function Timeline2() {
                 <Timeline>
                     {cv && cv.length
                         ? cv.map(cventry => {
-                              console.log({ cventry })
+                              //.log({ cventry })
                               return (
                                   <TimeLineCard2
                                       key={cventry.id}

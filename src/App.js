@@ -6,7 +6,7 @@ import Timeline2 from './components/Timeline/Timeline2.jsx'
 
 import Trivia from './components/Games/Trivia'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import Impressum from './components/Footer/Impressum'
+import Impressum from './components/Impressum'
 import ProfilePage from './components/ProfilePage'
 import React from 'react'
 import LoginRegister from './components/LoginRegister'
@@ -54,13 +54,10 @@ function App() {
                 <BrowserRouter>
                     <Navigation></Navigation>
                     <Switch>
-                        <Route path="/" exact component={HomeComponent}></Route>
-
                         <Route
-                            path="/homepage"
+                            path={['/', '/homepage']}
                             exact
-                            component={HomeComponent}
-                        />
+                            component={HomeComponent}></Route>
 
                         <Route path="/timeline" exact component={Timeline} />
                         <Route path="/cv" exact component={Timeline2} />
