@@ -20,7 +20,7 @@ export default function Navigation() {
     const [navigation, updateNavigation] = useState([
         { name: 'Home', href: '/', current: false },
         { name: 'CV', href: '/cv', current: false },
-        { name: 'Trivia', href: '/trivia', current: false },
+        { name: 'Fun Quiz', href: '/trivia', current: false },
     ])
     // const { darkMode, setDarkMode } = useDarkMode()
 

@@ -1,7 +1,8 @@
 import React from 'react'
 import WebDevPNG from '../../../assets/images/webdev.png'
 import MERN from '../../../assets/images/mern.png'
-import DSPNG from '../../../assets/images/ds.png'
+//import DSPNG from '../../../assets/images/ds.png'
+import Brain from '../../../assets/images/data_analyst_brain.png'
 import { FormattedMessage } from 'react-intl'
 
 function Services() {
@@ -248,7 +249,7 @@ function Services() {
 							">
                                 <img
                                     style={{ height: '220px', margin: 'auto' }}
-                                    src={DSPNG}
+                                    src={Brain}
                                     className=" bg-blue-500
                                      rounded-t-md servicesImageHeight"
                                     alt=""
