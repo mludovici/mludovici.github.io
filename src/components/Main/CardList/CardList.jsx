@@ -34,6 +34,7 @@ import {
     SiFirebase,
     SiFlutter,
     SiMicrosoftsqlserver,
+    SiReactivex,
 } from 'react-icons/si'
 
 function CardList() {
@@ -101,6 +102,12 @@ function CardList() {
                                     <SiFlutter></SiFlutter>
                                 </AuthorAvatar>{' '}
                                 Flutter
+                            </CardAuthor>{' '}
+                            <CardAuthor>
+                                <AuthorAvatar href="#">
+                                    <SiReactivex></SiReactivex>
+                                </AuthorAvatar>{' '}
+                                React Native
                             </CardAuthor>{' '}
                         </CardHeader>
 

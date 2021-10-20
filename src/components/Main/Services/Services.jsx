@@ -1,5 +1,6 @@
 import React from 'react'
 import WebDevPNG from '../../../assets/images/webdev.png'
+import MERN from '../../../assets/images/mern.png'
 import DSPNG from '../../../assets/images/ds.png'
 import { FormattedMessage } from 'react-intl'
 
@@ -28,6 +29,60 @@ function Services() {
 						lg:grid-cols-3
 						gap-20
 					">
+                        <div className="relative">
+                            <div
+                                className="
+								absolute
+								z-10
+								inset-0
+								bg-gradient-to-r
+								from-primary
+								to-secondary
+								shadow-lg
+								transform
+								-skew-y-6
+								sm:skey-y-0 sm:-rotate-6 sm:rounded-lg
+							"></div>
+                            <div
+                                className="
+								relative
+								z-20
+								bg-white
+								h-full
+								rounded-md
+								shadow-md
+							">
+                                <a
+                                    href="https://restaurantsrealm-gkrxk.mongodbstitch.com/"
+                                    target="_blank"
+                                    rel="noreferrer">
+                                    <img
+                                        style={{
+                                            height: '220px',
+                                            margin: 'auto',
+                                            objectFit: 'cover',
+                                        }}
+                                        src={MERN}
+                                        className="rounded-t-md servicesImageHeight cursor-pointer"
+                                        alt=""
+                                    />
+                                    <div className="px-10 pb-6">
+                                        <h2
+                                            className="
+										pt-3
+										font-bold
+										text-gray-800 text-2xl text-center
+									">
+                                            Fullstack App
+                                        </h2>
+                                        <p className="pt-3">
+                                            React Frontend, Node Backend,
+                                            MongoDB, MongoDB Realm
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                         <div className="relative">
                             <div
                                 className="
