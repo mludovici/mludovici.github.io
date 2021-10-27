@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Impressum() {
+export default function Test() {
     return (
-        <div>
+        <div className="text-center mb-3">
             <p className="text-center mb-3">Impressum</p>
             Haftungsausschluss (Disclaimer) Haftung für Inhalte Als
             Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf
@@ -42,5 +42,3 @@ function Impressum() {
         </div>
     )
 }
-
-export default Impressum

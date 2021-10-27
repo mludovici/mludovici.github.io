@@ -82,12 +82,12 @@ export default function Navigation() {
                                         {navigation.map((item, indexEl) =>
                                             item.href === '/games' ? (
                                                 <div
-                                                    className="group inline-block relative text-gray-300 bg-gray-800 hover:bg-gray-700 hover:text-white rounded-t-md text-sm font-medium"
+                                                    className="group inline-block relative text-gray-300  hover:bg-gray-700 hover:text-white rounded-t-md text-sm font-medium"
                                                     key="!slaasdlkassssaaslkda">
                                                     <AnimatedDiv
                                                         key={`${indexEl} + games + dvk30mls`}
                                                         animation={true}
-                                                        className="flex space-x-4 items-center text-gray-300 hover:bg-gray-700 hover:text-white
+                                                        className="flex space-x-4 items-center text-gray-300 hover:bg-gray-700  hover:text-white
                                                             px-3 py-2 text-sm font-medium">
                                                         <span>Games</span>
                                                         <svg
