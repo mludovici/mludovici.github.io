@@ -179,21 +179,7 @@ function Services() {
                                 </div>
                             </div>
                         </div>
-                        <div className="relative">
-                            <div
-                                className="
-								absolute
-								z-10
-								inset-0
-								bg-gradient-to-r
-								from-primary
-								to-secondary
-								shadow-lg
-								transform
-								-skew-y-6
-								sm:skey-y-0 sm:-rotate-6 sm:rounded-lg
-							"></div>
-                        </div>
+
                         <div className="relative">
                             <div
                                 className="
