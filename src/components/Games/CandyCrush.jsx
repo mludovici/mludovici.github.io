@@ -23,6 +23,7 @@ const CandyCrush = () => {
     const [squareBeingDragged, setSquareBeingDragged] = useState(null)
     const [squareBeingReplaced, setSquareBeingReplaced] = useState(null)
     const [scoreDisplay, setScoreDisplay] = useState(0)
+    const [isInitial, setIsInitial] = useState(true)
 
     function importAll(r) {
         let images = {}
@@ -97,7 +98,7 @@ const CandyCrush = () => {
                         !isBlank
                 )
             ) {
-                setScoreDisplay(score => score + 3)
+                !isInitial && setScoreDisplay(score => score + 3)
 
                 columnOfThree.forEach(
                     square => (currentColorArrangement[square] = BlankSquare)
@@ -105,7 +106,7 @@ const CandyCrush = () => {
                 return true
             }
         }
-    }, [currentColorArrangement])
+    }, [currentColorArrangement, isInitial])
 
     const checkForColumnOfFour = useCallback(() => {
         for (let i = 0; i <= 39; i++) {
@@ -119,14 +120,14 @@ const CandyCrush = () => {
                         !isBlank
                 )
             ) {
-                setScoreDisplay(score => score + 4)
+                !isInitial && setScoreDisplay(score => score + 4)
                 columnOfFour.forEach(
                     square => (currentColorArrangement[square] = BlankSquare)
                 )
                 return true
             }
         }
-    }, [currentColorArrangement])
+    }, [currentColorArrangement, isInitial])
 
     const checkForRowOfThree = useCallback(() => {
         for (let i = 0; i < 64; i++) {
@@ -146,7 +147,7 @@ const CandyCrush = () => {
                         !isBlank
                 )
             ) {
-                setScoreDisplay(score => score + 3)
+                !isInitial && setScoreDisplay(score => score + 3)
 
                 rowOfThree.forEach(
                     square => (currentColorArrangement[square] = BlankSquare)
@@ -154,7 +155,7 @@ const CandyCrush = () => {
                 return true
             }
         }
-    }, [currentColorArrangement])
+    }, [currentColorArrangement, isInitial])
 
     const checkForRowOfFour = useCallback(() => {
         for (let i = 0; i < 64; i++) {
@@ -175,7 +176,7 @@ const CandyCrush = () => {
                         !isBlank
                 )
             ) {
-                setScoreDisplay(score => score + 4)
+                !isInitial && setScoreDisplay(score => score + 4)
 
                 rowOfFour.forEach(
                     square => (currentColorArrangement[square] = BlankSquare)
@@ -183,7 +184,7 @@ const CandyCrush = () => {
                 return true
             }
         }
-    }, [currentColorArrangement])
+    }, [currentColorArrangement, isInitial])
 
     const moveIntoSquareBelow = useCallback(() => {
         for (let i = 0; i < 64 - width; i++) {
@@ -205,6 +206,8 @@ const CandyCrush = () => {
     }, [currentColorArrangement, candyColors])
 
     const dragStart = e => {
+        isInitial && setIsInitial(false)
+
         //console.log('drag start', e.target)
         setSquareBeingDragged(e.target)
     }
@@ -308,7 +311,8 @@ const CandyCrush = () => {
     ])
 
     const handleChoice = (e, choice) => {
-        //console.log({ choice })
+        setIsInitial(true)
+        setScoreDisplay(0)
         if (choice === 'Candy') {
             setCandyColors(initialCandyColors)
         } else if (choice === 'Star Wars') {
