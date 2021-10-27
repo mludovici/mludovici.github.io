@@ -20,17 +20,17 @@ export default function Navigation() {
     const [navigation, updateNavigation] = useState([
         { name: 'Home', href: '/', current: false },
         { name: 'CV', href: '/cv', current: false },
-        { name: 'Fun Quiz', href: '/trivia', current: false },
+        { name: 'Fun Quiz', href: '/games', current: false },
     ])
     // const { darkMode, setDarkMode } = useDarkMode()
 
     useEffect(() => {
         updateNavigation(navigation => {
             return [
-                ...navigation.map(item => {
+                ...navigation.map((item, idx) => {
                     return item.href.toLowerCase() === location.pathname
-                        ? { ...item, current: true }
-                        : { ...item, current: false }
+                        ? { ...item, current: true, key: idx }
+                        : { ...item, current: false, key: idx }
                 }),
             ]
         })
@@ -44,7 +44,9 @@ export default function Navigation() {
             className="bg-gray-800 sticky w-full z-50 top-0 dark:bg-green-700">
             {({ open }) => (
                 <>
-                    <div className="max-w-full mx-auto px-2 sm:px-6 lg:px-8 ">
+                    <div
+                        className="max-w-full mx-auto px-2 sm:px-6 lg:px-8 "
+                        key="!slaasdlkaslkda">
                         <div className="relative flex items-center justify-between h-16">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                                 {/* Mobile menu button*/}
@@ -78,41 +80,68 @@ export default function Navigation() {
                                 <div className="hidden sm:block sm:ml-6 text-center my-auto mx-auto ">
                                     <div className="flex space-x-4 items-center">
                                         {navigation.map((item, indexEl) =>
-                                            item.href === '/trivia' ? (
-                                                <AnimatedDiv
-                                                    animation={true}
-                                                    key={item.name}>
-                                                    <Link
-                                                        // onClick={e => {
-                                                        //     navigation.forEach(
-                                                        //         (item, idx) => {
-                                                        //             idx ===
-                                                        //             indexEl
-                                                        //                 ? setCurrentActive(
-                                                        //                       idx
-                                                        //                   ) &&
-                                                        //                   (item.current = true)
-                                                        //                 : (item.current = false)
-                                                        //         }
-                                                        //     )
-                                                        // }}
-                                                        key={item.name}
-                                                        to={item.href}
-                                                        className={classNames(
-                                                            // currentActive === indexEl
-                                                            item.current
-                                                                ? 'bg-gray-900 text-white'
-                                                                : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                                            'px-3 py-2 rounded-md text-sm font-medium'
-                                                        )}
-                                                        aria-current={
-                                                            item.current
-                                                                ? 'page'
-                                                                : undefined
-                                                        }>
-                                                        {item.name}
-                                                    </Link>
-                                                </AnimatedDiv>
+                                            item.href === '/games' ? (
+                                                <div
+                                                    className="group inline-block relative text-gray-300 bg-gray-800 hover:bg-gray-700 hover:text-white rounded-t-md text-sm font-medium"
+                                                    key="!slaasdlkassssaaslkda">
+                                                    <AnimatedDiv
+                                                        key={`${indexEl} + games + dvk30mls`}
+                                                        animation={true}
+                                                        className="flex space-x-4 items-center text-gray-300 hover:bg-gray-700 hover:text-white
+                                                            px-3 py-2 text-sm font-medium">
+                                                        <span>Games</span>
+                                                        <svg
+                                                            className="fill-current h-4 w-4"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            viewBox="0 0 20 20">
+                                                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                                        </svg>
+                                                    </AnimatedDiv>
+                                                    <ul
+                                                        className="absolute hidden group-hover:block"
+                                                        key="kal§lfksldkf">
+                                                        <Link
+                                                            key={`${indexEl} + trivia + sdgsdgdvk30mls`}
+                                                            to="/trivia"
+                                                            className={classNames(
+                                                                `flex space-x-4 items-center text-gray-300 hover:bg-gray-700 hover:text-white
+                                                            px-3 py-2  text-sm font-medium bg-gray-800`,
+                                                                // currentActive === indexEl
+                                                                item.current
+                                                                    ? 'bg-gray-900 text-white'
+                                                                    : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                                'px-3 py-2text-sm font-medium'
+                                                            )}
+                                                            aria-current={
+                                                                item.current
+                                                                    ? 'page'
+                                                                    : undefined
+                                                            }>
+                                                            {item.name}
+                                                        </Link>
+                                                        <li>
+                                                            <Link
+                                                                key={`${indexEl} + CandyCrush + gsdgsdgdvk30mls`}
+                                                                to="/cc"
+                                                                className={classNames(
+                                                                    `flex space-x-4 items-center text-gray-300 hover:bg-gray-700 hover:text-white
+                                                            px-3 py-2  text-sm font-medium bg-gray-800`,
+                                                                    // currentActive === indexEl
+                                                                    item.current
+                                                                        ? 'bg-gray-900 text-white'
+                                                                        : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                                    'px-3 py-2text-sm font-medium'
+                                                                )}
+                                                                aria-current={
+                                                                    item.current
+                                                                        ? 'page'
+                                                                        : undefined
+                                                                }>
+                                                                CandyCrush
+                                                            </Link>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             ) : (
                                                 <Link
                                                     // onClick={e => {
@@ -150,62 +179,6 @@ export default function Navigation() {
                                 </div>
                             </div>
                             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                                {/* <button className='bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 '>
-										<span className='sr-only'>
-											View notifications
-										</span>
-										<BellIcon
-											className='h-6 w-6'
-											aria-hidden='true'
-										/>
-									</button> */}
-
-                                {/* Profile dropdown */}
-                                {/* <div className="mr-3">
-                                    {darkMode === 'dark' ? (
-                                        <GiSunRadiations
-                                            onClick={() => setDarkMode('light')}
-                                            style={{
-                                                fill: 'yellow',
-                                                height: '2em',
-                                                width: '2em',
-                                            }}></GiSunRadiations>
-                                    ) : (
-                                        <GiMoon
-                                            onClick={() => setDarkMode('dark')}
-                                            style={{
-                                                fill: 'darkcyan',
-
-                                                height: '2em',
-                                                width: '2em',
-                                            }}></GiMoon>
-                                    )}
-                                </div>
-
-                                <div className="flex-column">
-                                    {' '}
-                                    <img
-                                        onClick={() => changeLocale('de')}
-                                        src={de}
-                                        alt="germanFlag"
-                                        className="w-2 h-2"
-                                        style={{
-                                            width: '15px',
-                                            height: '15px',
-                                        }}
-                                    />{' '}
-                                    <img
-                                        onClick={() => changeLocale('en')}
-                                        src={us}
-                                        alt="germanFlag"
-                                        className="w-2 h-2"
-                                        style={{
-                                            width: '15px',
-                                            height: '15px',
-                                        }}
-                                    />
-                                </div> */}
-
                                 <Menu as="div" className="ml-3 relative">
                                     <div>
                                         <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none">
@@ -216,12 +189,6 @@ export default function Navigation() {
                                                 className="h-8 w-8 text-white"
                                                 aria-hidden="true"
                                             />
-
-                                            {/* <img
-													className='h-8 w-8 rounded-full'
-													src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
-													alt=''
-												/> */}
                                         </Menu.Button>
                                     </div>
                                     <Transition
@@ -268,22 +235,6 @@ export default function Navigation() {
                                                     )}
                                                 </Menu.Item>
                                             )}
-                                            {/* <Menu.Item>
-                                                {({ active }) => (
-                                                    <Link
-                                                        to="/settings"
-                                                        className={classNames(
-                                                            active
-                                                                ? 'bg-gray-100'
-                                                                : '',
-                                                            'block px-4 py-2 text-sm text-gray-700'
-                                                        )}>
-                                                        <FormattedMessage
-                                                            id="nav.settings"
-                                                            defaultMessage="Settings"></FormattedMessage>{' '}
-                                                    </Link>
-                                                )}
-                                            </Menu.Item> */}
                                             <Menu.Item>
                                                 {({ active }) =>
                                                     currentUser ? (
@@ -340,30 +291,88 @@ export default function Navigation() {
 
                     <Disclosure.Panel className="sm:hidden">
                         <div className="px-2 pt-2 pb-3 space-y-1">
-                            {navigation.map((item, indexEl) => (
-                                <Link
-                                    // onClick={e => {
-                                    //     navigation.forEach((item, idx) => {
-                                    //         idx === indexEl
-                                    //             ? setCurrentActive(idx) &&
-                                    //               (item.current = true)
-                                    //             : (item.current = false)
-                                    //     })
-                                    // }}
-                                    key={item.name}
-                                    to={item.href}
-                                    className={classNames(
-                                        item.current
-                                            ? 'bg-gray-900 text-white'
-                                            : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                        'block px-3 py-2 rounded-md text-base font-medium'
-                                    )}
-                                    aria-current={
-                                        item.current ? 'page' : undefined
-                                    }>
-                                    {item.name}
-                                </Link>
-                            ))}
+                            {navigation.map((item, indexEl) =>
+                                item.href === '/games' ? (
+                                    <div
+                                        className="group inline-block relative text-gray-300 bg-gray-800 hover:bg-gray-700 hover:text-white rounded-t-md text-sm font-medium"
+                                        key="!slaasdlkaslkd!rfasf!!!a">
+                                        <AnimatedDiv
+                                            key={indexEl + 'games'}
+                                            animation={true}
+                                            className="flex space-x-4 items-center text-gray-300 hover:bg-gray-700 hover:text-white
+                                                            px-3 py-2 text-sm font-medium">
+                                            <span>Games</span>
+                                            <svg
+                                                className="fill-current h-4 w-4"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 20 20">
+                                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                            </svg>
+                                        </AnimatedDiv>
+                                        <ul className="absolute hidden group-hover:block">
+                                            <Link
+                                                key={
+                                                    indexEl +
+                                                    item.name +
+                                                    'ksglajskgjb'
+                                                }
+                                                to="/trivia"
+                                                className={classNames(
+                                                    `flex space-x-4 items-center text-gray-300 hover:bg-gray-700 hover:text-white
+                                                            px-3 py-2  text-sm font-medium bg-gray-800`,
+                                                    // currentActive === indexEl
+                                                    item.current
+                                                        ? 'bg-gray-900 text-white'
+                                                        : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                    'px-3 py-2text-sm font-medium'
+                                                )}
+                                                aria-current={
+                                                    item.current
+                                                        ? 'page'
+                                                        : undefined
+                                                }>
+                                                {item.name}
+                                            </Link>
+                                            <Link
+                                                key={`${indexEl}CandyCrush asdasdawbx`}
+                                                to="/cc"
+                                                className={classNames(
+                                                    `flex space-x-4 items-center text-gray-300 hover:bg-gray-700 hover:text-white
+                                                            px-3 py-2  text-sm font-medium bg-gray-800`,
+                                                    // currentActive === indexEl
+                                                    item.current
+                                                        ? 'bg-gray-900 text-white'
+                                                        : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                    'px-3 py-2text-sm font-medium'
+                                                )}
+                                                aria-current={
+                                                    item.current
+                                                        ? 'page'
+                                                        : undefined
+                                                }>
+                                                CandyCrush
+                                            </Link>
+                                        </ul>
+                                    </div>
+                                ) : (
+                                    <Link
+                                        key={indexEl + item.name + 'sdfsdfsdf'}
+                                        to={item.href}
+                                        className={classNames(
+                                            // currentActive ===
+                                            //     indexEl
+                                            item.current
+                                                ? 'bg-gray-900 text-white'
+                                                : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                            'block px-3 py-2 rounded-md text-base font-medium'
+                                        )}
+                                        aria-current={
+                                            item.current ? 'page' : undefined
+                                        }>
+                                        {item.name}
+                                    </Link>
+                                )
+                            )}
                         </div>
                     </Disclosure.Panel>
                 </>

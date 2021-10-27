@@ -23,6 +23,8 @@ module.exports = {
         },
     },
     variants: {
+        display: ['group-hover'],
+
         extend: {
             grayscale: ['hover', 'focus'],
             backgroundColor: {

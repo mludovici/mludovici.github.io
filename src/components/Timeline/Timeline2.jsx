@@ -194,7 +194,7 @@ function Timeline2() {
                 onSubmit={e => {
                     !isEditState ? createCard(e) : updateCard(e)
                 }}
-                className={`w-full max-w-lg mx-auto my-10 ${
+                className={`w-full max-w-lg mx-auto my-10 px-10 sm:px-0 ${
                     toggleEdit ? 'block' : 'hidden'
                 }`}>
                 <div className="flex flex-wrap -mx-3 mb-6">

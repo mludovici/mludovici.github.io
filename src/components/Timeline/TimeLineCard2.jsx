@@ -19,12 +19,11 @@ function TimeLineCard2({
     employerName,
     updateForm,
     deleteCard,
-    setIndexToUpdate,
 }) {
     //const { currentUser } = useAuth()
     const intl = useIntl()
     return (
-        <Container key={id}>
+        <Container>
             <Content
                 className=""
                 // animation={animation}

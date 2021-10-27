@@ -193,36 +193,6 @@ function Services() {
 								-skew-y-6
 								sm:skey-y-0 sm:-rotate-6 sm:rounded-lg
 							"></div>
-                            <div
-                                className="
-								relative
-								z-20
-								bg-white
-								h-full
-								rounded-md
-								shadow-md
-							">
-                                <img
-                                    style={{ height: '220px', margin: 'auto' }}
-                                    src="https://nyc3.digitaloceanspaces.com/endive/2020/03/27175931/Importance-Of-Using-The-iOS-Platform-For-Your-Business-App-1140x694.jpg"
-                                    className="rounded-t-md servicesImageHeight"
-                                    alt=""
-                                />
-                                <div className="px-10 pb-6">
-                                    <h2
-                                        className="
-										pt-3
-										font-bold
-										text-gray-800 text-2xl text-center
-									">
-                                        Mobile Apps
-                                    </h2>
-                                    <p className="pt-3">
-                                        Mobile App development with Flutter and
-                                        React native.
-                                    </p>
-                                </div>
-                            </div>
                         </div>
                         <div className="relative">
                             <div

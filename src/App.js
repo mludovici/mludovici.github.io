@@ -20,6 +20,7 @@ import { IntlProvider } from 'react-intl'
 
 import de from './intl/DE-de'
 import en from './intl/EN-us'
+import CandyCrush from './components/Games/CandyCrush'
 const messages = {
     'DE-de': de,
     'EN-us': en,
@@ -69,6 +70,8 @@ function App() {
                         <Route path="/register" component={LoginRegister} />
 
                         <Route path="/trivia" component={Trivia} />
+                        <Route path="/cc" component={CandyCrush} />
+
                         <Route path="/dnd" component={DND} />
 
                         <Route path="/profile">
