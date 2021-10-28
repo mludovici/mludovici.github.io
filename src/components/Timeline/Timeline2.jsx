@@ -352,17 +352,17 @@ function Timeline2() {
                         {!isEditState ? 'Create' : 'Update'}
                     </button>
                 </div>
-                {formError ? (
-                    <p className="text-red-500 text-center text-xl my-5">
-                        {formError}
-                    </p>
-                ) : null}
+
                 <div className="divide-y-4 py-2 w-full">
                     <div></div>
                     <div></div>
                 </div>
             </form>
-            {/* ) : null} */}
+            {formError ? (
+                <p className="text-red-500 text-center text-xl my-5">
+                    {formError}
+                </p>
+            ) : null}
             <div
                 id="timeLineContainer"
                 className="border-box bg-bgTimeline font-sans">
