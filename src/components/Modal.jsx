@@ -8,7 +8,6 @@ const modal = props => {
     // }
 
     return (
-        <>
             <div
                 className={classes.Modal}
                 style={{
@@ -19,7 +18,6 @@ const modal = props => {
                 }}>
                 {props.children}
             </div>
-        </>
     )
 }
 

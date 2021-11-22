@@ -5,7 +5,7 @@ import Timeline from './components/Timeline/Timeline.jsx'
 import Timeline2 from './components/Timeline/Timeline2.jsx'
 
 import Trivia from './components/Games/Trivia'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Test from './components/Impressum'
 import ProfilePage from './components/ProfilePage'
 import React from 'react'
@@ -18,16 +18,16 @@ import StarRating from './components/StarRating'
 import SettingsPage from './components/Settings'
 import { IntlProvider } from 'react-intl'
 
-import de from './intl/DE-de'
-import en from './intl/EN-us'
+import deLang from './intl/DE-de'
+import enLang from './intl/EN-us'
 import CandyCrush from './components/Games/CandyCrush'
 const messages = {
-    'DE-de': de,
-    'EN-us': en,
-    'de-de': de,
-    'en-us': en,
-    de: de,
-    en: en,
+    'DE-de': deLang,
+    'EN-us': enLang,
+    'de-de': deLang,
+    'en-us': enLang,
+    de: deLang,
+    en: enLang,
 }
 
 function PageNotFound() {
@@ -53,43 +53,32 @@ function App() {
         <DarkModeProvider>
             <IntlProvider locale={locale} messages={messages[locale]}>
                 <BrowserRouter>
-                    <Navigation></Navigation>
-                    <Switch>
+                <Navigation></Navigation>
+
+                    <Routes>
                         <Route
-                            path={['/', '/homepage']}
-                            exact
-                            component={HomeComponent}></Route>
-
-                        <Route path="/timeline" exact component={Timeline} />
-                        <Route path="/cv" exact component={Timeline2} />
-
-                        <Route path="/impressum" exact component={Test} />
-                        <Route path="/login" component={LoginRegister} />
-                        <Route path="/logout" component={LoginRegister} />
-
-                        <Route path="/register" component={LoginRegister} />
-
-                        <Route path="/trivia" component={Trivia} />
-                        <Route path="/cc" component={CandyCrush} />
-
-                        <Route path="/dnd" component={DND} />
-
-                        <Route path="/profile">
-                            {currentUser ? (
+                            path='/'
+                            element={<HomeComponent />} 
+                        />
+                        <Route path="/timeline"  element={<Timeline />} />
+                        <Route path="/cv"  element={<Timeline2 />} />
+                        <Route path="/impressum"  element={<Test />} />
+                        <Route path="/login" element={<LoginRegister />} />
+                        <Route path="/logout" element={<LoginRegister />} />
+                        <Route path="/register" element={<LoginRegister />} />
+                        <Route path="/trivia" element={<Trivia />} />
+                        <Route path="/cc" element={<CandyCrush />} />
+                        <Route path="/dnd" element={<DND />} />
+                        <Route path="/profile" element={currentUser ? (
                                 <ProfilePage currentUser={currentUser} />
                             ) : (
                                 <LoginRegister />
-                            )}
-                        </Route>
-
-                        <Route path="/settings">
-                            <SettingsPage changeLocale={changeLocale} />
-                        </Route>
-
-                        <Route path="/tlt" component={TimeLineCard} />
-                        <Route path="/star" component={StarRating} />
-                        <Route component={PageNotFound} />
-                    </Switch>
+                            )} />
+                        <Route path="/settings" element={ <SettingsPage changeLocale={changeLocale} />} />
+                        <Route path="/tlt" element={<TimeLineCard />} />
+                        <Route path="/star" element={<StarRating />} />
+                        <Route path="*" element={<PageNotFound />} />
+                    </Routes>
                 </BrowserRouter>
             </IntlProvider>
         </DarkModeProvider>

@@ -6,12 +6,10 @@ import { AuthProvider } from './providers/AuthProvider'
 import AdBlockComponent from './components/AdBlockComponent'
 
 ReactDOM.render(
-    <React.StrictMode>
         <AdBlockComponent>
             <AuthProvider>
                 <App />
             </AuthProvider>
-        </AdBlockComponent>
-    </React.StrictMode>,
+        </AdBlockComponent>,
     document.getElementById('root')
 )

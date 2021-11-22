@@ -16,7 +16,8 @@ function classNames(...classes) {
 }
 
 export default function Navigation() {
-    let location = useLocation()
+    let location = useLocation();
+    console.log({location})
     const [navigation, updateNavigation] = useState([
         { name: 'Home', href: '/', current: false },
         { name: 'CV', href: '/cv', current: false },
@@ -25,15 +26,11 @@ export default function Navigation() {
     // const { darkMode, setDarkMode } = useDarkMode()
 
     useEffect(() => {
-        updateNavigation(navigation => {
-            return [
-                ...navigation.map((item, idx) => {
-                    return item.href.toLowerCase() === location.pathname
-                        ? { ...item, current: true, key: idx }
-                        : { ...item, current: false, key: idx }
-                }),
-            ]
-        })
+        updateNavigation(navigation => [
+            ...navigation.map((item, idx) => item.href.toLowerCase() === location.pathname
+            ? { ...item, current: true, key: idx }
+            : { ...item, current: false, key: idx }),
+        ])
     }, [location])
 
     let { logout, currentUser } = useAuth()
@@ -297,7 +294,7 @@ export default function Navigation() {
                                         className="group inline-block relative text-gray-300 bg-gray-800 hover:bg-gray-700 hover:text-white rounded-t-md text-sm font-medium"
                                         key="!slaasdlkaslkd!rfasf!!!a">
                                         <AnimatedDiv
-                                            key={indexEl + 'games'}
+                                            key={`${indexEl}games`}
                                             animation={true}
                                             className="flex space-x-4 items-center text-gray-300 hover:bg-gray-700 hover:text-white
                                                             px-3 py-2 text-sm font-medium">
@@ -356,7 +353,7 @@ export default function Navigation() {
                                     </div>
                                 ) : (
                                     <Link
-                                        key={indexEl + item.name + 'sdfsdfsdf'}
+                                        key={`${indexEl + item.name}sdfsdfsdf`}
                                         to={item.href}
                                         className={classNames(
                                             // currentActive ===

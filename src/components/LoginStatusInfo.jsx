@@ -15,7 +15,7 @@ export default function LoginStatusInfo() {
         padding: '5px',
         boxShadow: '5px 3px 2px grey',
         margin: '5px',
-        zIndex: -10000,
+        zIndex: -10_000,
     }
     return (
         <div style={styles}>

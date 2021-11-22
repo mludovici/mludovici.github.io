@@ -5,15 +5,17 @@ import LoginRegisterCSS from './LoginRegister.module.css'
 import RegisterComponent from './RegisterComponent'
 import LoginComponent from './LoginComponent'
 import { FormattedMessage } from 'react-intl'
-import { Link, useRouteMatch } from 'react-router-dom'
+import { Link, useMatch } from 'react-router-dom'
 function LoginRegister() {
     let [showSignin, setShowSignin] = useState(true)
     let [showSignup, setShowSignup] = useState(false)
     let [loggedOut, setLoggedOut] = useState(null)
     let authFunctions = useAuth()
     let analytics = authFunctions.analytics
-    let matchRegister = useRouteMatch('/register')
-    let logout = useRouteMatch('/logout')
+    let matchRegister = useMatch('/register')
+    let logout = useMatch('/logout')
+    console.log({matchRegister, logout})
+
     useEffect(() => {
         //console.log('user:', authFunctions.currentUser)
         if (authFunctions.currentUser == null && logout && logout.isExact) {
@@ -22,7 +24,7 @@ function LoginRegister() {
             setLoggedOut(null)
         }
 
-        if (matchRegister && matchRegister.isExact) {
+        if (matchRegister?.isExact) {
             setShowSignin(false)
             setShowSignup(true)
         } else {
@@ -40,7 +42,27 @@ function LoginRegister() {
                     {loggedOut}
                 </p>
             )}
-            {!authFunctions.currentUser ? (
+            {authFunctions.currentUser ? (
+                <div
+                    className={`bg-white min-content shadow-md flex mt-8 flex-col`}>
+                    <p className="text-green-800 leading-5 tracking-widest	mx-auto">
+                        You are logged in!{' '}
+                        {authFunctions.currentUser.emailVerified
+                            ? null
+                            : 'Please confirm verification link in your email.'}
+                    </p>
+                    <Link
+                        to="/"
+                        className="text-blue-800 bg-green-400 leading-5 tracking-widest shadow-lg block p-2 mt-2	mx-auto">
+                        Home
+                    </Link>
+                    <button
+                        className="bg-blue-300 text-black shadow-lg block p-2 mt-2 mx-auto"
+                        onClick={authFunctions.logout}>
+                        <FormattedMessage id="login.logout"></FormattedMessage>{' '}
+                    </button>
+                </div>
+            ) : (
                 <div className={LoginRegisterCSS.container}>
                     <div className={LoginRegisterCSS.container}>
                         <div>
@@ -79,26 +101,6 @@ function LoginRegister() {
                                 showSignup={showSignup}></RegisterComponent>
                         </div>
                     </div>
-                </div>
-            ) : (
-                <div
-                    className={`bg-white min-content shadow-md flex mt-8 flex-col`}>
-                    <p className="text-green-800 leading-5 tracking-widest	mx-auto">
-                        You are logged in!{' '}
-                        {!authFunctions.currentUser.emailVerified
-                            ? 'Please confirm verification link in your email.'
-                            : null}
-                    </p>
-                    <Link
-                        to="/"
-                        className="text-blue-800 bg-green-400 leading-5 tracking-widest shadow-lg block p-2 mt-2	mx-auto">
-                        Home
-                    </Link>
-                    <button
-                        className="bg-blue-300 text-black shadow-lg block p-2 mt-2 mx-auto"
-                        onClick={authFunctions.logout}>
-                        <FormattedMessage id="login.logout"></FormattedMessage>{' '}
-                    </button>
                 </div>
             )}
         </div>
