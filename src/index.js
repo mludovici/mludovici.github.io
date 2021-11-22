@@ -4,9 +4,8 @@ import './index.css'
 import App from './App'
 import { AuthProvider } from './providers/AuthProvider'
 import AdBlockComponent from './components/AdBlockComponent'
-
 ReactDOM.render(
-        <AdBlockComponent>
+        <AdBlockComponent>           
             <AuthProvider>
                 <App />
             </AuthProvider>

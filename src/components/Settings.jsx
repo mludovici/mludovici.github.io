@@ -1,14 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { BsInfoCircle } from 'react-icons/bs'
-import { useDarkMode } from '../providers/DarkModeProvider'
+//import { useDarkMode } from '../providers/DarkModeProvider'
 import { GiSunRadiations, GiMoon } from 'react-icons/gi'
-
+import {useDispatch, useSelector} from 'react-redux'
+import { toggleColorMode, selectColorMode } from '../store/settingsStore'
 import de from '../assets/images/flag/de.svg'
 import us from '../assets/images/flag/us.svg'
 
 function SettingsPage({ changeLocale }) {
-    const { darkMode, setDarkMode } = useDarkMode()
+    const dispatch = useDispatch();
+    let  darkMode= useSelector(selectColorMode)
+
+    useEffect(()=> {
+        const root = window?.document?.documentElement
+        const isDark = darkMode === 'dark'
+
+        root.classList.remove(isDark ? 'light' : 'dark')
+        root.classList.add(darkMode)
+
+        localStorage.setItem('color-theme', darkMode)
+    }, [darkMode])
     return (
         <div className="h-screen dark:bg-black">
             <div className="pt-10 dark:bg-black">
@@ -53,7 +65,7 @@ function SettingsPage({ changeLocale }) {
                             <div className="flex ml-3">
                                 {darkMode === 'dark' ? (
                                     <GiSunRadiations
-                                        onClick={() => setDarkMode('light')}
+                                        onClick={() => dispatch(toggleColorMode('light'))}
                                         style={{
                                             fill: 'yellow',
                                             height: '2em',
@@ -61,7 +73,7 @@ function SettingsPage({ changeLocale }) {
                                         }}></GiSunRadiations>
                                 ) : (
                                     <GiMoon
-                                        onClick={() => setDarkMode('dark')}
+                                        onClick={() => dispatch(toggleColorMode('dark'))}
                                         style={{
                                             fill: 'darkcyan',
 

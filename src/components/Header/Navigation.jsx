@@ -17,7 +17,6 @@ function classNames(...classes) {
 
 export default function Navigation() {
     let location = useLocation();
-    console.log({location})
     const [navigation, updateNavigation] = useState([
         { name: 'Home', href: '/', current: false },
         { name: 'CV', href: '/cv', current: false },

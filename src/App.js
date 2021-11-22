@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import HomeComponent from './components/HomeComponent'
-import { DarkModeProvider } from './providers/DarkModeProvider'
+// import { DarkModeProvider } from './providers/DarkModeProvider'
 import Timeline from './components/Timeline/Timeline.jsx'
 import Timeline2 from './components/Timeline/Timeline2.jsx'
 
@@ -17,6 +17,9 @@ import Navigation from './components/Header/Navigation'
 import StarRating from './components/StarRating'
 import SettingsPage from './components/Settings'
 import { IntlProvider } from 'react-intl'
+
+import store from './store'
+import { Provider as SettingsProvider } from 'react-redux'
 
 import deLang from './intl/DE-de'
 import enLang from './intl/EN-us'
@@ -50,7 +53,8 @@ function App() {
     const [locale, changeLocale] = useState(setLanguage)
 
     return (
-        <DarkModeProvider>
+       
+            <SettingsProvider store={store}>
             <IntlProvider locale={locale} messages={messages[locale]}>
                 <BrowserRouter>
                 <Navigation></Navigation>
@@ -81,7 +85,7 @@ function App() {
                     </Routes>
                 </BrowserRouter>
             </IntlProvider>
-        </DarkModeProvider>
+            </SettingsProvider>
     )
 }
 
