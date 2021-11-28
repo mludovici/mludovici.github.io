@@ -67,10 +67,6 @@ const CandyCrush = () => {
             }
         }
 
-        //console.log({ cc, stImagesTotalSix, swImagesTotalSix })
-        // r.keys().map((item) => (images[item.replace('./', '')] = r(item)))
-        // let img2 = { ...images }
-        // console.log(img2)
         return [cc, stImagesTotalSix, swImagesTotalSix]
     }
 

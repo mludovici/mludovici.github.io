@@ -19,7 +19,7 @@ function LoginComponent({ showSignin, loginHandler, analytics }) {
             await loginHandler(email, pw)
             analytics.setUserId(email)
             analytics.logEvent('login', {
-                email: email,
+                email,
             })
         } catch (e) {
             setErrorMsg(e.message)
