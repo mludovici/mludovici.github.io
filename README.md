@@ -4,16 +4,15 @@
 
 [Homepage](https://mludovici.github.io/).
 
-- [X] React Framework
-- [X] Tailwind CSS
-- [X] CSS in js (Styled componts)
-- [X] Firebase Backend
-
-🚢 Hosted on Firebase Cloud 👍 😄
 
 
 ## Tech Stack
-This website was built with React.js, HTML, TailwindCSS, Styled Components, Firebase as backend and several smaller JS libraries
+- [X] React Framework
+- [X] HTML
+- [X] TailwindCSS
+- [X] CSS in js (Styled Components)
+- [X] Firebase Backend
 
 ### Hosting
-This site is also hosten on [Firebase](https://homepage-e3c03.web.app/) or [Heroku](https://mlud-homepage.herokuapp.com/).
+🚢 Hosted on [Firebase Cloud](https://homepage-e3c03.web.app/) and [Heroku](https://mlud-homepage.herokuapp.com/) 👍 😄.
+
