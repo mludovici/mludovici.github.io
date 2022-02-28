@@ -1,4 +1,7 @@
 # Visit my Homepage 
+> Painting is a source of endless pleasure, but also of great anguish.
+
+Balthus
 [Here](https://mludovici.github.io/).
 
 ## Tech Stack
