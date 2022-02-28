@@ -9,6 +9,9 @@
 - [X] CSS in js (Styled componts)
 - [X] Firebase Backend
 
+🚢 Hosted on Firebase Cloud 👍 😄
+
+
 ## Tech Stack
 This website was built with React.js, HTML, TailwindCSS, Styled Components, Firebase as backend and several smaller JS libraries
 
