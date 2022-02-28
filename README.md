@@ -1,7 +1,8 @@
 # Visit my Homepage 
 > Painting is a source of endless pleasure, but also of great anguish.   
 > 
-> -- <cite>Balthus</cite>
+> <p style='text-align: right;'> Balthus </p>
+
 
 ## Tech Stack
 
