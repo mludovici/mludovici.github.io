@@ -3,11 +3,6 @@
 > 
 > -- <cite>Balthus</cite>
 
-## Link
-[Homepage](https://mludovici.github.io/).
-
-
-
 ## Tech Stack
 - [X] React Framework
 - [X] HTML
@@ -16,5 +11,5 @@
 - [X] Firebase Backend
 
 ### Hosting
-🚢 Hosted on [Firebase Cloud](https://homepage-e3c03.web.app/) and [Heroku](https://mlud-homepage.herokuapp.com/) 👍 😄.
+🚢 Hosted on [Github](https://mludovici.github.io/), [Firebase Cloud](https://homepage-e3c03.web.app/) and [Heroku](https://mlud-homepage.herokuapp.com/) 👍 😄.
 
