@@ -3,9 +3,7 @@
 > 
 > -- <cite>Balthus</cite>
 
-
-## Tech Stack
-
+## Link
 [Homepage](https://mludovici.github.io/).
 
 
