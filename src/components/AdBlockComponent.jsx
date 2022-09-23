@@ -26,8 +26,8 @@ function AdBlockComponent({ children }) {
                         <b> Please disable your Adblocker to continue. </b>
                         Once you disabled your Adblocker, by clicking "Refresh"
                         or "Just Continue", you automatically consent to the
-                        fact that this site is using Google Analytics and Google
-                        Tag Manager third party plugins. Click "Just continue"
+                        fact that this site uses Google Analytics and Google
+                        Tag Manager third party tools. Click "Just continue"
                         to proceed without disabling Adblocker.`
                     </p>
                     <div className="flex justify-around">

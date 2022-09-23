@@ -156,7 +156,6 @@ const CandyCrush = () => {
         
         let newNumber= ++numberOfRounds
         setNumberOfRounds(newNumber);
-        console.log("ROUND:", numberOfRounds)
         setSquareBeingReplaced(e.target)
     }
 

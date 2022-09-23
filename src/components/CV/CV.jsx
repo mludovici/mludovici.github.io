@@ -161,9 +161,11 @@ function CV() {
                     })
                 })
                 cv.sort((a, b) => new Date(b.dateFrom) - new Date(a.dateFrom))
+                console.log("entries CV:", cv)
+
                 let filteredCV = cv.filter(item => !item.job?.includes('aktive'))
                 setCV(filteredCV)
-            })
+            }, {source:"cache"})
                         
         } catch(error) {
                 //console.log('error:', error)

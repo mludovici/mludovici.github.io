@@ -41,7 +41,6 @@ function QuizList({ quizData, resetGame, analytics }) {
     }
 
     const checkAnswer = (e, index, answer, correctAnswer) => {
-        //console.log('answer:', answer, 'correct_answer:', correctAnswer)
         if (gameFinished) {
             return
         }
@@ -49,7 +48,6 @@ function QuizList({ quizData, resetGame, analytics }) {
         if (answer === correctAnswer) {
             setCorrectAnswerCount(correctAnswerCount + 1)
         } else {
-            //console.log('index of wrong answer:', index)
             setChecked(index)
         }
         setHasChosen(true)

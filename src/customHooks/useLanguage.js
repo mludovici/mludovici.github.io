@@ -21,7 +21,6 @@ export function useLanguage(userLanguage) {
     const [locale, changeLocale] = useState(currentLanguage)
 
     const changeLanguage = (lang) => {
-        console.log("changing language:", lang)
         if (lang && Object.keys(translations).includes(lang)) {
             changeLocale(lang);
         }

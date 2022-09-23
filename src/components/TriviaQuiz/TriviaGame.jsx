@@ -18,7 +18,6 @@ function Trivia() {
     let { analytics } = useAuth()
 
     useEffect(() => {
-        //console.log('inside Trivia.jsx use Effect!')
         const getInitialCategories = async () => {
             let response = await fetch('https://opentdb.com/api_category.php')
             if (response.status === 200) {
@@ -97,7 +96,6 @@ function Trivia() {
 
             if (response.status === 200) {
                 let data = await response.json()
-                //console.log('data:', data)
                 switch (data.response_code) {
                     case 0:
                         setQuizAPIError(null)

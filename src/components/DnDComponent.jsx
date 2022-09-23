@@ -28,7 +28,6 @@ function DnDComponent({
     // const handleImageUpload = () => {}
 
     const handleEventDefaults = e => {
-        //console.log('inside handleEventDefaults:', e)
         if (!editMode) return
         e.stopPropagation()
         e.preventDefault()
@@ -54,7 +53,6 @@ function DnDComponent({
             fileReader.readAsDataURL(file)
             let imageResult = {}
             fileReader.onload = () => {
-                //console.log('reading image..')
                 imageResult.image = fileReader.result
                 imageResult.fileName = fileName
                 setProfileImage(imageResult)
@@ -69,7 +67,6 @@ function DnDComponent({
     const handleDragOver = e => {
         let event = e
         handleEventDefaults(event)
-        //console.log('dragover')
         setIsDraggedOver(true)
         setDragoverText('Release to upload file')
     }
@@ -85,7 +82,6 @@ function DnDComponent({
     const handleDrop = e => {
         let event = e
         handleEventDefaults(event)
-        //console.log('drop')
         setProfileImage(null)
 
         let file = e.dataTransfer.files[0]
@@ -110,12 +106,10 @@ function DnDComponent({
     }
 
     const deleteImage = () => {
-        //console.log('deleting profileImage: ', profileImage)
         if (profileImage) {
             setProfileImage(null)
             setDragoverText('Drag & Drop to Upload image')
         }
-        //console.log('imageURL before delete: ', imageURL)
         if (imageURL) {
             deleteImageFromStorage()
                 .then(_ => {
@@ -123,10 +117,7 @@ function DnDComponent({
                     setDragoverText('Drag & Drop to Upload image')
                 })
                 .catch(error => {
-                    //console.log(
-                    //     'Error deleting profile photo from storage:',
-                    //     error
-                    // )
+
                 })
         }
     }

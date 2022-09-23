@@ -22,7 +22,6 @@ function App({title}) {
 
 const analytics = getAnalytics();
     useEffect(() => {
-        console.log("in app.jsx:", locale)
         logEvent(analytics, 'screen_view', {
             firebase_screen: 'Home',
             firebase_screen_class: 'MainPage',

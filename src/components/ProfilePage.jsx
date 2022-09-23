@@ -16,8 +16,6 @@ function ProfilePage({ currentUser }) {
     const [imageURL, setImageURL] = useState(null)
 
     useEffect(() => {
-        console.log('profile useEffect')
-        console.log('currentUser.uid:', currentUser.uid)
         const docRef = doc(firestore, "profileData",  currentUser.uid);
         getDoc(docRef).then(doc => {
             if (doc) {
@@ -51,8 +49,6 @@ function ProfilePage({ currentUser }) {
     }
 
     const handleUpdate = async () => {
-        console.log('inside handleUpdate')
-        console.log({ profileImage })
         let profileImageURL = null
         if (profileImage) {
             let storageRef = await storage
@@ -62,7 +58,6 @@ function ProfilePage({ currentUser }) {
             // .then(snapshot => {console.log('DOWNLOAD URL :', snapshot.ref.getDownloadURL().then(url => {setImageURL(url)}))
 
             profileImageURL = await storageRef.ref.getDownloadURL()
-            console.log('set image url:', { profileImageURL })
             setImageURL(profileImageURL)
         }
 
@@ -74,7 +69,6 @@ function ProfilePage({ currentUser }) {
 
         try {
 
-            console.log(profileData)
             const docRef = doc(firestore, "profileData", currentUser.uid);
             updateDoc(docRef, profileData).then(docRef => {
                 console.log('profile updated with ID: ', docRef)

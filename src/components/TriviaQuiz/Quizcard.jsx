@@ -17,14 +17,7 @@ function Quizcard({
     correctAnswerCount,
     actualNr,
 }) {
-    // useEffect(() => {
-    //     // console.log('New card Nr: ', questionNr)
-    //     // console.log('User already chose:', hasChosen)
-    //     // console.log('Quiz properties:', quiz)
-    //     // return () => {
-    //     //     console.log('Destroy Quizcard')
-    //     // }
-    // })
+
 
     const handleClick = (
         e,

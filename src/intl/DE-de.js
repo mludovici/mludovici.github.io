@@ -20,8 +20,9 @@ const germanTranslation = {
     'settings.lang': 'Sprache:',
     'main.projects': 'Projekte',
     'main.projects.headline': '',
+    'qBndAC1ENf9ffzUSc5sn.job': 'Software Entwickler',
+    'qBndAC1ENf9ffzUSc5sn.content': 'Entwickeln einer Sales-App.Frontend mit Angular und Material UI. Backend in C# mit .NET Core und Entity Framework',
     '0WWbJ0J9r4QWNKJLaGNt.job': 'Web Entwickler (Full-Stack)',
-
     '0WWbJ0J9r4QWNKJLaGNt.content':
         'Web-Entwicklung (Microsoft) O365, Sharepoint, Beezy, Azure Entwicklung von Web-Widgets, Sharepoint Apps, und Services mit Javascript, HTML, CSS/Sass, JQuery, Typescript, Vue.js, Tooling mit Gulp, Git, Deployment mit Azure Pipelines',
 
