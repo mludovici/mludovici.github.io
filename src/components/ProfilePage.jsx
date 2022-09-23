@@ -4,6 +4,7 @@ import ProfilePageCSS from './ProfilePageCSS.module.css'
 // import { useHistory } from 'react-router-dom'
 import DnDComponent from './DnDComponent'
 import { useAuth } from '../providers/AuthProvider'
+import { doc, getDoc, updateDoc } from 'firebase/firestore'
 function ProfilePage({ currentUser }) {
     // const history = useHistory()
     const { firestore, storage } = useAuth()
@@ -17,23 +18,34 @@ function ProfilePage({ currentUser }) {
     useEffect(() => {
         console.log('profile useEffect')
         console.log('currentUser.uid:', currentUser.uid)
-        firestore
-            .collection('profileData')
-            .doc(`${currentUser.uid}`)
-            .get()
-            .then(docRef => {
-                console.log(docRef.data())
-                let { userName, jobPosition, profileImageURL, profileInfo } =
-                    docRef.data()
+        const docRef = doc(firestore, "profileData",  currentUser.uid);
+        getDoc(docRef).then(doc => {
+            if (doc) {
+                let { userName, jobPosition, profileImageURL, profileInfo } =  doc.data()
                 setUserName(userName)
                 setJobPosition(jobPosition)
                 setProfileInfo(profileInfo)
                 setImageURL(profileImageURL)
-            })
-            .catch(error => {
-                console.error('Error adding profile data: ', error)
-            })
+            }
+        })
+        // firestore
+        //     .collection('profileData')
+        //     .doc(`${currentUser.uid}`)
+        //     .get()
+        //     .then(docRef => {
+        //         console.log(docRef.data())
+        //         let { userName, jobPosition, profileImageURL, profileInfo } =
+        //             docRef.data()
+        //         setUserName(userName)
+        //         setJobPosition(jobPosition)
+        //         setProfileInfo(profileInfo)
+        //         setImageURL(profileImageURL)
+        //     })
+        //     .catch(error => {
+        //         console.error('Error adding profile data: ', error)
+        //     })
     }, [firestore, currentUser])
+    
     const toggleEditMode = () => {
         setEditMode(!editMode)
     }
@@ -61,14 +73,24 @@ function ProfilePage({ currentUser }) {
         profileData.profileInfo = profileInfo
 
         try {
-            firestore
-                .collection('profileData')
-                .doc(`${currentUser.uid}`)
-                .set(profileData)
-                .then()
-                .catch(error => {
-                    console.error('Error adding profile data: ', error)
-                })
+
+            console.log(profileData)
+            const docRef = doc(firestore, "profileData", currentUser.uid);
+            updateDoc(docRef, profileData).then(docRef => {
+                console.log('profile updated with ID: ', docRef)
+            })
+            .catch(error => {
+                console.error('Error updating profile', error)
+            })
+
+            // firestore
+            //     .collection('profileData')
+            //     .doc(`${currentUser.uid}`)
+            //     .set(profileData)
+            //     .then()
+            //     .catch(error => {
+            //         console.error('Error adding profile data: ', error)
+            //     })
         } catch (e) {
             console.log('error: ', e)
         }

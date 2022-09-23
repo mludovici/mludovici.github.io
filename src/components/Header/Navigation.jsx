@@ -20,20 +20,20 @@ export default function Navigation() {
     const [navigation, updateNavigation] = useState([
         { name: 'Home', href: '/', current: false },
         { name: 'CV', href: '/cv', current: false },
-        { name: 'Fun Quiz', href: '/games', current: false },
+        { name: 'Quiz', href: '/games', current: false },
     ])
     // const { darkMode, setDarkMode } = useDarkMode()
 
     useEffect(() => {
         updateNavigation(navigation => [
             ...navigation.map((item, idx) => item.href.toLowerCase() === location.pathname
-            ? { ...item, current: true, key: idx }
-            : { ...item, current: false, key: idx }),
+                ? { ...item, current: true, key: idx }
+                : { ...item, current: false, key: idx }),
         ])
     }, [location])
 
     let { logout, currentUser } = useAuth()
-    // const [currentActive, setCurrentActive] = useState(0)
+
     return (
         <Disclosure
             as="nav"
@@ -118,7 +118,7 @@ export default function Navigation() {
                                                         <li>
                                                             <Link
                                                                 key={`${indexEl} + CandyCrush + gsdgsdgdvk30mls`}
-                                                                to="/cc"
+                                                                to="/candycrush"
                                                                 className={classNames(
                                                                     `flex space-x-4 items-center text-gray-300 hover:bg-gray-700 hover:text-white
                                                             px-3 py-2  text-sm font-medium bg-gray-800`,
@@ -220,7 +220,7 @@ export default function Navigation() {
                                                             to="/profile"
                                                             className={classNames(
                                                                 active
-                                                                    ? 'bg-gray-100'
+                                                                    ? 'bg-gray-300'
                                                                     : '',
                                                                 'block px-4 py-2 text-sm text-gray-700'
                                                             )}>
@@ -239,7 +239,7 @@ export default function Navigation() {
                                                             to="/logout"
                                                             className={classNames(
                                                                 active
-                                                                    ? 'bg-gray-100'
+                                                                    ? 'bg-gray-300'
                                                                     : '',
                                                                 'block px-4 py-2 text-sm text-gray-700'
                                                             )}>
@@ -254,7 +254,7 @@ export default function Navigation() {
                                                                 to="/login"
                                                                 className={classNames(
                                                                     active
-                                                                        ? 'bg-gray-100'
+                                                                        ? 'bg-gray-300'
                                                                         : '',
                                                                     'block px-4 py-2 text-sm text-gray-700'
                                                                 )}>
@@ -329,7 +329,7 @@ export default function Navigation() {
                                                 }>
                                                 {item.name}
                                             </Link>
-                                            <Link
+                                            {/* <Link
                                                 key={`${indexEl}CandyCrush asdasdawbx`}
                                                 to="/cc"
                                                 className={classNames(
@@ -347,7 +347,7 @@ export default function Navigation() {
                                                         : undefined
                                                 }>
                                                 CandyCrush
-                                            </Link>
+                                            </Link> */}
                                         </ul>
                                     </div>
                                 ) : (

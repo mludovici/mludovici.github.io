@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export const setErrorTimeout = (cb, error) => {
     cb(error)
@@ -14,4 +14,14 @@ export const useInput = initialValue => {
         { value, onChange: e => setValue(e.target.value) },
         () => setValue(initialValue),
     ]
+}
+
+export const useTitle = (title) => {
+    useEffect(() => {
+        let prevTitle = document.title || "Marc's Homepage";
+        document.title = title;
+        return () => {
+            document.title = prevTitle;
+        };
+    }, [title]);
 }

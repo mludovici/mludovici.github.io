@@ -4,6 +4,9 @@ import LoginCSS from './LoginRegister.module.css'
 import { SignupForm } from './StyledLoginRegister'
 import { setErrorTimeout } from '../utils'
 import { FormattedMessage } from 'react-intl'
+import { logEvent } from "firebase/analytics";
+
+
 function RegisterComponent({ showSignup, signup, analytics }) {
     const [formDetails, setFormDetails] = useState({})
     const [registerSuccess, setRegisterSuccess] = useState(null)
@@ -12,20 +15,6 @@ function RegisterComponent({ showSignup, signup, analytics }) {
     const formRef = useRef(null)
     const handleSubmit = async e => {
         e.preventDefault()
-
-        // let formData = new FormData(formRef.current)
-        // for (let [key, val] of formData) {
-        //     console.log('item2:', key, val)
-        // }
-        // console.log(typeof t) // == Object
-        // console.log(t) // doesn't simply show anything, just a simple object
-        // console.log(e.target) // === formRef.current
-        // console.log(
-        //     Array.from(formRef.current).forEach(el =>
-        //         console.log('arr:', el.name, el.value)
-        //     ) // not possible to iterate just the formData object with forEach because its an object
-        // )
-        // console.log({ formRef })
 
         if (formDetails.password !== formDetails.passwordrepeat) {
             setErrorTimeout(setRegisterError, {
@@ -47,7 +36,7 @@ function RegisterComponent({ showSignup, signup, analytics }) {
                         setRegisterSuccess(
                             'You registered successfully! please check your email!'
                         )
-                        analytics.logEvent('sign_up', {
+                        logEvent(analytics, 'sign_up', {
                             email: formDetails.email,
                         })
                     }

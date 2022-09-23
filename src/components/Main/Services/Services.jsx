@@ -4,6 +4,7 @@ import MERN from '../../../assets/images/mern.png'
 //import DSPNG from '../../../assets/images/ds.png'
 import Brain from '../../../assets/images/data_analyst_brain.png'
 import { FormattedMessage } from 'react-intl'
+import ecommerceImage from '../../../assets/images/ProShopApp.png'
 
 function Services() {
     return (
@@ -107,12 +108,14 @@ function Services() {
 								rounded-md
 								shadow-md
 							">
-                                <img
-                                    style={{ height: '220px', margin: 'auto' }}
-                                    src="https://www.rouge-media.com/wp-content/uploads/2019/05/web-app-illustration-1.png"
-                                    className="rounded-t-md servicesImageHeight"
-                                    alt=""
-                                />
+                                <a rel="noreferrer" href="https://proshop-tutor.herokuapp.com/" target="_blank" alt="Proshop app link">
+                                    <img
+                                        style={{ height: '220px', margin: 'auto' }}
+                                        src={ecommerceImage}
+                                        className="rounded-t-md servicesImageHeight"
+                                        alt=""
+                                    />
+                                </a>
                                 <div className="px-10 pb-6">
                                     <h2
                                         className="
@@ -120,11 +123,10 @@ function Services() {
 										font-bold
 										text-gray-800 text-2xl text-center
 									">
-                                        Responsive Websites
+                                        React E-commerce store
                                     </h2>
                                     <p className="pt-3">
-                                        Media Queries, CSS3, Bootstrap,
-                                        TailwindCSS, Styled components, etc.
+                                        Ecommerce site built with the Mern Stack hosted on Heroku
                                     </p>
                                 </div>
                             </div>

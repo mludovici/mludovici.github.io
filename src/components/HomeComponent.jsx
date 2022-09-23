@@ -3,7 +3,7 @@ import Mainpage from './Main/Mainpage'
 function HomeComponent() {
     return (
         <div className="dark:bg-gray-800">
-                    <Mainpage></Mainpage>
+            <Mainpage></Mainpage>
         </div>
     )
 }

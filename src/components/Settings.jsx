@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { BsInfoCircle } from 'react-icons/bs'
 //import { useDarkMode } from '../providers/DarkModeProvider'
@@ -7,10 +7,13 @@ import {useDispatch, useSelector} from 'react-redux'
 import { toggleColorMode, selectColorMode } from '../store/settingsStore'
 import de from '../assets/images/flag/de.svg'
 import us from '../assets/images/flag/us.svg'
+import {LanguageToggleContext} from '../App'
 
-function SettingsPage({ changeLocale }) {
+
+function SettingsPage() {
     const dispatch = useDispatch();
     let  darkMode= useSelector(selectColorMode)
+    const languageToggler = useContext(LanguageToggleContext)
 
     useEffect(()=> {
         const root = window?.document?.documentElement
@@ -40,7 +43,10 @@ function SettingsPage({ changeLocale }) {
                             <div className="flex ml-3">
                                 <img
                                     className="mr-3"
-                                    onClick={() => changeLocale('de')}
+                                    onClick={() =>  {
+
+                                        languageToggler('de-de')}
+                                    }
                                     src={de}
                                     alt="germanFlag"
                                     style={{
@@ -50,7 +56,11 @@ function SettingsPage({ changeLocale }) {
                                 />
                                 <img
                                     className="ml-3"
-                                    onClick={() => changeLocale('en')}
+                                    onClick={() => 
+                                        {
+                                            languageToggler('en-us')
+                                        }
+                                }
                                     src={us}
                                     alt="usFlag"
                                     style={{
@@ -65,12 +75,13 @@ function SettingsPage({ changeLocale }) {
                             <div className="flex ml-3">
                                 {darkMode === 'dark' ? (
                                     <GiSunRadiations
-                                        onClick={() => dispatch(toggleColorMode('light'))}
+                                        onClick={() =>  dispatch(toggleColorMode('light'))}
                                         style={{
                                             fill: 'yellow',
                                             height: '2em',
                                             width: '2em',
-                                        }}></GiSunRadiations>
+                                        }}>
+                                    </GiSunRadiations>
                                 ) : (
                                     <GiMoon
                                         onClick={() => dispatch(toggleColorMode('dark'))}
@@ -79,7 +90,8 @@ function SettingsPage({ changeLocale }) {
 
                                             height: '2em',
                                             width: '2em',
-                                        }}></GiMoon>
+                                        }}>
+                                    </GiMoon>
                                 )}
                             </div>
                         </div>

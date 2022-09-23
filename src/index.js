@@ -1,14 +1,17 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+
 import './index.css'
+import { createRoot } from 'react-dom/client';
 import App from './App'
 import { AuthProvider } from './providers/AuthProvider'
 import AdBlockComponent from './components/AdBlockComponent'
-ReactDOM.render(
-        <AdBlockComponent>           
-            <AuthProvider>
-                <App />
-            </AuthProvider>
-        </AdBlockComponent>,
-    document.getElementById('root')
+
+const container = document.getElementById('root')
+const root = createRoot(container);
+
+root.render(
+    <AdBlockComponent>
+        <AuthProvider>
+            <App />
+        </AuthProvider>
+    </AdBlockComponent>
 )

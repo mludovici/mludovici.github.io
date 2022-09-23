@@ -3,6 +3,8 @@ import LoginCSS from './LoginRegister.module.css'
 import { LoginForm } from './StyledLoginRegister'
 import { useAuth } from '../../providers/AuthProvider'
 import { FormattedMessage } from 'react-intl'
+import { logEvent } from "firebase/analytics";
+
 function LoginComponent({ showSignin, loginHandler, analytics }) {
     const [email, setEmail] = useState()
     const [pw, setPW] = useState()
@@ -10,20 +12,19 @@ function LoginComponent({ showSignin, loginHandler, analytics }) {
     const [emailResetError, setResetEmailError] = useState(null)
     const [emailResetSuccess, setEmailResetSuccess] = useState(null)
     const { loginError, auth } = useAuth()
-    analytics.setCurrentScreen('LoginScreen')
+
 
     const handleLogin = async e => {
         e.preventDefault()
 
         try {
             await loginHandler(email, pw)
-            analytics.setUserId(email)
-            analytics.logEvent('login', {
+            logEvent(analytics, 'login', {
                 email,
             })
         } catch (e) {
             setErrorMsg(e.message)
-            analytics.logEvent('user has an error logging in', e.message)
+            logEvent(analytics, 'user has an error logging in', e.message)
         }
     }
 

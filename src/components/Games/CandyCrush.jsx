@@ -1,84 +1,30 @@
 import { useState, useEffect, useCallback } from 'react'
 import CCCSS from './CandyCrush.module.css'
-// import Candy1 from './images/Candy/candy1.png'
-// import Candy2 from './images/Candy/candy2.png'
-// import Candy3 from './images/Candy/candy3.png'
-// import Candy4 from './images/Candy/candy4.png'
-// import Candy5 from './images/Candy/candy5.png'
-// import Candy6 from './images/Candy/candy6.png'
-import BlankSquare from '../../assets/images/Star Trek/ex1.png'
+import candy1 from '../../assets/images/Candy/candy1.png'
+import candy2 from '../../assets/images/Candy/candy2.png'
+import candy3 from '../../assets/images/Candy/candy3.png'
+import candy4 from '../../assets/images/Candy/candy4.png'
+import candy5 from '../../assets/images/Candy/candy5.png'
+import candy6 from '../../assets/images/Candy/candy6.png'
+import BlankSquare from '../../assets/images/Candy/ex1.png'
 
 const width = 8
 
-let candyImages = []
-let starTrekImages = []
-let starWarsImages = []
+let candyImages = [candy1,candy2,candy3,candy4,candy5,candy6]
 
 const CandyCrush = () => {
-    const [swColors, setSWColors] = useState(null)
-    const [stColors, setSTColors] = useState(null)
-    const [initialCandyColors, setInitialCandyColors] = useState(null)
-    const [candyColors, setCandyColors] = useState([])
+    let [numberOfRounds, setNumberOfRounds] = useState(0);
+    let [candyColors, setCandyColors] = useState([])
     const [currentColorArrangement, setCurrentColorArrangement] = useState([])
     const [squareBeingDragged, setSquareBeingDragged] = useState(null)
     const [squareBeingReplaced, setSquareBeingReplaced] = useState(null)
-    const [scoreDisplay, setScoreDisplay] = useState(0)
+    let [scoreDisplay, setScoreDisplay] = useState(0)
     const [isInitial, setIsInitial] = useState(true)
 
-    function importAll(r) {
-        let images = {}
-        let AllImages = r.keys()
 
-        candyImages = AllImages.filter(item => item.includes('Candy'))
-        starWarsImages = AllImages.filter(item => item.includes('Star Wars'))
-        starTrekImages = AllImages.filter(item => item.includes('Star Trek'))
-
-        // console.log({ candyImages, starWarsImages, starTrekImages })
-        let cc = candyImages.map(
-            item => (images[item.replace('./', '')] = r(item).default)
-        )
-        let st = starWarsImages.map(
-            item => (images[item.replace('./', '')] = r(item).default)
-        )
-        let sw = starTrekImages.map(
-            item => (images[item.replace('./', '')] = r(item).default)
-        )
-        // console.log({ cc, st, sw })
-
-        let stImagesTotalSix = []
-        while (stImagesTotalSix.length < 6) {
-            let rndImageNumber = Math.floor(Math.random() * st.length)
-            let rndImage = st[rndImageNumber]
-            if (!stImagesTotalSix.includes(rndImage)) {
-                stImagesTotalSix.push(rndImage)
-            } else {
-                continue
-            }
-        }
-
-        let swImagesTotalSix = []
-        while (swImagesTotalSix.length < 6) {
-            let rndImageNumber = Math.floor(Math.random() * sw.length)
-            let rndImage = sw[rndImageNumber]
-            if (!swImagesTotalSix.includes(rndImage)) {
-                swImagesTotalSix.push(rndImage)
-            } else {
-                continue
-            }
-        }
-
-        return [cc, stImagesTotalSix, swImagesTotalSix]
-    }
 
     useEffect(() => {
-        const [cc, sw, st] = importAll(
-            require.context('../../assets/images', true, /\.(png|jpe?g|svg)$/)
-        )
-        // console.log('useEffect images:', { cc, sw, st })
-        setInitialCandyColors(cc)
-        setCandyColors(cc)
-        setSWColors(sw)
-        setSTColors(st)
+        setCandyColors(candyImages)
     }, [])
 
     const checkForColumnOfThree = useCallback(() => {
@@ -203,18 +149,18 @@ const CandyCrush = () => {
 
     const dragStart = e => {
         isInitial && setIsInitial(false)
-
-        //console.log('drag start', e.target)
         setSquareBeingDragged(e.target)
     }
 
     const dragDrop = e => {
-        //console.log('drag drop', e.target)
+        
+        let newNumber= ++numberOfRounds
+        setNumberOfRounds(newNumber);
+        console.log("ROUND:", numberOfRounds)
         setSquareBeingReplaced(e.target)
     }
 
     const dragEnd = e => {
-        //console.log('drag end', e.target)
         const squareBeingDraggedId = parseInt(
             squareBeingDragged.getAttribute('data-id')
         )
@@ -224,7 +170,6 @@ const CandyCrush = () => {
             squareBeingReplaced.getAttribute('data-id')
         )
 
-        //console.log({ squareBeingDraggedId, squareBeingReplacedId })
         const validMoves = [
             squareBeingDraggedId - 1,
             squareBeingDraggedId - width,
@@ -250,26 +195,15 @@ const CandyCrush = () => {
             squareBeingReplacedId &&
             (isColumnOfFour || isRowOfFour || isColumnOfThree || isRowOfThree)
         ) {
-            //console.log('inside validMove')
             setSquareBeingDragged(null)
             setSquareBeingReplaced(null)
         } else {
-            //console.log('inside INvalidMove')
             setScoreDisplay(score => score - 1)
-
-            // currentColorArrangement[squareBeingReplacedId] =
-            // 	squareBeingReplaced.getAttribute('src')
-            // currentColorArrangement[squareBeingDraggedId] =
-            // 	squareBeingDragged.getAttribute('src')
         }
-
-        //console.log({ scoreDisplay })
     }
 
     const createBoard = useCallback(() => {
         const randomColorArrangement = []
-        //console.log({ candyColors })
-
         for (let i = 0; i < width * width; i++) {
             const randomNumber = Math.floor(candyColors.length * Math.random())
             const randomColor = candyColors[randomNumber]
@@ -295,7 +229,7 @@ const CandyCrush = () => {
             moveIntoSquareBelow()
             setCurrentColorArrangement([...currentColorArrangement])
         }, 200)
-
+        
         return () => clearInterval(timer)
     }, [
         checkForColumnOfFour,
@@ -305,44 +239,8 @@ const CandyCrush = () => {
         moveIntoSquareBelow,
         currentColorArrangement,
     ])
-
-    const handleChoice = (e, choice) => {
-        setIsInitial(true)
-        setScoreDisplay(0)
-        if (choice === 'Candy') {
-            setCandyColors(initialCandyColors)
-        } else if (choice === 'Star Wars') {
-            //console.log({ swColors })
-            setCandyColors(swColors)
-        } else if (choice === 'Star Trek') {
-            setCandyColors(stColors)
-        }
-        //console.log('CandyColors after handleChoice: ', { candyColors })
-        //createBoard()
-    }
-
     return (
-        <div>
-            <div className={CCCSS.buttonRow}>
-                <button onClick={e => handleChoice(e, 'Star Trek')}>
-                    <img
-                        src="https://img.icons8.com/wired/64/000000/star-trek-symbol.png"
-                        alt="Star Trek"
-                    />
-                </button>
-                <button onClick={e => handleChoice(e, 'Star Wars')}>
-                    <img
-                        src="https://img.icons8.com/ios/50/000000/stormtrooper.png"
-                        alt="Star Wars"
-                    />{' '}
-                </button>
-                <button onClick={e => handleChoice(e, 'Candy')}>
-                    <img
-                        src="https://img.icons8.com/color/48/000000/sweets.png"
-                        alt="Candy"
-                    />
-                </button>
-            </div>
+        <div>         
             <div
                 style={{
                     paddingLeft: '30px',
@@ -350,7 +248,7 @@ const CandyCrush = () => {
                     fontSize: '20px',
                     fontWeight: 'bold',
                 }}>
-                Score: {scoreDisplay}
+                Score: {scoreDisplay}, Round: {numberOfRounds}
             </div>
             <div className={CCCSS.app}>
                 <div className={CCCSS.game}>

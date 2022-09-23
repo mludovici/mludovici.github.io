@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDetectAdBlock } from 'adblock-detect-react'
 import Modal from './Modal'
+
 function AdBlockComponent({ children }) {
     const adBlockDetected = useDetectAdBlock()
     const [isAdBlockerOn, setIsAdBlockerOn] = useState(false)
+
 
     useEffect(() => {
         if (adBlockDetected) {
@@ -42,17 +44,13 @@ function AdBlockComponent({ children }) {
                         </button>
                     </div>
                 </div>
+
+
             </div>
         )
     }
     return (
-        <>
-            {isAdBlockerOn ? (
-                <Modal show={true}>{noticeContentJSX()}</Modal>
-            ) : (
-                children
-            )}
-        </>
+            isAdBlockerOn ? <Modal show={true}>{noticeContentJSX()}</Modal> : children 
     )
 }
 

@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { app, auth, firestore, storage, analytics } from '../firebase'
+import { app, firestore, storage, analytics } from '../firebaseConfig'
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const AuthContext = React.createContext()
 
@@ -10,10 +11,11 @@ export function useAuth() {
 export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState(undefined)
     const [loginError, setLoginError] = useState(null)
+    const auth = getAuth();
 
     const login = async (email, password) => {
         try {
-            return auth.signInWithEmailAndPassword(email, password)
+            return signInWithEmailAndPassword(auth, email, password)
         } catch (error) {
             setLoginError(error)
         }

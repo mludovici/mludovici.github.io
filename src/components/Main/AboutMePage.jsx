@@ -1,6 +1,4 @@
 import React from 'react'
-//import tigerImage from '../../assets/images/tiger.jpg'
-// import giraffe from '../../assets/images/giraffe.jpg'
 import person from '../../assets/images/placeholder_person.jpg'
 import { FormattedMessage } from 'react-intl'
 import AboutMePageCSS from './AboutMePage.module.css'

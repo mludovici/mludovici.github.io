@@ -1,5 +1,5 @@
 import React from 'react'
-import imageLake from '../../assets/images/LakeCropped.png'
+import imageLake from '../../assets/images/LakeCropped.webp'
 function ImageBanner() {
     return (
         <>

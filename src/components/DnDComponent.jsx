@@ -77,7 +77,6 @@ function DnDComponent({
     const handleDragLeave = e => {
         let event = e
         handleEventDefaults(event)
-        //console.log('dragleave')
         setIsDraggedOver(false)
 
         setDragoverText('Drag & Drop to Upload File')

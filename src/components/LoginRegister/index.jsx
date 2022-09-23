@@ -6,8 +6,8 @@ import RegisterComponent from './RegisterComponent'
 import LoginComponent from './LoginComponent'
 import { FormattedMessage } from 'react-intl'
 import { Link, useMatch } from 'react-router-dom'
-import { loginAction, login} from '../../store/authStore';
-import {useDispatch} from 'react-redux';
+// import { loginAction, login} from '../../store/authStore';
+// import {useDispatch} from 'react-redux';
 import { useSelector } from 'react-redux'
 
 function LoginRegister() {
@@ -20,34 +20,10 @@ function LoginRegister() {
     let logout = useMatch('/logout')
     console.log({matchRegister, logout})
 
-    let dispatch = useDispatch();
+    // let dispatch = useDispatch();
     let storeUser = useSelector(state => state.auth.user)
     console.log({storeUser})
     useEffect(() => {
-        // const log = async () => {
-        //     try {
-        //         await dispatch(login({email: "ludovicimarc@gmail.com", password: "IsgiInet123!"}))
-        //     } catch(e) {
-        //         console.log("error logging in:", e);
-        //     }
-        // }
-        // const log = async () => {
-        //     try {
-        //       dispatch(loginAction("ludovicimarc@gmail.com", "IsgiInet123!")).unwrap().then((originalPromiseResult) => {
-        //         console.log("originalPromiseResult:",originalPromiseResult)              
-        //         })
-        //       .catch((rejectedValueOrSerializedError) => {
-        //         console.log("rejectedValueOrSerializedError:",rejectedValueOrSerializedError)              
-        //       })
-        //     } catch(e) {
-        //         console.log("error logging in:", e);
-        //     }
-        // }
-        // log();
-        // console.log({storeUser})
-
-        
-        //console.log('user:', authFunctions.currentUser)
         if (authFunctions.currentUser == null && logout && logout.isExact) {
             setLoggedOut('You logged out succesfully!')
         } else {
