@@ -9,9 +9,10 @@ const container = document.getElementById('root')
 const root = createRoot(container);
 
 root.render(
-    <AdBlockComponent>
         <AuthProvider>
+            
+    <AdBlockComponent>
             <App />
+            </AdBlockComponent>
         </AuthProvider>
-    </AdBlockComponent>
 )

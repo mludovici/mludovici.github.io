@@ -1,0 +1,32 @@
+.navigation {
+	width: 100vw;	
+	padding: 1rem;
+}
+
+.wrapper-nav {
+	
+	
+	display: flex;
+	justify-content: flex-start;	
+}
+
+.listWrapper {
+	display: inline;
+	
+}
+
+.listItem {
+	display: inline;
+}
+
+.profileIcon::after {	
+    content: "\25BE"; 
+}
+
+.popupMenu {
+	background: white;
+	position: absolute;
+	padding: 10px;
+	border-radius: 5px;
+	right: 0px;
+}
